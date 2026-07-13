@@ -144,13 +144,13 @@
                                                     <ult:Label ID="fld_COMPANYCODE" title="" data-type='string' data-field="COMPANYCODE" runat="server" Text='<%#Eval("COMPANYCODE")%>' Format="" Width="90%"></ult:Label>
                                                 </td>
                                                 <td class=" td_TOTALAMOUNTORDER" data-label='<%=Lang.Get("UWF.Process.PO_SUPPLIER_SUMMARY.TOTALAMOUNTORDER").Split('<')[0] %>'>
-                                                    <ult:Label ID="fld_TOTALAMOUNTORDER" title="" data-type='number' data-field="TOTALAMOUNTORDER" runat="server" Text='<%#Eval("TOTALAMOUNTORDER")%>' CssClass="autonumber" Format="" Width="90%"></ult:Label>
+                                                    <ult:Label ID="fld_TOTALAMOUNTORDER" title=""  data-field="TOTALAMOUNTORDER" runat="server" Text='<%#Eval("TOTALAMOUNTORDER")%>' Format="" CssClass="autonumber"   Width="90%"></ult:Label>
                                                 </td>
                                                  <td class=" td_TOTALAMOUNTSUPPLIER" data-label='<%=Lang.Get("UWF.Process.PO_SUPPLIER_SUMMARY.TOTALAMOUNTSUPPLIER").Split('<')[0] %>'>
-                                                    <ult:Label ID="fld_TOTALAMOUNTSUPPLIER" title="" data-type='number' data-field="TOTALAMOUNTSUPPLIER" runat="server" Text='<%#Eval("TOTALAMOUNTSUPPLIER")%>'CssClass="autonumber" Format="" Width="90%"></ult:Label>
+                                                    <ult:Label ID="fld_TOTALAMOUNTSUPPLIER" title=""  data-field="TOTALAMOUNTSUPPLIER" runat="server" Text='<%#Eval("TOTALAMOUNTSUPPLIER")%>' CssClass="autonumber"  Format="" Width="90%"></ult:Label>
                                                 </td>
                                                 <td class=" td_TOTALAMOUNTDIFFER" data-label='<%=Lang.Get("UWF.Process.PO_SUPPLIER_SUMMARY.TOTALAMOUNTDIFFER").Split('<')[0] %>'>
-                                                    <ult:Label ID="fld_TOTALAMOUNTDIFFER" title="" data-type='number' data-field="TOTALAMOUNTDIFFER" runat="server" Text='<%#Eval("TOTALAMOUNTDIFFER")%>'CssClass="autonumber" Format="" Width="90%"></ult:Label>
+                                                    <ult:Label ID="fld_TOTALAMOUNTDIFFER" title=""  data-field="TOTALAMOUNTDIFFER" runat="server" Text='<%#Eval("TOTALAMOUNTDIFFER")%>' CssClass="autonumber"  Format="" Width="90%"></ult:Label>
                                                 </td>
                                                
                                                 <td class="hidden td_STATECODE"  data-label='<%=Lang.Get("UWF.Process.PO_SUPPLIER_SUMMARY.STATECODE").Split('<')[0] %>'>
