@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div>
+        &nbsp;&nbsp;&nbsp;&nbsp;尊敬的用户&nbsp;<span id="approvalName">@Model.approvalNameCN</span>，
+        有一个流程代理需要您的审批
+        &nbsp;&nbsp;&nbsp;&nbsp;Dear <span id="userName">@Model.approvalNameEN</span>:
+        There is a process agent that requires your approval
+        <br />
+        <p>1.   被代理人/Principal：<span id="TaskUserCN">@Model.TaskUserCN</span></p>
+        <p>2.	代理人/agent：<span class="id">@Model.approvalNameCN</span></p>
+        <p>3.	代理流程/Proxy process：<span id="process">@Model.processName</span></p>
+        <p>4.	代理时间/Proxy Time：<span class="startTime">@Model.txtBegin</span>至<span class="endTime">@Model.txtEnd</span></p>
+        <p>
+            <a href="@(Model.RootPath)/Portal/Ultimus.UWF.Home.V3/MyDelegationConfirm.aspx?processName=@(Model.processName)&assignToUser=@(Model.AssignUserEN)&taskUser=@(Model.TaskUserEN)&beginTime=@(Model.txtBegin)&endTime=@(Model.txtEnd)&approvalName=&(Model.approvalNameCN)&type=EmailApproval" style="font-size:14pt;">审批</a>
+        </p>
+    </div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,370 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;" />
+    <title></title>
+    <style type="text/css">
+        body {
+            font-family: '等線','Microsoft YaHei','Calibri';
+        }
+
+        table {
+            background: #ccc;
+        }
+
+        td {
+            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    Hi @Model.TaskUserName,<br />
+    您有壹條 @Model.ProcessCN 流程的被退回。You have a task have been returned of @Model.ProcessEN !<br /><br />
+    <table cellspacing="0" style="width: 100%; border-top: 1px solid #ccc">
+        <tr style="background-color:#CCCCCC ;">
+            <td colspan="2">
+                <div><strong>基礎信息 General Information</strong></div>
+            </td>
+        </tr>
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_HK_CPR_SERVICE"))
+        {
+        <tr>
+            <td width="31%" bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                申請人<br />Applicant
+            </td>
+            <td width="69%" bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"APPLICANT")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                流水單號<br /> Document No
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"DOCUMENTNO")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                申請日期<br /> Request Date
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"REQUESTDATE")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                部門<br />Department
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"DEPARTMENT")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                流程摘要<br />Summary
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"PROCESSSUMMARY")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.APPLYPURPOSE
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"APPLYPURPOSE")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.SUPPLIERTYPE
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SUPPLIERTYPE")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.SITECODE
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SITECODE")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.SITENAME
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SITENAME")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.DELIVERYDATE
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"DELIVERYDATE")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.SUPPLIERCODE
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SUPPLIERCODE")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.SUPPLIERNAME
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SUPPLIERNAME")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.AMOUNT
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"AMOUNT")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.APPREMARK
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"APPREMARK")
+            </td>
+        </tr>
+        }
+    </table>
+    <table cellspacing="0" style="width: 100%; border-top: 1px solid #ccc">
+        <tr style="background-color:#CCCCCC ;">
+            <td colspan=" 24">
+                <div align="left"><strong>PR.PRProcess.HK_CPR_SERVICE.HK_CPR_SERVICE_Items</strong></div>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.APPLYREASON
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.FAMILYCODE
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.FAMILYNAME
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.SUBFAMILYCODE
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.SUBFAMILYNAME
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.SUBSUBFAMILYCODE
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.SUBSUBFAMILYNAME
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.ARTICLENAME
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.ARTICLECODE
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.ORDERUNIT
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.UNIT
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.CONSUMPTIONUNIT
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.CONVERSION
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.STOCK
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.NETVOMULE
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.GROSSWEIGHT
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.NETVOMULEUNIT
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.GROSSWEIGHTUNIT
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.SITEPRICE
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.ORDERQUANTITY
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.ORDERUNITVALUE
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.UNITVALUE
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.CONSUMPTIONUNITVALUE
+            </td>
+            <td style="text-align:center" bgcolor="#FFFFFF">
+                PR.PRProcess.HK_CPR_SERVICE.SUBTOTALAMOUNT
+            </td>
+        </tr>
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_HK_CPR_SERVICE_ITEMS"))
+        {
+        <tr>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"APPLYREASON")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"FAMILYCODE")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"FAMILYNAME")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SUBFAMILYCODE")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SUBFAMILYNAME")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SUBSUBFAMILYCODE")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SUBSUBFAMILYNAME")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"ARTICLENAME")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"ARTICLECODE")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"ORDERUNIT")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"UNIT")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"CONSUMPTIONUNIT")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"CONVERSION")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"STOCK")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"NETVOMULE")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"GROSSWEIGHT")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"NETVOMULEUNIT")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"GROSSWEIGHTUNIT")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SITEPRICE")
+                
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"ORDERQUANTITY")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"ORDERUNITVALUE")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"UNITVALUE")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"CONSUMPTIONUNITVALUE")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SUBTOTALAMOUNT")
+            </td>
+        </tr>
+        }
+    </table>
+    <table cellspacing="0" style="width: 100%; border-top: 1px solid #ccc">
+        <tr style="background-color:#CCCCCC ;">
+            <td colspan="5">
+                <div align="left"><strong>審批歷史記錄 Approval History</strong></div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:center; " bgcolor="#FFFFFF">
+                步驟 Step
+            </td>
+            <td style="text-align: center; " bgcolor="#FFFFFF">
+                日期 Date
+            </td>
+            <td style="text-align: center; " bgcolor="#FFFFFF">
+                審批人 Approver
+            </td>
+            <td style="text-align: center; " bgcolor="#FFFFFF">
+                審批結果 Action
+            </td>
+            <td style="text-align:center;" bgcolor="#FFFFFF">
+                意見 Comments
+            </td>
+        </tr>
+        @foreach(Ultimus.UWF.Workflow.Entity.ApprovalHistoryEntity var in @Model.ApprovalHistoryList)
+        {
+        <tr>
+            <td bgcolor="#FFFFFF">
+                @var.STEPNAME
+            </td>
+            <td bgcolor="#FFFFFF">
+                @{
+                string strdate="";
+                DateTime date= var.CREATEDATE;
+                if (date!=null)
+                {
+                strdate= date.ToString("MM-dd");
+                }
+                @strdate
+                }
+
+            </td>
+            <td bgcolor="#FFFFFF">
+                @var.APPROVERNAME
+            </td>
+            <td bgcolor="#FFFFFF">
+                @var.ACTION
+            </td>
+            <td bgcolor="#FFFFFF">
+                @var.COMMENTS
+            </td>
+        </tr>
+        }
+
+    </table>
+
+    <br />
+    如需使用電腦查看流程詳細信息，請<a href="@Model.BodyView">點擊鏈接查閱！ </a>
+    <br />
+    If you want to view this form in computer，please click <a href="@Model.BodyView">here！ </a>
+    <br />
+    <br />
+
+</body>
+</html>

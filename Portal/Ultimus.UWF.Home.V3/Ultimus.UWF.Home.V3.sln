@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ultimus.UWF.Home.V3", "Ultimus.UWF.Home.V3.csproj", "{5FF5D188-F948-4419-9EFF-820C9A7BD40F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ultimus.UWF.Form.ProcessControl.V3", "..\..\Solution\Ultimus.UWF.Form.ProcessControl.V3\Ultimus.UWF.Form.ProcessControl.V3.csproj", "{35ECF74E-B6C5-459F-8638-61C70739FB83}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5FF5D188-F948-4419-9EFF-820C9A7BD40F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FF5D188-F948-4419-9EFF-820C9A7BD40F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FF5D188-F948-4419-9EFF-820C9A7BD40F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FF5D188-F948-4419-9EFF-820C9A7BD40F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35ECF74E-B6C5-459F-8638-61C70739FB83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35ECF74E-B6C5-459F-8638-61C70739FB83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35ECF74E-B6C5-459F-8638-61C70739FB83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35ECF74E-B6C5-459F-8638-61C70739FB83}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3399756B-4C60-4872-BA12-FF16E0DA81C1}
+	EndGlobalSection
+EndGlobal

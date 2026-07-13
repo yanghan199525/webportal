@@ -1,0 +1,11 @@
+﻿<!DOCTYPE html>
+
+    
+        @(Model.emailHtml)
+    
+    <div>
+        <a href="@(Model.RootPath)/Portal/Ultimus.UWF.Home.V3/Workflow/EmailSendForm.aspx?taskid=@(Model.TaskID)&username=@(Model.TaskUserLoginName)&type=0&EmailType=email" style="font-size:14pt;">同意/Approve</a>
+        &nbsp;&nbsp;&nbsp;
+        <a href="@(Model.RootPath)/Portal/Ultimus.UWF.Home.V3/Workflow/EmailSendForm.aspx?taskid=@(Model.TaskID)&username=@(Model.TaskUserLoginName)&type=2&EmailType=email" style="font-size:14pt;">拒绝/Reject</a>
+    </div>
+

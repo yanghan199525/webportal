@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;" />
+    <title></title>
+    <style type="text/css">
+        body {
+            font-family: '等线','Microsoft YaHei','Calibri';
+        }
+
+        table {
+            background: #ccc;
+        }
+
+        td {
+            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+        }
+
+        .bgcss {
+            background-color: white;
+            border-left: 0px;
+            border-right: 0px;
+        }
+    </style>
+    <script>       
+    </script>
+</head>
+<body>
+    尊敬的 <span id="TaskUserName">@Model.TaskUserName</span>,<br />
+    以下单外采购申请需要您的审批。请点击下方“同意”链接或“退回”链接批准或退回该行采购申请<br />或<a href="@(Model.RootPath)">登录系统</a>进行审批。<br />
+    Dear <span id="TaskUserLoginName">@Model.TaskUserNameEn</span>,<br />
+    CPR below need your approval. Please click ‘Approve’ or ‘Return’ link to process this order<br /> Or <a href="@(Model.RootPath)">login system</a>  to review pending tasks.<br /><br />
+    <table cellspacing="0" style="width: 100%; border-top: 1px solid #5C5C5C">
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PO_SUPPLIER_NETPRICE"))
+        {
+        <tr>
+            <td width="18%" bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                采购申请业务编号<br />NETPRICE ID
+            </td>
+            <td width="16%" bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"DOCUMENTNO")
+            </td>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                供应商编号<br />Supplier Code
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SUPPLIERCODE")
+            </td>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                供应商名称<br />Supplier Name
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.SupplierName
+            </td>
+
+        </tr>       
+        }
+        <tr>
+            <td colspan="6" class="bgcss">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center" bgcolor="#B1CBF5">
+                物料名<br />Item Description
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                数量<br />GRRECEIVING QUANTITY
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                采购价格<br />Contract Price Order
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                供应商价格<br />Contract Price Supplier
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                差异价格<br />Contract Price Differ
+            </td>
+        </tr>
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PO_SUPPLIER_NETPRICE_ITEMS"))
+        {
+        <tr>
+            <td  colspan="2" bgcolor="#FFFFFF" >
+                @Model.GetColumnValue(row,"PRARTICLENAME")
+            </td>
+            <td bgcolor="#FFFFFF" style="text-align:right;">
+                @Model.GetColumnValue(row,"GRRECEIVINGQUANTITY")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"ContractPriceOrder")
+            </td>
+            <td bgcolor="#FFFFFF" style="text-align:right;">
+                @Model.GetColumnValue(row,"ContractPriceSupplier")
+            </td>
+            <!--<td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"APPLYREASON")
+            </td>-->
+            <td bgcolor="#FFFFFF" style="text-align:right;">
+                @Model.GetColumnValue(row,"ContractPriceDiffer")
+            </td>
+        </tr>
+        }      
+        <tr>
+            <td colspan="6" class="bgcss">&nbsp;</td>
+        </tr>
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PO_SUPPLIER_NETPRICE"))
+        {
+        <tr>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                申请备注<br />Remarks
+            </td>
+            <td bgcolor="#FFFFFF" colspan="5">
+                @Model.GetColumnValue(row,"APPREMARK")
+            </td>
+        </tr>
+        }
+        <tr>
+            <td colspan="6" class="bgcss">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                审批人<br />Approver
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                步骤名<br />Step Name
+            </td>
+            <td colspan="2" style="text-align:center" bgcolor="#B1CBF5">
+                审批意见<br />Approval Opinion
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                审批结果<br />Approval Result
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                审批时间<br />Approval Time
+            </td>
+        </tr>
+        @foreach(Ultimus.UWF.Workflow.Entity.ApprovalHistoryEntity var in @Model.ApprovalHistoryList)
+        {
+        <tr>
+            <td bgcolor="#FFFFFF">
+                @var.APPROVERNAME
+            </td>
+            <td bgcolor="#FFFFFF">
+                @var.STEPNAME
+            </td>
+            <td colspan="2" bgcolor="#FFFFFF">
+                @var.COMMENTS
+            </td>
+            <td bgcolor="#FFFFFF">
+                @var.ACTION
+            </td>
+            <td bgcolor="#FFFFFF">
+                @var.EXT05
+            </td>
+        </tr>
+        }
+        <tr>
+            <td colspan="6" class="bgcss">&nbsp;</td>
+        </tr>
+        <tr>
+
+            <td colspan="6" bgcolor="#FFFFFF">
+                <a href="@(Model.RootPath)/Portal/Ultimus.UWF.Home.V3/Workflow/EmailSendForm.aspx?taskid=@(Model.TaskID)&username=@(Model.TaskUserLoginName)&type=0&EmailType=email" style="font-size:14pt;">同意/Approve</a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="@(Model.RootPath)/Portal/Ultimus.UWF.Home.V3/Workflow/EmailSendForm.aspx?taskid=@(Model.TaskID)&username=@(Model.TaskUserLoginName)&type=1&EmailType=email" style="font-size:14pt;">退回/Return</a>
+            </td>
+        </tr>
+    </table>
+    <br /> 
+    <br />
+    <br />
+</body>
+</html>

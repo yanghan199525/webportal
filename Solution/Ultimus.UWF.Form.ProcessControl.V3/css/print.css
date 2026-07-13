@@ -1,0 +1,40 @@
+﻿body
+{
+    font-size:9pt;
+}
+
+thead {
+    text-transform: none;
+}
+
+.form-detail-table > thead > tr > td {
+    padding: 2px;
+    font-size:9pt;
+}
+
+.form-table .form-label {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    height:40px;
+}
+
+.form-table .form-content {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    height:40px;
+}
+
+.form-group
+{
+    margin-bottom:0px;
+}
+
+.show-print
+{
+    display:table-cell !important;
+}
+
+.hidden-xs
+{
+    display:normal !important;
+}

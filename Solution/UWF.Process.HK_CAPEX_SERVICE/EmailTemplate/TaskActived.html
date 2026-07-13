@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;" />
+    <title></title>
+    <style type="text/css">
+        body {
+            font-family: '等线','Microsoft YaHei','Calibri';
+        }
+
+        table {
+            background: #ccc;
+        }
+
+        td {
+            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+        }
+
+        .bgcss {
+            background-color: white;
+            border-left: 0px;
+            border-right: 0px;
+        }
+    </style>
+</head>
+<body>
+    尊敬的 <span id="TaskUserName">@Model.TaskUserName</span>,<br />
+    以下固资申请需要您的审批。请点击下方“同意”链接或“退回”链接批准或退回该行采购申请<br />或<a href="@(Model.RootPath)">登录系统</a>进行审批。<br />
+    Dear <span id="TaskUserLoginName">@Model.TaskUserNameEn</span>,<br />
+    CPR below need your approval. Please click ‘Approve’ or ‘Return’ link to process this order<br /> Or <a href="@(Model.RootPath)">login system</a>  to review pending tasks.<br /><br />
+    <table cellspacing="0" style="width: 100%; border-top: 1px solid #5C5C5C">
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_HK_CAPEX_SERVICE"))
+        {
+        <tr>
+            <td width="18%" bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                投资编号<br />CAPEX NUMBER
+            </td>
+            <td width="16%" bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"CAPEXNUMBER")
+            </td>
+            <td width="16%" bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                申请人<br />Requestor
+            </td>
+            <td width="16%" bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"APPLICANT")
+            </td>
+            <td width="20%" bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                利润中心编号<br />Profit Center Code
+            </td>
+            <td width="14%" bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SITECODE")
+            </td>
+        </tr>
+
+        <tr>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                利润中心名称<br />Profit Center Description
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SITENAME")
+            </td>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                供应商编号<br />Supplier Code
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SUPPLIERCODE")
+            </td>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                供应商名称<br />Supplier Name
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SUPPLIERNAME")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                合同到期日期<br />CONTRACT DATE
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"CONTRACTDATE")
+            </td>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                折旧开始日期<br />DEPRECIATION DATE
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"DEPRECIATIONDATE")
+            </td>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                备注<br />APPREMARK
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"APPREMARK")
+            </td>
+        </tr>
+        }
+        <tr>
+            <td colspan="6" class="bgcss">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                物料子子类别<br />Sub Sub Family
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                物料名<br />Item Description
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                合同价<br />Unit Price
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                采购单位<br />OrderUnit
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                采购数量<br />Order Quantity
+            </td>
+            <!--<td style="text-align:center" bgcolor="#B1CBF5">
+                申请理由<br />Reason for Purchasing
+            </td>-->
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                金额<br />Sub Total Amount
+            </td>
+        </tr>
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_HK_CAPEX_SERVICE_ITEMS"))
+        {
+        <tr>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"FAMILYNAME")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"ARTICLENAME")
+            </td>
+            <td bgcolor="#FFFFFF" style="text-align:right;">
+                @Model.GetColumnValue(row,"PCPRICE")
+            </td>
+
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"ORDERUNIT")
+            </td>
+            <td bgcolor="#FFFFFF" style="text-align:right;">
+                @Model.GetColumnValue(row,"ORDERQTY")
+            </td>
+            <!--<td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"APPLYREASON")
+            </td>-->
+            <td bgcolor="#FFFFFF" style="text-align:right;">
+                @Model.GetColumnValue(row,"AMOUNT")
+            </td>
+        </tr>
+        }
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_HK_CAPEX_SERVICE"))
+        {
+        <tr>
+            <td colspan="5" bordercolor="#5C5C5C" bgcolor="#B1CBF5" style="text-align:right;">
+                合计金额<br />Total Amount
+            </td>
+            <td bgcolor="#FFFFFF" style="text-align:right;">
+                @Model.GetColumnValue(row,"AMOUNT")
+            </td>
+        </tr>
+        }
+        <tr>
+            <td colspan="6" class="bgcss">&nbsp;</td>
+        </tr>
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_HK_CAPEX_SERVICE"))
+        {
+        <tr>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                申请备注<br />Remarks
+            </td>
+            <td bgcolor="#FFFFFF" colspan="5">
+                @Model.GetColumnValue(row,"APPREMARK")
+            </td>
+        </tr>
+        }
+        <tr>
+            <td colspan="6" class="bgcss">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                审批人<br />Approver
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                步骤名<br />Step Name
+            </td>
+            <td colspan="2" style="text-align:center" bgcolor="#B1CBF5">
+                审批意见<br />Approval Opinion
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                审批结果<br />Approval Result
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                审批时间<br />Approval Time
+            </td>
+        </tr>
+        @foreach(Ultimus.UWF.Workflow.Entity.ApprovalHistoryEntity var in @Model.ApprovalHistoryList)
+        {
+        <tr>
+            <td bgcolor="#FFFFFF">
+                @var.APPROVERNAME
+            </td>
+            <td bgcolor="#FFFFFF">
+                @var.STEPNAME
+            </td>
+            <td colspan="2" bgcolor="#FFFFFF">
+                @var.COMMENTS
+            </td>
+            <td bgcolor="#FFFFFF">
+                @var.ACTION
+            </td>
+            <td bgcolor="#FFFFFF">
+                @var.EXT05
+            </td>
+        </tr>
+        }
+        <tr>
+            <td colspan="6" class="bgcss">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="6" bgcolor="#FFFFFF">
+                <a href="@(Model.RootPath)/Portal/Ultimus.UWF.Home.V3/Workflow/EmailSendForm.aspx?taskid=@(Model.TaskID)&username=@(Model.TaskUserLoginName)&type=0&EmailType=email" style="font-size:14pt;">同意/Approve</a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="@(Model.RootPath)/Portal/Ultimus.UWF.Home.V3/Workflow/EmailSendForm.aspx?taskid=@(Model.TaskID)&username=@(Model.TaskUserLoginName)&type=1&EmailType=email" style="font-size:14pt;">退回/Return</a>
+
+            </td>
+        </tr>
+    </table>
+    <br />
+    <br />
+    <br />
+</body>
+</html>

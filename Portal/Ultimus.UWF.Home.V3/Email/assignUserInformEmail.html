@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div>
+        &nbsp;&nbsp;&nbsp;&nbsp;尊敬的用户&nbsp;<span id="userName">@Model.AssignUserCN</span>，
+        您有一个来自<span id="user-nav">@Model.TaskUserCN</span>的设置代理需要您确认，授权信息如下：<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;Dear <span id="userName">@Model.AssignUserEN</span>，
+        You have a proxy setting from   &nbsp;<span id="user-nav">@Model.TaskUserEN</span>&nbsp;,requires your confirmation. The proxy information is as follows:
+                                              <p> &nbsp;&nbsp;&nbsp;&nbsp;1.	代理流程/Proxy process：<span class="orgName">@Model.processName</span></p>
+                                              <p> &nbsp;&nbsp;&nbsp;&nbsp;2.	代理时间/Proxy Time：<span class="startTime">@Model.txtBegin</span>至<span class="endTime">@Model.txtEnd</span></p>
+        <p> The delegatee has the necessary professional skills and accepts to exercise the DOA in full compliance with all Group and Dimension procedures and policies.Non -compliance to the DOA as outlined in this document may result in disciplinary actions. 被授权人拥有完成审批所需的专业知识及技能，并将完全按照集团及相关流程政策执行审批。不遵守本文件中概述的DOA可能会导致纪律处分。The authority delegated in this document shall not be sub - delegated.上述授权不能二次授权</p>
+        <p>
+            <a href="@(Model.RootPath)/Portal/Ultimus.UWF.Home.V3/MyDelegationConfirm.aspx?processName=@(Model.processName)&assignToUser=@(Model.AssignUserEN)&taskUser=@(Model.TaskUserEN)&beginTime=@(Model.txtBegin)&endTime=@(Model.txtEnd)&type=Email" style="font-size:14pt;">点我确认</a>
+        </p>
+    </div>
+
+
+
+
+</body>
+</html>

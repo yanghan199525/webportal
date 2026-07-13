@@ -1,0 +1,81 @@
+﻿.panel-default {
+    border: 0px;
+}
+
+.page-header {
+    padding: 16px;
+    padding-bottom: 43px;
+}
+
+@media screen and (max-width: 568px) {
+    .page-header {
+        padding: 16px;
+    }
+}
+
+.panel {
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.panel-title {
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.form-content {
+    background-color: #f5f5f5;
+}
+
+html, body {
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+.fa-title {
+    padding: 6px 0;
+    position: relative;
+    padding-left: 20px;
+    font-size: 14px;
+    color: #37363e;
+    border-radius: 3px;
+    border: 5px solid #fff;
+}
+
+    .fa-title .fa {
+        position: absolute;
+        left: 0px;
+        font-size: 20px;
+        color: #444;
+        display: block;
+        /* width: 40px; */
+        text-align: center;
+    }
+
+.autonumber {
+}
+
+.show-year {
+}
+
+.show-datetime {
+}
+
+.show-date {
+}
+
+.show-time {
+}
+
+.show-money {
+}
+
+input[type="checkbox"]:disabled + label::after {
+    color: #000 !important;
+}

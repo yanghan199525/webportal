@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;" />
+    <title></title>
+    <style type="text/css">
+        body {
+            font-family: '等线','Microsoft YaHei','Calibri';
+        }
+
+        table {
+            background: #ccc;
+        }
+
+        td {
+            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+        }
+
+        .bgcss {
+            background-color: white;
+            border-left: 0px;
+            border-right: 0px;
+        }
+    </style>
+</head>
+<body>
+    尊敬的 <span id="TaskUserName">@Model.TaskUserName</span>,<br />
+    以下您以下调整单申请已审批通过，需要您的关注。<br />
+    Dear <span id="TaskUserLoginName">@Model.TaskUserNameEn</span>,<br />
+    Your PO Amendment below had been approved please attention<br /><br />
+    <table cellspacing="0" style="width: 100%; border-top: 1px solid #5C5C5C">
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_PO_AMENDMENT"))
+        {
+        <tr>
+            <td width="18%" bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                采购申请业务编号<br />PO ID
+            </td>
+            <td width="16%" bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"DOCUMENTNO")
+            </td>
+            <td width="16%" bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                PO编号<br />PONumber
+            </td>
+            <td width="16%" bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"ADJUSTDOCUMENTNO")
+            </td>
+            <td width="16%" bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                申请人<br />Requestor
+            </td>
+            <td width="16%" bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"APPLICANT")
+            </td>
+
+        </tr>
+        <tr>
+            <td width="20%" bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                利润中心编号<br />Profit Center Code
+            </td>
+            <td width="14%" bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SITECODE")
+            </td>
+            <!--<td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                采购目的<br />Purchasing Purpose
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"PurchasingPurpose")
+
+            </td>-->
+
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                利润中心名称<br />Profit Center Description
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SITENAME")
+                <!--@Model.ProfitCenters-->
+            </td>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                原要求送货时间<br />Request Delivery Time
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"INITDELIVERYDATE")
+            </td>
+        </tr>
+        <tr>
+            <!--<td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                原要求送货时间<br />Request Delivery Time
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"INITDELIVERYDATE")
+            </td>-->
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                调整后要求送货时间<br />Request Delivery Time
+            </td>
+            <td bgcolor="#FFFFFF" style="color:red;">
+                @Model.GetColumnValue(row,"DELIVERYDATE")
+            </td>
+            <td colspan="4" bgcolor="#FFFFFF"></td>
+
+        </tr>
+        }
+        <tr>
+            <td colspan="6" class="bgcss">&nbsp;</td>
+        </tr>
+        <tr>
+            <!--<td style="text-align:center" bgcolor="#B1CBF5">
+                物料子子类别<br />Sub Sub Family
+            </td>-->
+            <td colspan="2" style="text-align:center" bgcolor="#B1CBF5">
+                物料名<br />Item Description
+            </td>
+            <!--<td style="text-align:center;" bgcolor="#B1CBF5">
+                物料单价<br />Unit Price
+            </td>-->
+            <td colspan="2" style="text-align:center;" bgcolor="#B1CBF5">
+                原订购量<br />Order Quantity
+            </td>
+            <td colspan="2" style="text-align:center" bgcolor="#B1CBF5">
+                调整后订购量<br />Order Quantity
+            </td>
+            <!--<td style="text-align:center;" bgcolor="#B1CBF5">
+                金额<br />Sub Total Amount
+            </td>-->
+        </tr>
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_PO_AMENDMENT_ITEMS"))
+        {
+        <tr>
+            <!--<td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SUBSUBFAMILYCE")
+            </td>-->
+            <td colspan="2" bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"ARTICLENAME")
+            </td>
+            <!--<td bgcolor="#FFFFFF" style="text-align:right;">
+                @Model.GetColumnValue(row,"SITEPRICE")
+            </td>-->
+            <td colspan="2" bgcolor="#FFFFFF" style="text-align:right;">
+                @Model.GetColumnValue(row,"INITORDERQUANTITY")
+            </td>
+            <td colspan="2" bgcolor="#FFFFFF" style="color:red;">
+                @Model.GetColumnValue(row,"ORDERQUANTITY")
+            </td>
+            <!--<td bgcolor="#FFFFFF" style="text-align:right;">
+                @Model.GetColumnValue(row,"SUBTOTALAMOUNT")
+            </td>-->
+        </tr>
+        }
+        <!--@foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_PO_AMENDMENT"))
+        {
+        <tr>
+            <td colspan="5" bordercolor="#5C5C5C" bgcolor="#B1CBF5" style="text-align:right;">
+                合计金额<br />Total Amount
+            </td>
+            <td bgcolor="#FFFFFF" style="text-align:right;">
+                @Model.GetColumnValue(row,"AMOUNT")
+            </td>
+        </tr>
+        }-->
+        <tr>
+            <td colspan="6" class="bgcss">&nbsp;</td>
+        </tr>
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_PO_AMENDMENT"))
+        {
+        <tr>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                申请备注<br />Remarks
+            </td>
+            <td bgcolor="#FFFFFF" colspan="5">
+                @Model.GetColumnValue(row,"APPREMARK")
+            </td>
+        </tr>
+        }
+        <tr>
+            <td colspan="6" class="bgcss">&nbsp;</td>
+        </tr>
+
+    </table>
+    <br />
+    <!--<table cellspacing="0" style="width: 100%; border-top: 1px solid #5C5C5C">
+        <tr>
+            <td colspan="5" bgcolor="#FFFFFF">
+                <a href="@(Model.RootPath)/Portal/Ultimus.UWF.Workflow/EmailSendForm.aspx?taskid=@(Model.TaskID)&username=@(Model.TaskUserLoginName)&type=0" style="font-size:16pt;">同意/Approve</a>
+
+                <a href="@(Model.RootPath)/Portal/Ultimus.UWF.Workflow/EmailSendForm.aspx?taskid=@(Model.TaskID)&username=@(Model.TaskUserLoginName)&type=1" style="font-size:16pt;">拒绝/Reject</a>
+            </td>
+        </tr>
+    </table>-->
+    <!--<br />
+    如需使用电脑查看流程详细信息，请<a href="@Model.BodyView">点击链接查阅！ </a>
+    <br />
+    If you want to view this form in computer，please click <a href="@Model.BodyView">here！ </a>-->
+    <br />
+    <br />
+</body>
+</html>

@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div>
+        &nbsp;&nbsp;&nbsp;&nbsp;尊敬的用户&nbsp;<span id="approvalName">@Model.TaskUserCN</span>，
+        有一个流程代理已经被代理人领导拒绝
+        &nbsp;&nbsp;&nbsp;&nbsp;Dear <span id="userName">@Model.TaskUserEN</span>:
+        A process proxy has been rejected by the proxy leader
+        <br />
+        <p>1.   代理人领导/Agent leader：<span id="TaskUserCN">@Model.approvalNameCN</span></p>
+        <p>2.	代理人/agent：<span class="id">@Model.approvalNameCN</span></p>
+        <p>3.	代理流程/Proxy process：<span id="process">@Model.processName</span></p>
+        <p>4.	代理时间/Proxy Time：<span class="startTime">@Model.txtBegin</span>至<span class="endTime">@Model.txtEnd</span></p>
+       
+    </div>
+
+
+
+
+</body>
+</html>

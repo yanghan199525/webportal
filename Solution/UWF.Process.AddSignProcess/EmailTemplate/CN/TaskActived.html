@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;" />
+    <title></title>
+    <style type="text/css">
+        body {
+            font-size: 13px;
+            font-family: '微软雅黑','Open Sans', sans-serif;
+        }
+
+        table {
+            background: #ccc;
+        }
+
+        td {
+            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    您好 @Model.TaskUserName,<br />
+    您有一条 @Model.ProcessCN 待办邮件通知 ! <br />
+    如需使用电脑查看流程详细信息，请<a href="@Model.BodyView">点击链接查阅！ </a>
+    <br />
+    <br />
+    @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("WF_ADDSIGN"))
+        {
+            <span>流程名称</span>
+			@Model.GetColumnValue(row,"parentprocessname")
+            <br/>
+			<span>主题</span>
+			@Model.GetColumnValue(row,"parentsummary")
+		}
+</body>
+</html>

@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{35ECF74E-B6C5-459F-8638-61C70739FB83}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ultimus.UWF.Form.ProcessControl.V3</RootNamespace>
+    <AssemblyName>Ultimus.UWF.Form.ProcessControl.V3</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AspNetPager">
+      <HintPath>..\..\bin\AspNetPager.dll</HintPath>
+    </Reference>
+    <Reference Include="MyLib">
+      <HintPath>..\..\..\Resource\Refdll\MyLib.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.2.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.2.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.2.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.2.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorEngine">
+      <HintPath>..\..\bin\RazorEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Select.HtmlToPdf">
+      <HintPath>..\..\bin\Select.HtmlToPdf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="Microsoft.CSharp">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Ultimus.UWF.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Ultimus.UWF.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ultimus.UWF.EmailNotification">
+      <HintPath>..\..\..\..\..\..\..\..\00 Ultimus\UWF\branches\projects\DingXin_SrcSCM\JobService\Samples\Ultimus.UWF.EmailNotification\bin\Debug\Ultimus.UWF.EmailNotification.dll</HintPath>
+    </Reference>
+    <Reference Include="Ultimus.UWF.Form, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Ultimus.UWF.Form.dll</HintPath>
+    </Reference>
+    <Reference Include="Ultimus.UWF.Service, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Ultimus.UWF.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="Ultimus.UWF.ServiceDao, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Ultimus.UWF.ServiceDao.dll</HintPath>
+    </Reference>
+    <Reference Include="Ultimus.UWF.TemplateEngine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Ultimus.UWF.TemplateEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Ultimus.UWF.TemplatePrint, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Ultimus.UWF.TemplatePrint.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApprovalHistory.ascx.cs">
+      <DependentUpon>ApprovalHistory.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApprovalHistory.ascx.designer.cs">
+      <DependentUpon>ApprovalHistory.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="AssociatedProcess.ascx.cs">
+      <DependentUpon>AssociatedProcess.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssociatedProcess.ascx.designer.cs">
+      <DependentUpon>AssociatedProcess.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="AttachmentShow.aspx.cs">
+      <DependentUpon>AttachmentShow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AttachmentShow.aspx.designer.cs">
+      <DependentUpon>AttachmentShow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ButtonList.ascx.cs">
+      <DependentUpon>ButtonList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ButtonList.ascx.designer.cs">
+      <DependentUpon>ButtonList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CirculationUserInfo.ascx.cs">
+      <DependentUpon>CirculationUserInfo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CirculationUserInfo.ascx.designer.cs">
+      <DependentUpon>CirculationUserInfo.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CorrelationList.aspx.cs">
+      <DependentUpon>CorrelationList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CorrelationList.aspx.designer.cs">
+      <DependentUpon>CorrelationList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GetDataHandler.ashx.cs">
+      <DependentUpon>GetDataHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicalView.aspx.cs">
+      <DependentUpon>GraphicalView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GraphicalView.aspx.designer.cs">
+      <DependentUpon>GraphicalView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GridExport.aspx.cs">
+      <DependentUpon>GridExport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GridExport.aspx.designer.cs">
+      <DependentUpon>GridExport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\CalculateOvertime.ashx.cs">
+      <DependentUpon>CalculateOvertime.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\ProcessControl.ashx.cs">
+      <DependentUpon>ProcessControl.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlApprovalHistory.ascx.cs">
+      <DependentUpon>HtmlApprovalHistory.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlApprovalHistory.ascx.designer.cs">
+      <DependentUpon>HtmlApprovalHistory.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlAttachments.ascx.cs">
+      <DependentUpon>HtmlAttachments.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlAttachments.ascx.designer.cs">
+      <DependentUpon>HtmlAttachments.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlButtonList.ascx.cs">
+      <DependentUpon>HtmlButtonList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlButtonList.ascx.designer.cs">
+      <DependentUpon>HtmlButtonList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlToPDF.cs" />
+    <Compile Include="HtmlUserInfo.ascx.cs">
+      <DependentUpon>HtmlUserInfo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlUserInfo.ascx.designer.cs">
+      <DependentUpon>HtmlUserInfo.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="GetDay.cs" />
+    <Compile Include="Logic\FileHelper.cs" />
+    <Compile Include="Logic\ProcessFormLogic.cs" />
+    <Compile Include="MultiAttachments.ascx.cs">
+      <DependentUpon>MultiAttachments.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MultiAttachments.ascx.designer.cs">
+      <DependentUpon>MultiAttachments.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="MultiAttachmentsCPR.ascx.cs">
+      <DependentUpon>MultiAttachmentsCPR.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MultiAttachmentsCPR.ascx.designer.cs">
+      <DependentUpon>MultiAttachmentsCPR.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="MultiAttachmentsCPR_FOOD.aspx.cs">
+      <DependentUpon>MultiAttachmentsCPR_FOOD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MultiAttachmentsCPR_FOOD.aspx.designer.cs">
+      <DependentUpon>MultiAttachmentsCPR_FOOD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MultiAttachmentsOC.ascx.cs">
+      <DependentUpon>MultiAttachmentsOC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MultiAttachmentsOC.ascx.designer.cs">
+      <DependentUpon>MultiAttachmentsOC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintForm.aspx.cs">
+      <DependentUpon>PrintForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintForm.aspx.designer.cs">
+      <DependentUpon>PrintForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QianChenInfo.ascx.cs">
+      <DependentUpon>QianChenInfo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QianChenInfo.ascx.designer.cs">
+      <DependentUpon>QianChenInfo.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UploadAssociatedProcessHandler.ashx.cs">
+      <DependentUpon>UploadAssociatedProcessHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="UploadHandler.ashx.cs">
+      <DependentUpon>UploadHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="UploadHandlerCPR.ashx.cs">
+      <DependentUpon>UploadHandlerCPR.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="userdefinedEntity\SodexResult.cs" />
+    <Compile Include="userdefinedEntity\SupplyViewModelDto.cs" />
+    <Compile Include="userdefinedEntity\UniformCatalogDto.cs" />
+    <Compile Include="userdefinedLogic\AjaxResponse.cs" />
+    <Compile Include="userdefinedLogic\AjaxResponseBase.cs" />
+    <Compile Include="userdefinedLogic\JsonHelper.cs" />
+    <Compile Include="userdefinedLogic\OrgLogic.cs" />
+    <Compile Include="userdefinedLogic\sodexoProfitCentersLogic.cs" />
+    <Compile Include="UserInfo.ascx.cs">
+      <DependentUpon>UserInfo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo.ascx.designer.cs">
+      <DependentUpon>UserInfo.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintCirculationUserInfo.ascx.cs">
+      <DependentUpon>PrintCirculationUserInfo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintCirculationUserInfo.ascx.designer.cs">
+      <DependentUpon>PrintCirculationUserInfo.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\HttpUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ApprovalHistory.ascx" />
+    <Content Include="AssociatedProcess.ascx" />
+    <Content Include="AttachmentShow.aspx" />
+    <Content Include="Bin\AspNetPager.dll" />
+    <Content Include="Bin\DocX.dll" />
+    <Content Include="Bin\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="Bin\Microsoft.AspNet.FriendlyUrls.dll" />
+    <Content Include="Bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="Bin\MyLib.dll" />
+    <Content Include="Bin\Newtonsoft.Json.dll" />
+    <Content Include="Bin\Newtonsoft.Json.pdb" />
+    <Content Include="Bin\Newtonsoft.Json.xml" />
+    <Content Include="Bin\NPOI.dll" />
+    <Content Include="Bin\NPOI.OOXML.dll" />
+    <Content Include="Bin\NPOI.OpenXml4Net.dll" />
+    <Content Include="Bin\NPOI.OpenXmlFormats.dll" />
+    <Content Include="Bin\RazorEngine.dll" />
+    <Content Include="Bin\Select.HtmlToPdf.dll" />
+    <Content Include="Bin\Select.HtmlToPdf.xml" />
+    <Content Include="Bin\System.Web.Razor.dll" />
+    <Content Include="Bin\Ultimus.UWF.Common.dll" />
+    <Content Include="Bin\Ultimus.UWF.Common.pdb" />
+    <Content Include="Bin\Ultimus.UWF.EmailNotification.dll" />
+    <Content Include="Bin\Ultimus.UWF.Form.dll" />
+    <Content Include="Bin\Ultimus.UWF.Form.pdb" />
+    <Content Include="Bin\Ultimus.UWF.Form.ProcessControl.V3.dll" />
+    <Content Include="Bin\Ultimus.UWF.Form.ProcessControl.V3.pdb" />
+    <Content Include="Bin\Ultimus.UWF.Service.dll" />
+    <Content Include="Bin\Ultimus.UWF.Service.pdb" />
+    <Content Include="Bin\Ultimus.UWF.ServiceDao.dll" />
+    <Content Include="Bin\Ultimus.UWF.ServiceDao.pdb" />
+    <Content Include="Bin\Ultimus.UWF.TemplateEngine.dll" />
+    <Content Include="Bin\Ultimus.UWF.TemplatePrint.dll" />
+    <Content Include="Bin\Ultimus.UWF.Workflow.dll" />
+    <Content Include="Bin\UPL.Common.BussinessControl.dll" />
+    <Content Include="Bin\UPL.Common.BussinessControl.pdb" />
+    <Content Include="ButtonList.ascx" />
+    <Content Include="CirculationUserInfo.ascx" />
+    <Content Include="CorrelationList.aspx" />
+    <Content Include="css\form.css" />
+    <Content Include="css\loading.css" />
+    <Content Include="css\print.css" />
+    <Content Include="GraphicalView.aspx" />
+    <Content Include="GridExport.aspx" />
+    <Content Include="HtmlApprovalHistory.ascx" />
+    <Content Include="HtmlAttachments.ascx" />
+    <Content Include="HtmlButtonList.ascx" />
+    <Content Include="HtmlUserInfo.ascx" />
+    <Content Include="img\banner_bg.png" />
+    <Content Include="img\loading.gif" />
+    <Content Include="js\Loading.js" />
+    <Content Include="MultiAttachments.ascx" />
+    <Content Include="MultiAttachmentsCPR.ascx" />
+    <Content Include="MultiAttachmentsCPR_FOOD.aspx" />
+    <Content Include="MultiAttachmentsOC.ascx" />
+    <Content Include="PrintApprovalHistory.ascx" />
+    <Content Include="PrintForm.aspx" />
+    <Content Include="PrintUserInfo.ascx" />
+    <Content Include="QianChenInfo.ascx" />
+    <Content Include="uploadifive\jquery.uploadifive.min.js" />
+    <Content Include="uploadifive\uploadifive-cancel.png" />
+    <Content Include="uploadifive\uploadifive.css" />
+    <Content Include="UserInfo.ascx" />
+    <Content Include="PrintCirculationUserInfo.ascx" />
+    <Content Include="UserInfoForPrint.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GetDataHandler.ashx" />
+    <Content Include="UploadHandler.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="UploadAssociatedProcessHandler.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Handler\ProcessControl.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="web.config" />
+    <Content Include="Handler\CalculateOvertime.ashx" />
+    <Content Include="UploadHandlerCPR.ashx" />
+    <Content Include="Bin\Solution - Shortcut.lnk" />
+    <Content Include="Bin\Ultimus.UWF.Form.ProcessControl.V3.dll.config" />
+    <Content Include="Bin\UPL.Common.BussinessControl.dll.config" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UPL.Common.BussinessControl\UPL.Common.BussinessControl.csproj">
+      <Project>{3cdd17bf-6aac-4ad3-a885-dd8c1113fdcb}</Project>
+      <Name>UPL.Common.BussinessControl</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>6502</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost/UWF/</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

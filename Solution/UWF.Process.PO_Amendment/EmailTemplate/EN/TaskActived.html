@@ -1,0 +1,319 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;" />
+    <title></title>
+    <style type="text/css">
+        body {
+            font-size: 13px;
+            font-family: '微软雅黑','Open Sans', sans-serif;
+        }
+
+        table {
+            background: #ccc;
+        }
+
+        td {
+            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    Hello @Model.TaskUserName,<br />
+    You have a task about @Model.ProcessEN need to approve!<br />
+    If you want to view this form in computer，please click <a href="@Model.BodyView">here！ </a>
+    <br />
+    <br />
+    <table cellspacing="0" style="width: 100%; border-top: 1px solid #ccc">
+        <tr style="background-color: #CCCCCC;">
+            <td colspan="2">
+                <div><strong>Basic Information</strong></div>
+            </td>
+        </tr>
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_PO_Amendment"))
+        {
+        <tr>
+            <td width="31%" bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                Applicant
+            </td>
+            <td width="69%" bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"APPLICANT")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                Document No
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"DOCUMENTNO")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                Request Date
+            </td>
+            <td bgcolor="#FFFFFF">
+                @{
+                string strdate_REQUESTDATE="";
+                DateTime date_REQUESTDATE= Convert.ToDateTime(@Model.GetColumnValue(row,"REQUESTDATE"));
+                if (date_REQUESTDATE!=null)
+                {
+                strdate_REQUESTDATE= date_REQUESTDATE.ToString("yyyy/MM/dd HH:mm:ss");
+                }
+                @strdate_REQUESTDATE
+                }
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                Department
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"DEPARTMENT")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                Subject
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"PROCESSSUMMARY")
+            </td>
+        </tr>
+                <tr>
+                    <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                        DOCUMENTNO
+                    </td>
+                    <td bgcolor="#FFFFFF">
+                        @Model.GetColumnValue(row,"DOCUMENTNO")
+                    </td>
+                </tr>
+                <tr>
+                    <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                        SITECODE
+                    </td>
+                    <td bgcolor="#FFFFFF">
+                        @Model.GetColumnValue(row,"SITECODE")
+                    </td>
+                </tr>
+                <tr>
+                    <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                        PurchasingPurpose
+                    </td>
+                    <td bgcolor="#FFFFFF">
+                        @Model.GetColumnValue(row,"PurchasingPurpose")
+                    </td>
+                </tr>
+                <tr>
+                    <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                        INITDELIVERYDATE
+                    </td>
+                    <td bgcolor="#FFFFFF">
+                        @Model.GetColumnValue(row,"INITDELIVERYDATE")
+                    </td>
+                </tr>
+                <tr>
+                    <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                        DELIVERYDATE
+                    </td>
+                    <td bgcolor="#FFFFFF">
+                        @Model.GetColumnValue(row,"DELIVERYDATE")
+                    </td>
+                </tr>
+                <tr>
+                    <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                        SITENAME
+                    </td>
+                    <td bgcolor="#FFFFFF">
+                        @Model.GetColumnValue(row,"SITENAME")
+                    </td>
+                </tr>
+                <tr>
+                    <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                        INITAMOUNT
+                    </td>
+                    <td bgcolor="#FFFFFF">
+                        @{
+                        string str_INITAMOUNT=string.Empty;
+                        string INITAMOUNT =@Model.GetColumnValue(row,"INITAMOUNT");
+                        if (!string.IsNullOrEmpty(INITAMOUNT))
+                        {str_INITAMOUNT = String.Format("{0:N}",Convert.ToDecimal( INITAMOUNT));}
+                        @str_INITAMOUNT
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                        AMOUNT
+                    </td>
+                    <td bgcolor="#FFFFFF">
+                        @{
+                        string str_AMOUNT=string.Empty;
+                        string AMOUNT =@Model.GetColumnValue(row,"AMOUNT");
+                        if (!string.IsNullOrEmpty(AMOUNT))
+                        {str_AMOUNT = String.Format("{0:N}",Convert.ToDecimal( AMOUNT));}
+                        @str_AMOUNT
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                        APPREMARK
+                    </td>
+                    <td bgcolor="#FFFFFF">
+                        @Model.GetColumnValue(row,"APPREMARK")
+                    </td>
+                </tr>
+        }
+    </table>
+            <table cellspacing="0" style="width: 100%; border-top: 1px solid #ccc">
+                <tr style="background-color: #CCCCCC;">
+                    <td colspan=" 9">
+                        <div align="left"><strong>PO_Amendment_ITEMS</strong></div>
+                    </td>
+                </tr>
+
+                <tr>
+                            <td style="text-align: center" bgcolor="#FFFFFF">
+                                ARTICLENAME
+                            </td>
+                            <td style="text-align: center" bgcolor="#FFFFFF">
+                                SUBSUBFAMILYNAME
+                            </td>
+                            <td style="text-align: center" bgcolor="#FFFFFF">
+                                ORDERUNIT
+                            </td>
+                            <td style="text-align: center" bgcolor="#FFFFFF">
+                                SITEPRICE
+                            </td>
+                            <td style="text-align: center" bgcolor="#FFFFFF">
+                                INITORDERQUANTITY
+                            </td>
+                            <td style="text-align: center" bgcolor="#FFFFFF">
+                                ORDERQUANTITY
+                            </td>
+                            <td style="text-align: center" bgcolor="#FFFFFF">
+                                SUBTOTALAMOUNT
+                            </td>
+                            <td style="text-align: center" bgcolor="#FFFFFF">
+                                Article Code
+                            </td>
+                            <td style="text-align: center" bgcolor="#FFFFFF">
+                                Adjustment Quantity
+                            </td>
+                </tr>
+                @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_PO_AMENDMENT_ITEMS"))
+                {
+                <tr>
+                            <td bgcolor="#FFFFFF">
+                                @Model.GetColumnValue(row,"ARTICLENAME")
+                            </td>
+                            <td bgcolor="#FFFFFF">
+                                @Model.GetColumnValue(row,"SUBSUBFAMILYCE")
+                            </td>
+                            <td bgcolor="#FFFFFF">
+                                @Model.GetColumnValue(row,"ORDERUNIT")
+                            </td>
+                            <td bgcolor="#FFFFFF">
+                                @{
+                                string str_SITEPRICE=string.Empty;
+                                string SITEPRICE =@Model.GetColumnValue(row,"SITEPRICE");
+                                if (!string.IsNullOrEmpty(SITEPRICE))
+                                {str_SITEPRICE = String.Format("{0:N}",Convert.ToDecimal( SITEPRICE));}
+                                @str_SITEPRICE
+                                }
+                            </td>
+                            <td bgcolor="#FFFFFF">
+                                @{
+                                string str_INITORDERQUANTITY=string.Empty;
+                                string INITORDERQUANTITY =@Model.GetColumnValue(row,"INITORDERQUANTITY");
+                                if (!string.IsNullOrEmpty(INITORDERQUANTITY))
+                                {str_INITORDERQUANTITY = String.Format("{0:N}",Convert.ToDecimal( INITORDERQUANTITY));}
+                                @str_INITORDERQUANTITY
+                                }
+                            </td>
+                            <td bgcolor="#FFFFFF">
+                                @{
+                                string str_ORDERQUANTITY=string.Empty;
+                                string ORDERQUANTITY =@Model.GetColumnValue(row,"ORDERQUANTITY");
+                                if (!string.IsNullOrEmpty(ORDERQUANTITY))
+                                {str_ORDERQUANTITY = String.Format("{0:N}",Convert.ToDecimal( ORDERQUANTITY));}
+                                @str_ORDERQUANTITY
+                                }
+                            </td>
+                            <td bgcolor="#FFFFFF">
+                                @Model.GetColumnValue(row,"SUBTOTALAMOUNT")
+                            </td>
+                            <td bgcolor="#FFFFFF">
+                                @Model.GetColumnValue(row,"ARTICLECODE")
+                            </td>
+                            <td bgcolor="#FFFFFF">
+                                @Model.GetColumnValue(row,"AdjustmentQuantity")
+                            </td>
+                </tr>
+                }
+            </table>
+    <table cellspacing="0" style="width: 100%; border-top: 1px solid #ccc">
+        <tr style="background-color: #CCCCCC;">
+            <td colspan="5">
+                <div align="left"><strong>Approval History</strong></div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" bgcolor="#FFFFFF">
+                Approver
+            </td>
+            <td style="text-align: center;" bgcolor="#FFFFFF">
+                StepName
+            </td>
+            <td style="text-align: center;" bgcolor="#FFFFFF">
+                Comments
+            </td>
+            <td style="text-align: center;" bgcolor="#FFFFFF">
+                Action
+            </td>
+            <td style="text-align: center;" bgcolor="#FFFFFF">
+                Approve Date
+            </td>
+        </tr>
+        @foreach(Ultimus.UWF.Workflow.Entity.ApprovalHistoryEntity var in @Model.ApprovalHistoryList)
+        {
+        <tr>
+            <td bgcolor="#FFFFFF" style="text-align: left;">
+                @var.APPROVERNAME
+            </td>
+            <td bgcolor="#FFFFFF" style="text-align: left;">
+                @var.STEPNAME
+            </td>
+            <td bgcolor="#FFFFFF" style="text-align: left;">
+                @var.COMMENTS
+            </td>
+            <td bgcolor="#FFFFFF" style="text-align: center;">
+                @var.ACTION
+            </td>
+            <td bgcolor="#FFFFFF" style="text-align: center;">
+                @{
+                string strdate="";
+                DateTime date= var.CREATEDATE;
+                if (date!=null)
+                {
+                if(date.Year==1900){strdate="**********";}
+                else {strdate= date.ToString("yyyy/MM/dd HH:mm:ss");}
+                }
+                @strdate
+                }
+            </td>
+        </tr>
+        }
+        <tr>
+            <td colspan="5" bgcolor="#FFFFFF">
+                <a href="@(Model.RootPath)/Portal/Ultimus.UWF.Home.V3/Workflow/EmailSendForm.aspx?taskid=@(Model.TaskID)&username=@(Model.TaskUserLoginName)&type=0" style="font-size:16pt;">Approve</a>
+                        
+                <a href="@(Model.RootPath)/Portal/Ultimus.UWF.Home.V3/Workflow/EmailSendForm.aspx?taskid=@(Model.TaskID)&username=@(Model.TaskUserLoginName)&type=1" style="font-size:16pt;">Return</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div>
+        尊敬的
+        <span id="TaskUserName">@Model.cnname</span>,
+        <br />
+
+        <div>
+            &emsp;&emsp;
+            营运点
+            <span id="siteCode">@Model.orgCode</span>
+            (
+            <span id="siteName">@Model.orgName</span>)
+            <span id="CreatTimeCN">@Model.CreatTimeCN</span>
+            <span style="color:RGB(192,0,0)">(财务周期)</span>
+            月度采购申请总金额已达预算总额度的
+            <span id="PercentageOfExcess">@Model.PercentageOfExcess</span>，
+            需要您的关注。
+            <br />
+        </div>
+
+        <br />
+        <div style="width:100%">
+            <div style="width:20%"></div>
+            <div style="width:50%">
+                采购申请使用金额明细如下：
+                <br />
+                1.月度预算总额度：@Model.BranchQuota
+                <br />
+
+                2.月度已用额度：@Model.MonthlyAmount
+                <br />
+
+                3.月度已用额度占比：@Model.PercentageOfExcess
+                <br />
+            </div>
+            <div style="width:30%"></div>
+        </div>
+        <br />
+        <br />
+        <div style="font-family:'Arial'">
+            Dear
+            <span id="TaskUserLoginName">@Model.loginName</span>,
+            <br />
+
+            <div>
+                &emsp;&emsp;  Monthly PR amount of Site
+                <span id="siteCode">
+                    @Model.orgCode
+                    (<span id="siteName">@Model.orgName</span>
+                </span>)on
+                <span id="CreatTimeCN">@Model.CreatTimeCN</span>
+                <span style="color:RGB(192,0,0)">(Finance Period)</span>
+                has reached
+                <span id="PercentageOfExcess">@Model.PercentageOfExcess</span>
+                ,Need your attention.
+                <br />
+            </div>
+            <br />
+            <div style="width:100%">
+                <div style="width:20%"></div>
+                <div style="width:50%">
+                    PR amount occupancy details are as below:
+                    <br />
+                    1. Budget of This Month： @Model.BranchQuota
+                    <br />
+
+                    2. Occupied Amount：@Model.MonthlyAmount
+                    <br />
+
+                    3. Occupied Amount Ratio：@Model.PercentageOfExcess
+                    <br />
+                </div>
+                <div style="width:30%"></div>
+            </div>
+        </div>
+
+        <br />
+        <div>
+            <span style="color:RGB(192,0,0)">注*月度已用额度的金额与比率统计是基于要求到货日期从上月26日到本月25日(按照财务结算周期)的采购申请单总金额.</span>
+            <br />
+
+            <span style="color:RGB(192,0,0)"> Occupied Amount and Ratio of this month is based on the total PR amount that Required Delivery Date from 26th of last month to 25th of this month.</span>
+        </div>
+    </div>
+</body>
+</html>

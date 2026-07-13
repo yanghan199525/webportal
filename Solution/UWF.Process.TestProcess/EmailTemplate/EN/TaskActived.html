@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;" />
+    <title></title>
+    <style type="text/css">
+        body {
+            font-size: 13px;
+            font-family: '微软雅黑','Open Sans', sans-serif;
+        }
+
+        table {
+            background: #ccc;
+        }
+
+        td {
+            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    Hello @Model.TaskUserName,<br />
+    You have a task about @Model.ProcessEN need to approve!<br />
+    If you want to view this form in computer，please click <a href="@Model.BodyView">here！ </a>
+    <br />
+    <br />
+    <table cellspacing="0" style="width: 100%; border-top: 1px solid #ccc">
+        <tr style="background-color: #CCCCCC;">
+            <td colspan="2">
+                <div><strong>Basic Information</strong></div>
+            </td>
+        </tr>
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_TestProcess"))
+        {
+        <tr>
+            <td width="31%" bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                Applicant
+            </td>
+            <td width="69%" bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"APPLICANT")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                Document No
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"DOCUMENTNO")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                Request Date
+            </td>
+            <td bgcolor="#FFFFFF">
+                @{
+                string strdate_REQUESTDATE="";
+                DateTime date_REQUESTDATE= Convert.ToDateTime(@Model.GetColumnValue(row,"REQUESTDATE"));
+                if (date_REQUESTDATE!=null)
+                {
+                strdate_REQUESTDATE= date_REQUESTDATE.ToString("yyyy/MM/dd HH:mm:ss");
+                }
+                @strdate_REQUESTDATE
+                }
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                Department
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"DEPARTMENT")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                Subject
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"PROCESSSUMMARY")
+            </td>
+        </tr>
+        }
+    </table>
+    <table cellspacing="0" style="width: 100%; border-top: 1px solid #ccc">
+        <tr style="background-color: #CCCCCC;">
+            <td colspan="5">
+                <div align="left"><strong>Approval History</strong></div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" bgcolor="#FFFFFF">
+                Approver
+            </td>
+            <td style="text-align: center;" bgcolor="#FFFFFF">
+                StepName
+            </td>
+            <td style="text-align: center;" bgcolor="#FFFFFF">
+                Comments
+            </td>
+            <td style="text-align: center;" bgcolor="#FFFFFF">
+                Action
+            </td>
+            <td style="text-align: center;" bgcolor="#FFFFFF">
+                Approve Date
+            </td>
+        </tr>
+        @foreach(Ultimus.UWF.Workflow.Entity.ApprovalHistoryEntity var in @Model.ApprovalHistoryList)
+        {
+        <tr>
+            <td bgcolor="#FFFFFF" style="text-align: left;">
+                @var.APPROVERNAME
+            </td>
+            <td bgcolor="#FFFFFF" style="text-align: left;">
+                @var.STEPNAME
+            </td>
+            <td bgcolor="#FFFFFF" style="text-align: left;">
+                @var.COMMENTS
+            </td>
+            <td bgcolor="#FFFFFF" style="text-align: center;">
+                @var.ACTION
+            </td>
+            <td bgcolor="#FFFFFF" style="text-align: center;">
+                @{
+                string strdate="";
+                DateTime date= var.CREATEDATE;
+                if (date!=null)
+                {
+                if(date.Year==1900){strdate="**********";}
+                else {strdate= date.ToString("yyyy/MM/dd HH:mm:ss");}
+                }
+                @strdate
+                }
+            </td>
+        </tr>
+        }
+        <tr>
+            <td colspan="5" bgcolor="#FFFFFF">
+                <a href="@(Model.RootPath)/Portal/Ultimus.UWF.Home.V3/Workflow/EmailSendForm.aspx?taskid=@(Model.TaskID)&username=@(Model.TaskUserLoginName)&type=0" style="font-size:16pt;">Approve</a>
+                        
+                <a href="@(Model.RootPath)/Portal/Ultimus.UWF.Home.V3/Workflow/EmailSendForm.aspx?taskid=@(Model.TaskID)&username=@(Model.TaskUserLoginName)&type=1" style="font-size:16pt;">Return</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

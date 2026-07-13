@@ -1,0 +1,854 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5FF5D188-F948-4419-9EFF-820C9A7BD40F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ultimus.UWF.Home.V3</RootNamespace>
+    <AssemblyName>Ultimus.UWF.Home.V3</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AspNetPager, Version=6.0.0.0, Culture=neutral, PublicKeyToken=fb0a0fe055d40fd4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Common\Refdll\AspNetPager.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\RefDll\Microsoft.IdentityModel.dll</HintPath>
+    </Reference>
+    <Reference Include="MyLib">
+      <HintPath>..\..\Common\Refdll\MyLib.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Sodexo.WCF.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\Sodexo.WCF.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Net.Http">
+      <HintPath>..\..\bin\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="TopSdk, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Resource\Refdll\TopSdk.dll</HintPath>
+    </Reference>
+    <Reference Include="Ultimus.UWF.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Ultimus.UWF.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ultimus.UWF.EmailNotification, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\Ultimus.UWF.EmailNotification.dll</HintPath>
+    </Reference>
+    <Reference Include="Ultimus.UWF.Form">
+      <HintPath>..\..\bin\Ultimus.UWF.Form.dll</HintPath>
+    </Reference>
+    <Reference Include="Ultimus.UWF.ServiceDao, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Ultimus.UWF.ServiceDao.dll</HintPath>
+    </Reference>
+    <Reference Include="Ultimus.UWF.ServiceImpl, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Ultimus.UWF.ServiceImpl.dll</HintPath>
+    </Reference>
+    <Reference Include="Ultimus.UWF.TemplateEngine">
+      <HintPath>..\..\Solution\Ultimus.UWF.Form.ProcessControl.V3\Bin\Ultimus.UWF.TemplateEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddSign\Approval.aspx.cs">
+      <DependentUpon>Approval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddSign\Approval.aspx.designer.cs">
+      <DependentUpon>Approval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddSign\ApprovalHistory_AddSign.ascx.cs">
+      <DependentUpon>ApprovalHistory_AddSign.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddSign\ApprovalHistory_AddSign.ascx.designer.cs">
+      <DependentUpon>ApprovalHistory_AddSign.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="AddSign\ButtonList_AddSign.ascx.cs">
+      <DependentUpon>ButtonList_AddSign.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddSign\ButtonList_AddSign.ascx.designer.cs">
+      <DependentUpon>ButtonList_AddSign.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="AddSign\NewRequest.aspx.cs">
+      <DependentUpon>NewRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddSign\NewRequest.aspx.designer.cs">
+      <DependentUpon>NewRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddSign\NewRequestAPP.aspx.cs">
+      <DependentUpon>NewRequestAPP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddSign\NewRequestAPP.aspx.designer.cs">
+      <DependentUpon>NewRequestAPP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddSign\UserInfo_AddSign.ascx.cs">
+      <DependentUpon>UserInfo_AddSign.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddSign\UserInfo_AddSign.ascx.designer.cs">
+      <DependentUpon>UserInfo_AddSign.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Assign.aspx.cs">
+      <DependentUpon>Assign.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Assign.aspx.designer.cs">
+      <DependentUpon>Assign.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssignmentList.aspx.cs">
+      <DependentUpon>AssignmentList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssignmentList.aspx.designer.cs">
+      <DependentUpon>AssignmentList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Blank.aspx.cs">
+      <DependentUpon>Blank.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Blank.aspx.designer.cs">
+      <DependentUpon>Blank.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Decentralization.aspx.cs">
+      <DependentUpon>Decentralization.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Decentralization.aspx.designer.cs">
+      <DependentUpon>Decentralization.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DecentralizationReport.aspx.cs">
+      <DependentUpon>DecentralizationReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DecentralizationReport.aspx.designer.cs">
+      <DependentUpon>DecentralizationReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DefaultHandler.ashx.cs">
+      <DependentUpon>DefaultHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SetCOOByOd.aspx.cs">
+      <DependentUpon>SetCOOByOd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SetCOOByOd.aspx.designer.cs">
+      <DependentUpon>SetCOOByOd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmailNotification.aspx.cs">
+      <DependentUpon>EmailNotification.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmailNotification.aspx.designer.cs">
+      <DependentUpon>EmailNotification.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\OrgHandler.ashx.cs">
+      <DependentUpon>OrgHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\TaskBatch.ashx.cs">
+      <DependentUpon>TaskBatch.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\UserHandler.ashx.cs">
+      <DependentUpon>UserHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="info\info.aspx.cs">
+      <DependentUpon>info.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="info\info.aspx.designer.cs">
+      <DependentUpon>info.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="JdOrderDraft.aspx.cs">
+      <DependentUpon>JdOrderDraft.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JdOrderDraft.aspx.designer.cs">
+      <DependentUpon>JdOrderDraft.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="JdNewRequest.aspx.cs">
+      <DependentUpon>JdNewRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JdNewRequest.aspx.designer.cs">
+      <DependentUpon>JdNewRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="JdOrderDraft01.aspx.cs">
+      <DependentUpon>JdOrderDraft01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JdOrderDraft01.aspx.designer.cs">
+      <DependentUpon>JdOrderDraft01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\DingTalkLogic.cs" />
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginHandler.ashx.cs">
+      <DependentUpon>LoginHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="MobileBlank.aspx.cs">
+      <DependentUpon>MobileBlank.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MobileBlank.aspx.designer.cs">
+      <DependentUpon>MobileBlank.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MobileDefault.aspx.cs">
+      <DependentUpon>MobileDefault.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MobileDefault.aspx.designer.cs">
+      <DependentUpon>MobileDefault.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MobileOtherPage.aspx.cs">
+      <DependentUpon>MobileOtherPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MobileOtherPage.aspx.designer.cs">
+      <DependentUpon>MobileOtherPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyDelegation.aspx.cs">
+      <DependentUpon>MyDelegation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyDelegation.aspx.designer.cs">
+      <DependentUpon>MyDelegation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyDelegationConfirmApproval.aspx.cs">
+      <DependentUpon>MyDelegationConfirmApproval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyDelegationConfirmApproval.aspx.designer.cs">
+      <DependentUpon>MyDelegationConfirmApproval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyDelegationList.aspx.cs">
+      <DependentUpon>MyDelegationList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyDelegationList.aspx.designer.cs">
+      <DependentUpon>MyDelegationList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\TaskRefresh.ashx.cs">
+      <DependentUpon>TaskRefresh.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\ProcessLogic.cs" />
+    <Compile Include="DelegationList.aspx.cs">
+      <DependentUpon>DelegationList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DelegationList.aspx.designer.cs">
+      <DependentUpon>DelegationList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Delegation.aspx.cs">
+      <DependentUpon>Delegation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Delegation.aspx.designer.cs">
+      <DependentUpon>Delegation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HomeLink.aspx.cs">
+      <DependentUpon>HomeLink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomeLink.aspx.designer.cs">
+      <DependentUpon>HomeLink.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyRead.aspx.cs">
+      <DependentUpon>MyRead.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyRead.aspx.designer.cs">
+      <DependentUpon>MyRead.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyTaskListBatch.aspx.cs">
+      <DependentUpon>MyTaskListBatch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyTaskListBatch.aspx.designer.cs">
+      <DependentUpon>MyTaskListBatch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyTaskListV3.aspx.cs">
+      <DependentUpon>MyTaskListV3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyTaskListV3.aspx.designer.cs">
+      <DependentUpon>MyTaskListV3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyUnread.aspx.cs">
+      <DependentUpon>MyUnread.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyUnread.aspx.designer.cs">
+      <DependentUpon>MyUnread.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NewTaskListV3.aspx.cs">
+      <DependentUpon>NewTaskListV3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewTaskListV3.aspx.designer.cs">
+      <DependentUpon>NewTaskListV3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OpenHelp.aspx.cs">
+      <DependentUpon>OpenHelp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OpenHelp.aspx.designer.cs">
+      <DependentUpon>OpenHelp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrgChart\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrgChart\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrgChart\PersonInfo.aspx.cs">
+      <DependentUpon>PersonInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrgChart\PersonInfo.aspx.designer.cs">
+      <DependentUpon>PersonInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrgChart\SelectDepartment.aspx.cs">
+      <DependentUpon>SelectDepartment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrgChart\SelectDepartment.aspx.designer.cs">
+      <DependentUpon>SelectDepartment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrgChart\SelectOrg.aspx.cs">
+      <DependentUpon>SelectOrg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrgChart\SelectOrg.aspx.designer.cs">
+      <DependentUpon>SelectOrg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrgChart\SelectSignedApprover.aspx.cs">
+      <DependentUpon>SelectSignedApprover.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrgChart\SelectSignedApprover.aspx.designer.cs">
+      <DependentUpon>SelectSignedApprover.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrgChart\SelectSignedApproverEn.aspx.cs">
+      <DependentUpon>SelectSignedApproverEn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrgChart\SelectSignedApproverEn.aspx.designer.cs">
+      <DependentUpon>SelectSignedApproverEn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrgChart\SelectSignedApproverHK.aspx.cs">
+      <DependentUpon>SelectSignedApproverHK.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrgChart\SelectSignedApproverHK.aspx.designer.cs">
+      <DependentUpon>SelectSignedApproverHK.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrgChart\SelectUser.aspx.cs">
+      <DependentUpon>SelectUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrgChart\SelectUser.aspx.designer.cs">
+      <DependentUpon>SelectUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyDelegationConfirm.aspx.cs">
+      <DependentUpon>MyDelegationConfirm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyDelegationConfirm.aspx.designer.cs">
+      <DependentUpon>MyDelegationConfirm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RDconfirm.aspx.cs">
+      <DependentUpon>RDconfirm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RDconfirm.aspx.designer.cs">
+      <DependentUpon>RDconfirm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyDelegationConfirmList.aspx.cs">
+      <DependentUpon>MyDelegationConfirmList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyDelegationConfirmList.aspx.designer.cs">
+      <DependentUpon>MyDelegationConfirmList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RDconfirmList.aspx.cs">
+      <DependentUpon>RDconfirmList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RDconfirmList.aspx.designer.cs">
+      <DependentUpon>RDconfirmList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportListV7.aspx.cs">
+      <DependentUpon>ReportListV7.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportListV7.aspx.designer.cs">
+      <DependentUpon>ReportListV7.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportList.aspx.cs">
+      <DependentUpon>ReportList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportList.aspx.designer.cs">
+      <DependentUpon>ReportList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DefaultOLD.aspx.cs">
+      <DependentUpon>DefaultOLD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DefaultOLD.aspx.designer.cs">
+      <DependentUpon>DefaultOLD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DraftList.aspx.cs">
+      <DependentUpon>DraftList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DraftList.aspx.designer.cs">
+      <DependentUpon>DraftList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyApprovalList.aspx.cs">
+      <DependentUpon>MyApprovalList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyApprovalList.aspx.designer.cs">
+      <DependentUpon>MyApprovalList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyRequestList.aspx.cs">
+      <DependentUpon>MyRequestList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyRequestList.aspx.designer.cs">
+      <DependentUpon>MyRequestList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyTaskList.aspx.cs">
+      <DependentUpon>MyTaskList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyTaskList.aspx.designer.cs">
+      <DependentUpon>MyTaskList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NewTaskList.aspx.cs">
+      <DependentUpon>NewTaskList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewTaskList.aspx.designer.cs">
+      <DependentUpon>NewTaskList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectPage.aspx.cs">
+      <DependentUpon>SelectPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SelectPage.aspx.designer.cs">
+      <DependentUpon>SelectPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SelectPageHandler.ashx.cs">
+      <DependentUpon>SelectPageHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="SiteMaintain.aspx.cs">
+      <DependentUpon>SiteMaintain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteMaintain.aspx.designer.cs">
+      <DependentUpon>SiteMaintain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SSO.aspx.cs">
+      <DependentUpon>SSO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SSO.aspx.designer.cs">
+      <DependentUpon>SSO.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TaskList.aspx.cs">
+      <DependentUpon>TaskList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TaskList.aspx.designer.cs">
+      <DependentUpon>TaskList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TaskStatus.aspx.cs">
+      <DependentUpon>TaskStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TaskStepsOverview.ashx.cs">
+      <DependentUpon>TaskStepsOverview.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="SelectPageStrengthen.aspx.cs">
+      <DependentUpon>SelectPageStrengthen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SelectPageStrengthen.aspx.designer.cs">
+      <DependentUpon>SelectPageStrengthen.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ValidateNum.aspx.cs">
+      <DependentUpon>ValidateNum.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ValidateNum.aspx.designer.cs">
+      <DependentUpon>ValidateNum.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Workflow\EmailSendForm.aspx.cs">
+      <DependentUpon>EmailSendForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Workflow\EmailSendForm.aspx.designer.cs">
+      <DependentUpon>EmailSendForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Workflow\GraphicalView.aspx.cs">
+      <DependentUpon>GraphicalView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Workflow\OpenForm.aspx.cs">
+      <DependentUpon>OpenForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Workflow\OpenForm.aspx.designer.cs">
+      <DependentUpon>OpenForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Workflow\ShowNextApprover.aspx.cs">
+      <DependentUpon>ShowNextApprover.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Workflow\ShowNextApprover.aspx.designer.cs">
+      <DependentUpon>ShowNextApprover.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Workflow\Utils\ADHelper.cs" />
+    <Compile Include="Workflow\Utils\HttpUtil.cs" />
+    <Compile Include="YGArticle.aspx.cs">
+      <DependentUpon>YGArticle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YGArticle.aspx.designer.cs">
+      <DependentUpon>YGArticle.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AddSign\Approval.aspx" />
+    <Content Include="AddSign\ApprovalHistory_AddSign.ascx" />
+    <Content Include="AddSign\ButtonList_AddSign.ascx" />
+    <Content Include="AddSign\NewRequest.aspx" />
+    <Content Include="AddSign\NewRequestAPP.aspx" />
+    <Content Include="AddSign\UserInfo_AddSign.ascx" />
+    <Content Include="Assign.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="AssignmentList.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="assignUseApproval.html" />
+    <Content Include="Blank.aspx" />
+    <Content Include="Decentralization.aspx" />
+    <Content Include="DecentralizationReport.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Login-AD.aspx" />
+    <Content Include="SetCOOByOd.aspx" />
+    <Content Include="EmailNotification.aspx" />
+    <Content Include="Email\assignUseApprovalRejest.html" />
+    <Content Include="Email\assignUseApproval.html" />
+    <Content Include="Email\assignUserConfirmEmail.html" />
+    <Content Include="Email\assignUserCancelEmail.html" />
+    <Content Include="Email\assignUserInformEmail.html" />
+    <Content Include="Email\informEmail.html" />
+    <Content Include="Email\RemindEmail.html" />
+    <Content Include="Email\sdConfirm.html" />
+    <Content Include="Email\sdInfoEmail.html" />
+    <Content Include="info\info.aspx" />
+    <Content Include="JdOrderDraft.aspx" />
+    <Content Include="JdNewRequest.aspx" />
+    <Content Include="JdOrderDraft01.aspx" />
+    <Content Include="js\bootstrap-select.css" />
+    <Content Include="js\bootstrap-select.js" />
+    <Content Include="js\bootstrap-toggle.min.js" />
+    <Content Include="js\bootstrap.css" />
+    <Content Include="Login.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="MobileBlank.aspx" />
+    <Content Include="MobileDefault.aspx" />
+    <Content Include="MobileOtherPage.aspx" />
+    <Content Include="My97DatePicker\calendar.js" />
+    <Content Include="My97DatePicker\dayjs.min.js" />
+    <Content Include="My97DatePicker\lang\en.js" />
+    <Content Include="My97DatePicker\lang\zh-cn.js" />
+    <Content Include="My97DatePicker\lang\zh-tw.js" />
+    <Content Include="My97DatePicker\skin\datePicker.gif" />
+    <Content Include="My97DatePicker\skin\default\datepicker.css" />
+    <Content Include="My97DatePicker\skin\default\img.gif" />
+    <Content Include="My97DatePicker\skin\WdatePicker.css" />
+    <Content Include="My97DatePicker\skin\whyGreen\bg.jpg" />
+    <Content Include="My97DatePicker\skin\whyGreen\datepicker.css" />
+    <Content Include="My97DatePicker\skin\whyGreen\img.gif" />
+    <Content Include="My97DatePicker\WdatePicker.js" />
+    <Content Include="My97DatePicker\开发包\lang\en.js" />
+    <Content Include="My97DatePicker\开发包\lang\zh-cn.js" />
+    <Content Include="My97DatePicker\开发包\lang\zh-tw.js" />
+    <Content Include="My97DatePicker\开发包\readme.txt" />
+    <Content Include="My97DatePicker\开发包\skin\datePicker.gif" />
+    <Content Include="My97DatePicker\开发包\skin\default\datepicker.css" />
+    <Content Include="My97DatePicker\开发包\skin\default\img.gif" />
+    <Content Include="My97DatePicker\开发包\skin\WdatePicker.css" />
+    <Content Include="My97DatePicker\开发包\skin\whyGreen\bg.jpg" />
+    <Content Include="My97DatePicker\开发包\skin\whyGreen\datepicker.css" />
+    <Content Include="My97DatePicker\开发包\skin\whyGreen\img.gif" />
+    <Content Include="MyDelegation.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="MyDelegationConfirmApproval.aspx" />
+    <Content Include="MyDelegationList.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="DelegationList.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Delegation.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Error.aspx" />
+    <Content Include="Home.aspx" />
+    <Content Include="css\matrix-media.css" />
+    <Content Include="css\matrix-style.css" />
+    <Content Include="font-awesome\css\font-awesome.css" />
+    <Content Include="HomeLink.aspx" />
+    <Content Include="js\taskstatus.js" />
+    <Content Include="MyRead.aspx" />
+    <Content Include="MyTaskListBatch.aspx" />
+    <Content Include="MyTaskListV3.aspx" />
+    <Content Include="MyUnread.aspx" />
+    <Content Include="NewTaskListV3.aspx" />
+    <Content Include="OpenHelp.aspx" />
+    <Content Include="OrgChart\ChangePassword.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="OrgChart\PersonInfo.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="OrgChart\SelectDepartment.aspx" />
+    <Content Include="OrgChart\SelectOrg.aspx" />
+    <Content Include="OrgChart\SelectSignedApprover.aspx" />
+    <Content Include="OrgChart\SelectSignedApproverEn.aspx" />
+    <Content Include="OrgChart\SelectSignedApproverHK.aspx" />
+    <Content Include="OrgChart\SelectUser.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="MyDelegationConfirm.aspx" />
+    <Content Include="RDconfirm.aspx" />
+    <Content Include="MyDelegationConfirmList.aspx" />
+    <Content Include="RDconfirmList.aspx" />
+    <Content Include="ReportListV7.aspx" />
+    <Content Include="ReportList.aspx" />
+    <Content Include="DefaultOLD.aspx" />
+    <Content Include="DraftList.aspx" />
+    <Content Include="MyApprovalList.aspx" />
+    <Content Include="MyRequestList.aspx" />
+    <Content Include="MyTaskList.aspx" />
+    <Content Include="NewTaskList.aspx" />
+    <Content Include="SelectPage.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="SiteMaintain.aspx" />
+    <Content Include="SSO.aspx" />
+    <Content Include="TaskList.aspx" />
+    <Content Include="TaskStatus.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="SelectPageStrengthen.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="ValidateNum.aspx" />
+    <Content Include="Workflow\EmailSendForm.aspx" />
+    <Content Include="Workflow\GraphicalView.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Workflow\OpenForm.aspx" />
+    <Content Include="Workflow\ShowNextApprover.aspx" />
+    <Content Include="YGArticle.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="font-awesome\font\fontawesome-webfont.eot" />
+    <Content Include="font-awesome\font\fontawesome-webfont.eot%40" />
+    <Content Include="font-awesome\font\fontawesome-webfont.ttf" />
+    <Content Include="font-awesome\font\fontawesome-webfont.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Handler\TaskRefresh.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TaskStepsOverview.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SelectPageHandler.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LoginHandler.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Handler\TaskBatch.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DefaultHandler.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Handler\OrgHandler.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Handler\UserHandler.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Lib\Ultimus.UWF.Service\Ultimus.UWF.Service.csproj">
+      <Project>{44DD40E2-0933-44D5-AE1D-BA2646C8781F}</Project>
+      <Name>Ultimus.UWF.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Solution\Ultimus.UWF.Form.ProcessControl.V3\Ultimus.UWF.Form.ProcessControl.V3.csproj">
+      <Project>{35ECF74E-B6C5-459F-8638-61C70739FB83}</Project>
+      <Name>Ultimus.UWF.Form.ProcessControl.V3</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="web.config" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>6510</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/Ultimus.UWF.Home2</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost/UWF/</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetPath)" "..\..\..\Bin\$(TargetFileName)"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;" />
+    <title></title>
+    <style type="text/css">
+        body {
+            font-size: 13px;
+            font-family: '微软雅黑','Open Sans', sans-serif;
+        }
+
+        table {
+            background: #ccc;
+        }
+
+        td {
+            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    Hello @Model.TaskUserName,<br />
+    You have a task about @Model.ProcessEN need to approve!<br />
+    If you want to view this form in computer，please click <a href="@Model.BodyView">here！ </a>
+    <br />
+    <br />
+    @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("WF_ADDSIGN"))
+        {
+            <span>Process Name</span>
+			@Model.GetColumnValue(row,"parentprocessname")
+            <br/>
+			<span>Subject</span>
+			@Model.GetColumnValue(row,"parentsummary")
+		}
+</body>
+</html>

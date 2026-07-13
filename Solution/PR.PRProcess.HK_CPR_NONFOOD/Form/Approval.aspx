@@ -1,0 +1,460 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Approval.aspx.cs" Inherits="PR.PRProcess.HK_CPR_NONFOOD.Approval" %>
+<%@ Register Src="../../Ultimus.UWF.Form.ProcessControl.V3/UserInfo.ascx" TagName="UserInfo" TagPrefix="ui" %>
+<%@ Register Src="../../Ultimus.UWF.Form.ProcessControl.V3/ApprovalHistory.ascx" TagName="ApprovalHistory" TagPrefix="ah" %>
+<%@ Register Src="../../Ultimus.UWF.Form.ProcessControl.V3/MultiAttachments.ascx" TagName="Attachments" TagPrefix="attach" %>
+<%@ Register Src="../../Ultimus.UWF.Form.ProcessControl.V3/ButtonList.ascx" TagName="ButtonList" TagPrefix="btn" %>
+<%@ Import Namespace="Ultimus.UWF.Common.Logic" %>
+<%@ Register Assembly="Ultimus.UWF.Form" Namespace="Ultimus.UWF.Form.WebControls" TagPrefix="ult" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
+    <meta name="description" content="Ultimus BPM , Ultimus Business Process Management">
+    <meta name="keywords" content="ultimus, bpm, workflow, business process management" />
+    <title>HK_CPR_NONFOOD</title>
+</head>
+<body>
+
+    <form id="form1" runat="server">
+        <!--定义UserInfo-->
+     <ui:userinfo id="UserInfo1" processtitle="HK_CPR_NONFOOD" processpefix="HK_CPR" tablename="PROC_HK_CPR_NONFOOD"
+            tablenamedetail="PROC_HK_CPR_NONFOOD_ITEMS" runat="server"></ui:userinfo>
+        <!--End main table-->
+        <!--Start 接UserInfo Div的结束标记,请不要删除-->
+        </div></div></div></div>
+        <!--End 接UserInfo Div的结束标记,请不要删除-->
+        <!--1.对Table做循环，判断单行,多行-->
+            <!--1.1单行-->
+            <div class="row" id="div_panel_HK_CPR_NONFOOD">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+
+                        <div class="panel-title">
+                            <div class="fa-title">
+                                <i class="fa fa-check-square-o"></i><span class="padding-r-5"></span>
+                                <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.HK_CPR_NONFOOD") %>
+                            </div>
+
+                            <ul class="panel-tools">
+                                <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li>
+                                <li><a class="icon expand-tool"><i class="fa fa-expand"></i></a></li>
+                            </ul>
+                        </div>
+
+                        <div class="panel-body form-table">
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_APPLYPURPOSE" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.APPLYPURPOSE") %><span style='color:red'>*</span>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                <ult:Label ID="read_APPLYPURPOSETXT" title="" Format=""  runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_SUPPLIERTYPE" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.SUPPLIERTYPE") %><span style='color:red'>*</span>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                <ult:Label ID="read_SUPPLIERTYPETXT" title="" Format=""  runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_SITECODE" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.SITECODE") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                <ult:Label ID="read_SITECODE" title="" Format=""  runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_SITENAME" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.SITENAME") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                <ult:Label ID="read_SITENAME" title="" Format=""  runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_DELIVERYDATE" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.DELIVERYDATE") %><span style='color:red'>*</span>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                  <div class="input-prepend input-group" id="edit_DELIVERYDATE">
+                                      
+                                        <ult:TextBox ID="fld_DELIVERYDATE" data-type='text' title="" onblur="checkExpression(this)" data-field="DELIVERYDATE" Variable="" ControlValue="" CssClass="form-control Wdate validate[required,futureDateTime[#hdDatetime]]" runat="server" data-errormessage-type-mismatch="要求送货日期必须为明天下午6点以后，默认时间为早上6点30分<br/>Required delivery date must be after 6pm tomorrow, default time is 6:30am" onClick="WdatePicker({readOnly:false,startDate:'%y-%M-%d 06:30:00',dateFmt:'yyyy-MM-dd HH:mm:00',alwaysUseStartDate:false})">
+                                        </ult:TextBox>
+                                        <span class="add-on input-group-addon hidden-xs"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                <ult:Label ID="read_DELIVERYDATE" title="" Format=""  runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_SUPPLIERCODE" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.SUPPLIERCODE") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                <ult:Label ID="read_SUPPLIERCODE" title="" Format=""  runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_SUPPLIERNAME" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.SUPPLIERNAME") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                <ult:Label ID="read_SUPPLIERNAME" title="" Format=""  runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_ASSETTYPE" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.ASSETTYPE") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                <ult:Label ID="read_ASSETTYPE" title="" Format=""  runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_AMOUNT" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.AMOUNT") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                    <ult:Label ID="read_AMOUNT" title="" Format="" CssClass="autonumber" runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_APPREMARK" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.APPREMARK") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                <ult:Label ID="read_APPREMARK" title="" Format=""  runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_APPROVEDATE" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.APPROVEDATE") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                <ult:Label ID="read_APPROVEDATE" title="" Format=""  runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_CPRFAMILYCODE" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.CPRFAMILYCODE") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                <ult:Label ID="read_CPRFAMILYCODE" title="" Format=""  runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_PURCHASINGAGENT" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.PURCHASINGAGENT") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                <ult:Label ID="read_PURCHASINGAGENT" title="" Format=""  runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_USER_SignedApproverName" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.USER_SignedApproverName") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                <ult:Label ID="read_USER_SIGNEDAPPROVERNAME" title="" Format=""  runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_USER_SignedApproverName2" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.USER_SignedApprover2Name") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                <ult:Label ID="read_USER_SIGNEDAPPROVER2NAME" title="" Format=""  runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_USER_SignedApproverName3" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.USER_SignedApprover3Name") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                <ult:Label ID="read_USER_SIGNEDAPPROVER3NAME" title="" Format=""  runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_SIGNEDAPPROVERNUMBER" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.SIGNEDAPPROVERNUMBER") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                <ult:Label ID="read_SIGNEDAPPROVERNUMBER" title="" Format=""  runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_DELIVERY" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.DELIVERY") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                <ult:Label ID="read_DELIVERY" title="" Format=""  runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_APPROVE" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.APPROVE") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                <ult:Label ID="read_APPROVE" title="" Format=""  runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_FIXEDASSETS" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.FIXEDASSETS") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                <ult:Label ID="read_FIXEDASSETS" title="" Format=""  runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_USER_SignedApprover" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.USER_SignedApprover") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                <ult:Label ID="read_USER_SIGNEDAPPROVER" title="" Format=""  runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_USER_SignedApprover2" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.USER_SignedApprover2") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                <ult:Label ID="read_USER_SIGNEDAPPROVER2" title="" Format=""  runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_USER_SignedApprover3" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.USER_SignedApprover3") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                <ult:Label ID="read_USER_SIGNEDAPPROVER3" title="" Format=""  runat="server">
+                </ult:Label>
+            </div></div>
+         </div>
+    
+            
+            <!--补充空单元格-->
+                            <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden-sm hidden-xs" style="height:">
+                                <div class="form-label">
+                                </div>
+                                <div class="form-field">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden-sm hidden-xs" style="height:">
+                                <div class="form-label">
+                                </div>
+                                <div class="form-field">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--1.2多行-->
+                    <!--Start Item table-->
+            <div class="row" id="div_panel_HK_CPR_NONFOOD_Items">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-title">
+                        <div class="fa-title"><i class="fa fa-bars"></i><span class="padding-r-5"></span><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.HK_CPR_NONFOOD_Items") %></div>
+
+                        <ul class="panel-tools">
+                            <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li>
+                            <li><a class="icon expand-tool"><i class="fa fa-expand"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <!--Start detail table-->
+                        <table id="tb_HK_CPR_NONFOOD_ITEMS" class="table table-bordered table-condensed form-detail-table form-resp-table" width="100%">
+                            <thead>
+                                <tr>
+                                    <td class="hidden">
+                                        <input id="tb_HK_CPR_NONFOOD_ITEMS_rowCount" type="text" runat="server" />
+                                    </td>
+                                    <td style="width:50px">
+                                        <%=Lang.Get("No") %>
+                                    </td>
+                                    <td style=""  class="  td_APPLYREASON"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.APPLYREASON") %><span style='color:red'>*</span></td>
+                                    <td style=""  class="hidden  td_FAMILYCODE"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.FAMILYCODE") %></td>
+                                    <td style=""  class="hidden  td_FAMILYNAME"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.FAMILYNAME") %></td>
+                                    <td style=""  class="hidden  td_SUBFAMILYCODE"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.SUBFAMILYCODE") %></td>
+                                    <td style=""  class="hidden  td_SUBFAMILYNAME"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.SUBFAMILYNAME") %></td>
+                                    <td style=""  class="hidden  td_SUBSUBFAMILYCODE"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.SUBSUBFAMILYCODE") %></td>
+                                    <td style=""  class="  td_SUBSUBFAMILYNAME"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.SUBSUBFAMILYNAME") %></td>
+                                    <td style=""  class="  td_ARTICLENAME"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.ARTICLENAME") %></td>
+                                    <td style=""  class="hidden  td_ARTICLECODE"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.ARTICLECODE") %></td>
+                                    <td style=""  class="  td_ORDERUNIT"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.ORDERUNIT") %></td>
+                                    <td style=""  class="hidden  td_UNIT"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.UNIT") %></td>
+                                    <td style=""  class="hidden  td_CONSUMPTIONUNIT"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.CONSUMPTIONUNIT") %></td>
+                                    <td style=""  class="hidden  td_CONVERSION"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.CONVERSION") %></td>
+                                    <td style=""  class="hidden  td_STOCK"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.STOCK") %></td>
+                                    <td style=""  class="hidden  td_NETVOMULE"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.NETVOMULE") %></td>
+                                    <td style=""  class="hidden  td_GROSSWEIGHT"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.GROSSWEIGHT") %></td>
+                                    <td style=""  class="hidden  td_NETVOMULEUNIT"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.NETVOMULEUNIT") %></td>
+                                    <td style=""  class="hidden  td_GROSSWEIGHTUNIT"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.GROSSWEIGHTUNIT") %></td>
+                                    <td style=""  class="  td_SITEPRICE"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.SITEPRICE") %><span style='color:red'>*</span></td>
+                                    <td style=""  class="  td_ORDERQUANTITY"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.ORDERQUANTITY") %></td>
+                                    <td style=""  class="hidden  td_ORDERUNITVALUE"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.ORDERUNITVALUE") %></td>
+                                    <td style=""  class="hidden  td_UNITVALUE"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.UNITVALUE") %></td>
+                                    <td style=""  class="hidden  td_CONSUMPTIONUNITVALUE"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.CONSUMPTIONUNITVALUE") %></td>
+                                    <td style=""  class="hidden  td_SUBTOTALAMOUNT"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.SUBTOTALAMOUNT") %></td>
+                                    <td style=""  class="hidden  td_NETNETPRICE"><%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.NETNETPRICE") %></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ult:Repeater ID="read_detail_PROC_HK_CPR_NONFOOD_ITEMS" runat="server">
+                                    <ItemTemplate>
+                                        <tr>
+                                            <td class="hidden">
+                                                <ult:Label ID="fld_FORMID" Text='<%#Eval("FORMID") %>' runat="server" />
+                                            </td>
+                                            <td data-label='<%=Lang.Get("No").Split('<')[0] %>'>
+                                                <div class="index"><%#Eval("ROWNO")%> </div>
+                                                <ult:TextBox ID="fld_ROWNO" data-field="ROWNO" CssClass="index hidden" runat="server" ControlValue='<%#Eval("ROWNO")%>' >
+                                                    </ult:TextBox>
+                                                <ult:TextBox ID="fld_ROWGUID" data-field="ROWGUID" CssClass="index hidden" runat="server" ControlValue='<%#Eval("ROWGUID")%>' >
+                                                    </ult:TextBox>
+                                            </td>
+                                            <td class=" td_APPLYREASON" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.APPLYREASON").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_APPLYREASON" title="" data-field="APPLYREASON" runat="server" Text='<%#Eval("APPLYREASON")%>' Width="90%"></ult:Label>
+                                            </td>
+                                            <td class="hidden td_FAMILYCODE" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.FAMILYCODE").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_FAMILYCODE" title="" data-field="FAMILYCODE" runat="server" Text='<%#Eval("FAMILYCODE")%>' Width="90%"></ult:Label>
+                                            </td>
+                                            <td class="hidden td_FAMILYNAME" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.FAMILYNAME").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_FAMILYNAME" title="" data-field="FAMILYNAME" runat="server" Text='<%#Eval("FAMILYNAME")%>' Width="90%"></ult:Label>
+                                            </td>
+                                            <td class="hidden td_SUBFAMILYCODE" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.SUBFAMILYCODE").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_SUBFAMILYCODE" title="" data-field="SUBFAMILYCODE" runat="server" Text='<%#Eval("SUBFAMILYCODE")%>' Width="90%"></ult:Label>
+                                            </td>
+                                            <td class="hidden td_SUBFAMILYNAME" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.SUBFAMILYNAME").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_SUBFAMILYNAME" title="" data-field="SUBFAMILYNAME" runat="server" Text='<%#Eval("SUBFAMILYNAME")%>' Width="90%"></ult:Label>
+                                            </td>
+                                            <td class="hidden td_SUBSUBFAMILYCODE" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.SUBSUBFAMILYCODE").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_SUBSUBFAMILYCODE" title="" data-field="SUBSUBFAMILYCODE" runat="server" Text='<%#Eval("SUBSUBFAMILYCODE")%>' Width="90%"></ult:Label>
+                                            </td>
+                                            <td class=" td_SUBSUBFAMILYNAME" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.SUBSUBFAMILYNAME").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_SUBSUBFAMILYNAME" title="" data-field="SUBSUBFAMILYNAME" runat="server" Text='<%#Eval("SUBSUBFAMILYNAME")%>' Width="90%"></ult:Label>
+                                            </td>
+                                            <td class=" td_ARTICLENAME" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.ARTICLENAME").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_ARTICLENAME" title="" data-field="ARTICLENAME" runat="server" Text='<%#Eval("ARTICLENAME")%>' Width="90%"></ult:Label>
+                                            </td>
+                                            <td class="hidden td_ARTICLECODE" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.ARTICLECODE").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_ARTICLECODE" title="" data-field="ARTICLECODE" runat="server" Text='<%#Eval("ARTICLECODE")%>' Width="90%"></ult:Label>
+                                            </td>
+                                            <td class=" td_ORDERUNIT" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.ORDERUNIT").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_ORDERUNIT" title="" data-field="ORDERUNIT" runat="server" Text='<%#Eval("ORDERUNIT")%>' Width="90%"></ult:Label>
+                                            </td>
+                                            <td class="hidden td_UNIT" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.UNIT").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_UNIT" title="" data-field="UNIT" runat="server" Text='<%#Eval("UNIT")%>' Width="90%"></ult:Label>
+                                            </td>
+                                            <td class="hidden td_CONSUMPTIONUNIT" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.CONSUMPTIONUNIT").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_CONSUMPTIONUNIT" title="" data-field="CONSUMPTIONUNIT" runat="server" Text='<%#Eval("CONSUMPTIONUNIT")%>' Width="90%"></ult:Label>
+                                            </td>
+                                            <td class="hidden td_CONVERSION" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.CONVERSION").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_CONVERSION" title="" data-field="CONVERSION" runat="server" Text='<%#Eval("CONVERSION")%>' Width="90%"></ult:Label>
+                                            </td>
+                                            <td class="hidden td_STOCK" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.STOCK").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_STOCK" title="" data-field="STOCK" runat="server" Text='<%#Eval("STOCK")%>' Width="90%"></ult:Label>
+                                            </td>
+                                            <td class="hidden td_NETVOMULE" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.NETVOMULE").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_NETVOMULE" title="" data-field="NETVOMULE" runat="server" Text='<%#Eval("NETVOMULE")%>' Width="90%"></ult:Label>
+                                            </td>
+                                            <td class="hidden td_GROSSWEIGHT" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.GROSSWEIGHT").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_GROSSWEIGHT" title="" data-field="GROSSWEIGHT" runat="server" Text='<%#Eval("GROSSWEIGHT")%>' Width="90%"></ult:Label>
+                                            </td>
+                                            <td class="hidden td_NETVOMULEUNIT" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.NETVOMULEUNIT").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_NETVOMULEUNIT" title="" data-field="NETVOMULEUNIT" runat="server" Text='<%#Eval("NETVOMULEUNIT")%>' Width="90%"></ult:Label>
+                                            </td>
+                                            <td class="hidden td_GROSSWEIGHTUNIT" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.GROSSWEIGHTUNIT").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_GROSSWEIGHTUNIT" title="" data-field="GROSSWEIGHTUNIT" runat="server" Text='<%#Eval("GROSSWEIGHTUNIT")%>' Width="90%"></ult:Label>
+                                            </td>
+                                            <td class=" td_SITEPRICE" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.SITEPRICE").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_SITEPRICE" title="" data-field="SITEPRICE" runat="server" Text='<%#Eval("SITEPRICE")%>' CssClass="autonumber" Width="90%"></ult:Label>
+                                            </td>
+                                            <td class=" td_ORDERQUANTITY" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.ORDERQUANTITY").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_ORDERQUANTITY" title="" data-field="ORDERQUANTITY" runat="server" Text='<%#Eval("ORDERQUANTITY")%>' Width="90%"></ult:Label>
+                                            </td>
+                                            <td class="hidden td_ORDERUNITVALUE" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.ORDERUNITVALUE").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_ORDERUNITVALUE" title="" data-field="ORDERUNITVALUE" runat="server" Text='<%#Eval("ORDERUNITVALUE")%>' Width="90%"></ult:Label>
+                                            </td>
+                                            <td class="hidden td_UNITVALUE" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.UNITVALUE").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_UNITVALUE" title="" data-field="UNITVALUE" runat="server" Text='<%#Eval("UNITVALUE")%>' Width="90%"></ult:Label>
+                                            </td>
+                                            <td class="hidden td_CONSUMPTIONUNITVALUE" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.CONSUMPTIONUNITVALUE").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_CONSUMPTIONUNITVALUE" title="" data-field="CONSUMPTIONUNITVALUE" runat="server" Text='<%#Eval("CONSUMPTIONUNITVALUE")%>' Width="90%"></ult:Label>
+                                            </td>
+                                            <td class="hidden td_SUBTOTALAMOUNT" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.SUBTOTALAMOUNT").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_SUBTOTALAMOUNT" title="" data-field="SUBTOTALAMOUNT" runat="server" Text='<%#Eval("SUBTOTALAMOUNT")%>' CssClass="autonumber" Width="90%"></ult:Label>
+                                            </td>
+                                            <td class="hidden td_NETNETPRICE" data-label='<%=Lang.Get("PR.PRProcess.HK_CPR_NONFOOD.NETNETPRICE").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_NETNETPRICE" title="" data-field="NETNETPRICE" runat="server" Text='<%#Eval("NETNETPRICE")%>' CssClass="autonumber" Width="90%"></ult:Label>
+                                            </td>
+                                            
+                                        </tr>
+                                    </ItemTemplate>
+                                </ult:Repeater>
+                            </tbody>
+                        </table>
+                        <div class="padding-t-5"></div>
+                    </div>
+                    <!--End detail table-->
+                </div>
+            </div>
+        </div>
+        <!--End Item table-->
+        <attach:attachments id="Attachments1" runat="server" ReadOnly="True"></attach:attachments>
+        <ah:approvalhistory id="ApprovalHistory1" showaction="true" runat="server"></ah:approvalhistory>
+        <btn:buttonlist id="ButtonList1" runat="server"></btn:buttonlist>
+           <asp:HiddenField ID="hdDatetime" runat="server" />
+        <asp:HiddenField ID="hdLanguage" runat="server" />
+
+    </form>
+
+    <div id='div_lang' data-lang='<%=Lang.GetLang() %>'></div>
+    <script type='text/javascript' src='Approval.js?t=69e13ae1-9f6d-4b8c-bb42-ed798ae96345'></script>
+     <script type='text/javascript' src="My97DatePicker/WdatePicker.js"></script>
+    <script>
+        $(function () {
+            //员工编号 进行显示
+    $("#UserInfo1_read_APPLICANTACCOUNT").parent("div").parent("div").parent("div").removeAttr("hidden");
+    //隐藏之前的 申请部门
+    $("#UserInfo1_read_DEPARTMENT").parent("div").parent("div").parent("div").hide();
+
+            if ($("#read_FIXEDASSETS").text() == "01") {
+                $("#read_FIXEDASSETS").text("是");
+            } else {
+                $("#read_FIXEDASSETS").text("否");
+            }
+        })
+    </script>
+</body>
+</html>

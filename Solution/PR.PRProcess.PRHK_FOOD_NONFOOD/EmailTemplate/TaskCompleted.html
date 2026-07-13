@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title></title>
+    <style type="text/css">
+        body {
+            font-family: '等线','Microsoft YaHei','Calibri';
+        }
+
+        table {
+            background: #ccc;
+        }
+
+        td {
+            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+        }
+
+        .bgcss {
+            background-color: white;
+            border-left: 0px;
+            border-right: 0px;
+        }
+    </style>
+</head>
+<body>
+    尊敬的 <span id="TaskUserName">@Model.TaskUserName</span>,<br />
+    您以下單内采購申請已批準。<br />
+    Dear <span id="TaskUserLoginName">@Model.TaskUserNameEn</span>,<br />
+    Your PR below is approved .<br /><br />
+
+    <table cellspacing="0" style="width: 100%; border-top: 1px solid #5C5C5C">
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_PRHK_FOOD_NONFOOD"))
+        {
+        <tr>
+            <td colspan="1" bordercolor="#5C5C5C" bgcolor="#B1CBF5" width="16%">
+
+                申請人
+                <br />Requestor
+            </td>
+            <td colspan="1" bgcolor="#FFFFFF" width="16%">
+                @Model.GetColumnValue(row,"APPLICANT" )
+            </td>
+            <td colspan="1" bordercolor="#5C5C5C" bgcolor="#B1CBF5" width="17%">
+                采購申請單號
+                <br />PR Number
+            </td>
+            <td colspan="1" bgcolor="#FFFFFF" width="17%">
+                @Model.GetColumnValue(row,"DOCUMENTNO")
+            </td>
+            <td colspan="1" bordercolor="#5C5C5C" bgcolor="#B1CBF5" width="17%">
+                采購目的
+                <br />Purchasing Purpose
+            </td>
+            <td colspan="1" bgcolor="#FFFFFF" width="17%">
+                @Model.GetColumnValue(row,"PurchasingPurpose")
+            </td>
+        </tr>
+        <tr>
+            <td colspan="1" bordercolor="#5C5C5C" bgcolor="#B1CBF5" width="16%">
+                采購類型
+                <br />PR Type
+            </td>
+            <td colspan="1" bgcolor="#FFFFFF" width="16%">
+                @Model.GetColumnValue(row,"AssetType")
+            </td>
+            <td colspan="1" bordercolor="#5C5C5C" bgcolor="#B1CBF5" width="16%">
+
+                利潤中心編號
+                <br />Profit Center Code
+            </td>
+            <td colspan="1" bgcolor="#FFFFFF" width="16%">
+                @Model.GetColumnValue(row,"SITECODE")
+            </td>
+            <td colspan="1" bordercolor="#5C5C5C" bgcolor="#B1CBF5" width="17%">
+                利潤中心名稱
+                <br />Profit Center Description
+            </td>
+            <td colspan="1" bgcolor="#FFFFFF" width="17%">
+                @Model.GetColumnValue(row,"SITENAME")
+            </td>
+
+
+
+        </tr>
+        <tr>
+            <td colspan="1" bordercolor="#5C5C5C" bgcolor="#B1CBF5" width="17%">
+                要求送貨時間
+                <br />Request Delivery Time
+            </td>
+            <td colspan="1" bgcolor="#FFFFFF" width="17%">
+                @Model.GetColumnValue(row,"DELIVERYDATE")
+            </td>
+            <td colspan="1" bordercolor="#5C5C5C" bgcolor="#B1CBF5" width="16%">
+                是否緊急
+                <br />Is Emergency
+            </td>
+            <td colspan="1" bgcolor="#FFFFFF" width="16%">
+                @Model.GetColumnValue(row,"Requirement")
+            </td>
+            <td colspan="2" bgcolor="#FFFFFF"></td>
+
+        </tr>
+        }
+        <tr>
+            <td colspan="6" class="bgcss">&nbsp;</td>
+        </tr>
+        <tr>
+            <!--<td style="text-align:center" bgcolor="#B1CBF5">
+                物料編號
+                <br />Item Code
+            </td>-->
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                物料名稱
+                <br />Item Name
+            </td>
+            <!--<td style="text-align:center" bgcolor="#B1CBF5">
+                物料子子類別編號
+                <br />Sub Sub Family Code
+            </td>-->
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                物料子子類別名稱
+                <br />Sub Sub Family Name
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                物料單價
+                <br />Site Price
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                物料單位
+                <br />Order Unit
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                采購數量
+                <br />Order Quantity
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                金額
+                <br />Sub Total Amount
+            </td>
+        </tr>
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_PRHK_FOOD_NONFOOD_ITEMS"))
+        {
+        <tr>
+
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"ARTICLENAME")
+            </td>
+
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SUBSUBFAMILYNAME")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SITEPRICE")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"ORDERUNIT")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"ORDERQUANTITY")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SUBTOTALAMOUNT")
+            </td>
+        </tr>
+        }
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_PRHK_FOOD_NONFOOD_NONFOOD"))
+        {
+        <tr>
+            <td colspan="5" bordercolor="#5C5C5C" bgcolor="#B1CBF5" style="text-align:right;">
+                合計金額
+                <br />Total Amount
+            </td>
+            <td colspan="1" bgcolor="#FFFFFF" style="text-align:right;">
+                @Model.GetColumnValue(row,"AMOUNT")
+            </td>
+        </tr>
+        }
+        <tr>
+            <td colspan="6" class="bgcss">&nbsp;</td>
+        </tr>
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_PRHK_FOOD_NONFOOD"))
+        {
+        <tr>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                申請備註
+                <br />Apply Remark
+            </td>
+            <td bgcolor="#FFFFFF" colspan="5">
+                @Model.GetColumnValue(row,"APPREMARK")
+            </td>
+        </tr>
+        }
+        <tr>
+            <td colspan="6" class="bgcss">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                審批人
+                <br />Approver
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                步驟名
+                <br />Step Name
+            </td>
+            <td colspan="2" style="text-align:center" bgcolor="#B1CBF5">
+                審批意見
+                <br />Approval Opinion
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                審批結果
+                <br />Approval Result
+            </td>
+            <td colspan="1" style="text-align:center" bgcolor="#B1CBF5">
+                審批時間
+                <br />Approval Time
+            </td>
+        </tr>
+        @foreach(Ultimus.UWF.Workflow.Entity.ApprovalHistoryEntity var in @Model.ApprovalHistoryList)
+        {
+        <tr>
+            <td bgcolor="#FFFFFF">
+                @var.APPROVERNAME
+            </td>
+            <td bgcolor="#FFFFFF">
+                @var.STEPNAME
+            </td>
+            <td colspan="2" bgcolor="#FFFFFF">
+                @var.COMMENTS
+            </td>
+            <td bgcolor="#FFFFFF">
+                @var.ACTION
+            </td>
+            <td bgcolor="#FFFFFF">
+                @var.EXT05
+            </td>
+        </tr>
+        }
+
+    </table>
+    <br />
+    <br />
+    <br />
+</body>
+</html>

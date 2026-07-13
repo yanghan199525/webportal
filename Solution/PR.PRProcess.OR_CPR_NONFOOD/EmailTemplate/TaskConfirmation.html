@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;" />
+    <title></title>
+    <style type="text/css">
+        body {
+            font-family: '等线','Microsoft YaHei','Calibri';
+        }
+
+        table {
+            background: #ccc;
+        }
+
+        td {
+            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+        }
+
+        .bgcss {
+            background-color: white;
+            border-left: 0px;
+            border-right: 0px;
+        }
+    </style>
+</head>
+<body>
+    尊敬的 <span id="TaskUserName">@Model.TaskUserName</span>,<br />
+    以下单外采购申请已审批但要求送货日期超时。请点击下方“修改”链接进行修改，<span style="color:red;">否则无法生成CPR。</span><br />
+    Dear <span id="TaskUserLoginName">@Model.TaskUserNameEn</span>,<br />
+    CPR below is approved but requested delivery date is overtime. Please click ‘Modify’ link below to modify, <span style="color:red;">Otherwise CPR cannot be generated.</span><br /><br />
+    <table cellspacing="0" style="width: 100%; border-top: 1px solid #5C5C5C">
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_OR_CPR_NONFOOD"))
+        {
+        <tr>
+            <td width="18%" bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                采购申请业务编号
+                <br />CPR ID
+            </td>
+            <td width="16%" bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"DOCUMENTNO")
+            </td>
+            <td width="16%" bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                申请人
+                <br />Requestor
+            </td>
+            <td width="16%" bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"APPLICANT")
+            </td>
+            <td width="20%" bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                利润中心编号
+                <br />Profit Center Code
+            </td>
+            <td width="14%" bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SITECODE")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                采购目的
+                <br />Purchasing Purpose
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"PurchasingPurpose")
+            </td>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                要求送货时
+                <br />Request Delivery Time
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"DELIVERYDATE")
+            </td>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                利润中心名称
+                <br />Profit Center Description
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SITENAME")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                供应商编号
+                <br />Supplier Code
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SUPPLIERCODE")
+            </td>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                供应商名称
+                <br />Supplier Name
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SUPPLIERNAME")
+            </td>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                是否是固定资产
+                <br />Asset Type
+            </td>
+            <td bgcolor="#FFFFFF" colspan="5">
+                @Model.GetColumnValue(row,"IsCapex")
+            </td>
+        </tr>
+        <tr>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                运费
+                <br />freight
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"freight")
+            </td>
+            <td colspan="4" bgcolor="#FFFFFF"></td>
+        </tr>
+        }
+        <tr>
+            <td colspan="6" class="bgcss">&nbsp;</td>
+        </tr>
+        <tr>
+            <!--<td style="text-align:center" bgcolor="#B1CBF5">
+                电商物料编号
+                <br />SKUCode
+            </td>-->
+            <td style="text-align:center" bgcolor="#B1CBF5"colspan="2">
+                电商物料名称
+                <br />SKUName
+            </td>
+            <!--<td style="text-align:center" bgcolor="#B1CBF5">
+                电商物料类别
+                <br />MaterialType
+            </td>-->
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                采购单位
+                <br />OrderUnit
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                采购数量
+                <br />OrderQuantity
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                物品单价
+                <br />Price
+            </td>
+            <!--<td style="text-align:center" bgcolor="#B1CBF5">
+                物料税率
+                <br />TaxRate
+            </td>-->
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                金额
+                <br />GoodsAmount
+            </td>
+        </tr>
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_OR_CPR_NONFOOD_ITEMS"))
+        {
+        <tr>
+            <!--<td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SKUCode")
+            </td>-->
+            <td bgcolor="#FFFFFF"colspan="2">
+                @Model.GetColumnValue(row,"SKUName")
+            </td>
+            <!--<td bgcolor="#FFFFFF" style="text-align:right;">
+                @Model.GetColumnValue(row,"MaterialType")
+            </td>-->
+            <td bgcolor="#FFFFFF" style="text-align:right;">
+                @Model.GetColumnValue(row,"OrderUnit")
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"OrderQuantity")
+            </td>
+            <td bgcolor="#FFFFFF" style="text-align:right;">
+                @Model.GetColumnValue(row,"Price")
+            </td>
+            <!--<td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"TaxRate")
+            </td>-->
+            <td bgcolor="#FFFFFF" style="text-align:right;">
+                @Model.GetColumnValue(row,"GoodsAmount")
+            </td>
+        </tr>
+        }
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_OR_CPR_NONFOOD"))
+        {
+        <tr>
+            <td colspan="5" bordercolor="#5C5C5C" bgcolor="#B1CBF5" style="text-align:right;">
+                合计金额
+                <br />Total Amount
+            </td>
+            <td bgcolor="#FFFFFF" style="text-align:right;">
+                @Model.GetColumnValue(row,"POAmount")
+            </td>
+        </tr>
+        }
+        <tr>
+            <td colspan="6" class="bgcss">&nbsp;</td>
+        </tr>
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_OR_CPR_NONFOOD"))
+        {
+        <tr>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                申请备注
+                <br />Remarks
+            </td>
+            <td bgcolor="#FFFFFF" colspan="5">
+                @Model.GetColumnValue(row,"APPREMARK")
+            </td>
+        </tr>
+        }
+        <tr>
+            <td colspan="6" class="bgcss">&nbsp;</td>
+        </tr>
+
+        <tr>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                审批人
+                <br />Approver
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                步骤名
+                <br />Step Name
+            </td>
+            <td colspan="2" style="text-align:center" bgcolor="#B1CBF5">
+                审批意见
+                <br />Approval Opinion
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                审批结果
+                <br />Approval Result
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                审批时间
+                <br />Approval Time
+            </td>
+        </tr>
+        @foreach(Ultimus.UWF.Workflow.Entity.ApprovalHistoryEntity var in @Model.ApprovalHistoryList)
+        {
+        <tr>
+            <td bgcolor="#FFFFFF">
+                @var.APPROVERNAME
+            </td>
+            <td bgcolor="#FFFFFF">
+                @var.STEPNAME
+            </td>
+            <td colspan="2" bgcolor="#FFFFFF">
+                @var.COMMENTS
+            </td>
+            <td bgcolor="#FFFFFF">
+                @var.ACTION
+            </td>
+            <td bgcolor="#FFFFFF">
+                @var.EXT05
+            </td>
+        </tr>
+        }
+        <tr>
+            <td colspan="6" class="bgcss">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="6" bgcolor="#FFFFFF">
+                <a href="@(Model.RootPath)/Solution/PR.PRProcess.OR_CPR_NONFOOD/Form/Approval.aspx?ProcessName=OR_CPR_NONFOOD&StepName=Applicant Confirmation&Incident=@(Model.TaskIncident)&TaskID=@(Model.TaskID)&UserName=@(Model.TaskUserLoginName)&Type=MYTASK" style="font-size:14pt;">修改/Modify</a>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <!--<table cellspacing="0" style="width: 100%; border-top: 1px solid #5C5C5C">
+        <tr>
+            <td colspan="5" bgcolor="#FFFFFF">
+                <a href="@(Model.RootPath)/Solution/PR.PRProcess.CPR_FOOD/Form/Approval.aspx?ProcessName=CPR_FOOD&StepName=Applicant Confirmation&Incident=@(Model.TaskIncident)&TaskID=@(Model.TaskID)&UserName=@(Model.TaskUserLoginName)&Type=MYTASK" style="font-size:14pt;">修改/Modify</a>
+               <a href="@(Model.RootPath)/Solution/PR.PRProcess.CPR_FOOD/Form/Approval.aspx?ProcessName=CPR_FOOD&StepName=Applicant Confirmation&Incident=@(Model.TaskIncident)&TaskID=@(Model.TaskID)&UserName=@(Model.TaskUserLoginName)&Type=MYTASK" style="font-size:15pt;">终止/Abort</a>
+            </td>
+        </tr>
+    </table>-->
+    <!--<br />
+    如需使用电脑查看流程详细信息，请<a href="@Model.BodyView">点击链接查阅！ </a>
+    <br />
+    If you want to view this form in computer，please click <a href="@Model.BodyView">here！ </a>-->
+    <br />
+    <br />
+</body>
+</html>

@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using MyLib;
+using Ultimus.UWF.Common.Logic;
+using Ultimus.UWF.Workflow.Logic;
+using System.Text;
+using System.Data.Common;
+namespace PR.PRProcess.PR_FOOD_NONFOOD
+{
+    public partial class ReportListAll : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            
+            Ultimus.UWF.Form.WebControls.Repeater rpt = Page.FindControl("rptList") as Ultimus.UWF.Form.WebControls.Repeater;
+            ProcessFormLogic process = new ProcessFormLogic();
+            rpt.Source = string.Format("BizDB.SELECT top 20000 FORMID,PROCESSNAME,INCIDENT,DOCUMENTNO,CREATEBY,CREATEBYACCOUNT,CREATEBYCODE,APPLICANT,APPLICANTACCOUNT,APPLICANTCODE,REQUESTDATE,COMPLETEDATE,DEPARTMENT,DEPARTMENTID,PROCESSSUMMARY,STATUS,PurchasingPurpose,AssetType,SITECODE,SITENAME,DELIVERYDATE,SUPPLIERCODE,SUPPLIERNAME,AMOUNT,APPREMARK,Requirement FROM (SELECT FORMID, PROCESSNAME, INCIDENT, DOCUMENTNO, CREATEBY, CREATEBYACCOUNT, CREATEBYCODE, APPLICANT, APPLICANTACCOUNT, APPLICANTCODE, REQUESTDATE, COMPLETEDATE, DEPARTMENT, DEPARTMENTID, PROCESSSUMMARY, STATUS, PurchasingPurpose, AssetType, SITECODE, SITENAME, DELIVERYDATE, SUPPLIERCODE, SUPPLIERNAME, AMOUNT, APPREMARK, Requirement FROM PROC_PR_FOOD_NONFOOD  where  INCIDENT!=-1 union SELECT FORMID, PROCESSNAME, INCIDENT, DOCUMENTNO, CREATEBY, CREATEBYACCOUNT, CREATEBYCODE, APPLICANT, APPLICANTACCOUNT, APPLICANTCODE, REQUESTDATE, COMPLETEDATE, DEPARTMENT, DEPARTMENTID, PROCESSSUMMARY, STATUS, PurchasingPurpose, AssetType, SITECODE, SITENAME, DELIVERYDATE, SUPPLIERCODE, SUPPLIERNAME, AMOUNT, APPREMARK, Requirement FROM PROC_PR_SERVICE  where  INCIDENT!=-1) t  order by REQUESTDATE desc");
+            Ultimus.UWF.Form.WebControls.Repeater ImportFailedRecord = Page.FindControl("ImportFailedRecord") as Ultimus.UWF.Form.WebControls.Repeater;
+          //  ProcessFormLogic process = new ProcessFormLogic();
+            ImportFailedRecord.Source = string.Format("BizDB.SELECT TOP 20000 FORMID, PROCESSNAME, INCIDENT, DOCUMENTNO, CREATEBY, CREATEBYACCOUNT, CREATEBYCODE, APPLICANT, APPLICANTACCOUNT, APPLICANTCODE, REQUESTDATE, COMPLETEDATE, DEPARTMENT, DEPARTMENTID, PROCESSSUMMARY, STATUS, PurchasingPurpose, AssetType, SITECODE, SITENAME, DELIVERYDATE, SUPPLIERCODE, SUPPLIERNAME, AMOUNT, APPREMARK, Requirement, CREATEDATE, ERRORMSG FROM(SELECT FORMID, PROCESSNAME, INCIDENT, DOCUMENTNO, CREATEBY, CREATEBYACCOUNT, CREATEBYCODE, APPLICANT, APPLICANTACCOUNT, APPLICANTCODE, REQUESTDATE, COMPLETEDATE, DEPARTMENT, DEPARTMENTID, PROCESSSUMMARY, STATUS, PurchasingPurpose, AssetType, SITECODE, SITENAME, DELIVERYDATE, SUPPLIERCODE, SUPPLIERNAME, AMOUNT, APPREMARK, Requirement FROM PROC_PR_FOOD_NONFOOD  where  INCIDENT != -1 and REQUESTDATE>GETDATE()-30 union SELECT FORMID, PROCESSNAME, INCIDENT, DOCUMENTNO, CREATEBY, CREATEBYACCOUNT, CREATEBYCODE, APPLICANT, APPLICANTACCOUNT, APPLICANTCODE, REQUESTDATE, COMPLETEDATE, DEPARTMENT, DEPARTMENTID, PROCESSSUMMARY, STATUS, PurchasingPurpose, AssetType, SITECODE, SITENAME, DELIVERYDATE, SUPPLIERCODE, SUPPLIERNAME, AMOUNT, APPREMARK, Requirement FROM PROC_PR_SERVICE  where  INCIDENT != -1 and REQUESTDATE>GETDATE()-30)  t join(SELECT * FROM PROC_PR_LOG PR_LOG WHERE  EXT01 = PR_LOG.EXT01 AND EXT02 = PR_LOG.EXT02 and CREATEDATE>GETDATE()-30 and SYNCSTATUS=0 ) lg ON lg.EXT01 = t.INCIDENT and lg.EXT02 = t.PROCESSNAME and REQUESTDATE>GETDATE()-30  order by REQUESTDATE desc");
+        }
+        protected void lbExport_Click(object sender, EventArgs e)
+        {
+            Ultimus.UWF.Form.WebControls.Repeater rpt = Page.FindControl("rptList") as Ultimus.UWF.Form.WebControls.Repeater;
+            DataTable dt = rpt.GetFullDataTable();
+            // dt数据为空不导出Excel
+            if (dt.Rows.Count == 0 || dt == null)
+            {
+                return;
+            }
+            dt=ExportLogic.GetSchemaTable("PR_FOOD_NONFOOD", dt);
+            ExcelUtil.Export(dt);
+        }
+    }
+}

@@ -1,0 +1,448 @@
+
+/* Date Range Picker */
+@import url('plugin/date-range-picker/daterangepicker-bs3.css');
+@import url('plugin/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css');
+
+body
+{
+    font-family:微软雅黑;
+    font-size:10pt;
+}
+
+.panel
+{
+    border:none;
+}
+
+.panel-heading
+{
+    font-size:12pt;
+    padding-left:5px !important;
+}
+
+.table th
+{
+    background-color: #f5f5f5;
+    text-align:center;
+    font-weight:bold;
+}
+
+/* Button General */
+.btn {
+  font-size: 14px;
+  padding: 7px 20px 7px 20px;
+  border: none;
+  background: #e4e4e4;
+  color: inherit;
+  border-radius: 3px;
+}
+.btn:hover {
+  background-color: #eeeeee;
+  color: #666;
+}
+.btn:active,
+.btn.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.btn.disabled,
+.btn[disabled],
+fieldset[disabled] .btn {
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  opacity: .65;
+}
+.btn-xs {
+  font-size: 11px;
+  padding: 3px 8px;
+}
+.btn-sm {
+  font-size: 12px;
+  padding: 5px 14px;
+}
+.btn-md {
+  font-size: 14px !important;
+  padding: 7px 25px !important;
+}
+.btn-lg {
+  font-size: 16px;
+  padding: 10px 30px;
+}
+.btn-xl {
+  font-size: 20px;
+  padding: 14px 30px;
+}
+.btn .fa {
+  font-size: 15px;
+  margin-right: 5px;
+}
+.btn-icon {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.btn-icon .fa {
+  margin: 0;
+  font-size: normal;
+}
+.btn-rounded {
+  border-radius: 999px;
+}
+.btn-square {
+  border-radius: 0;
+}
+.btndiv .btn {
+  margin-bottom: 10px;
+}
+/* Button Default */
+.btn-default {
+  background-color: #399bff;
+  color: #fff;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default.focus,
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+  background-color: #4da5ff;
+  color: #fff;
+}
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+  background: #208eff;
+  box-shadow: none;
+  color: #fff;
+}
+.btn-default .badge {
+  color: #399bff;
+  background-color: #fff;
+}
+/* Button Primary */
+.btn-primary {
+  background-color: #33577b;
+  color: #fff;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  background-color: #396189;
+  color: #fff;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  background: #2c4a69;
+  box-shadow: none;
+  color: #fff;
+}
+.btn-primary .badge {
+  color: #33577b;
+  background-color: #fff;
+}
+/* Button white */
+.btn-white {
+  background-color: #e4e4e4;
+  color: #666;
+}
+.btn-white:hover,
+.btn-white:focus,
+.btn-white.focus,
+.btn-white:active,
+.btn-white.active,
+.open > .dropdown-toggle.btn-white {
+  background-color: #eeeeee;
+  color: #666;
+}
+.btn-white:active,
+.btn-white.active,
+.open > .dropdown-toggle.btn-white {
+  background: #d7d7d7;
+  box-shadow: none;
+  color: #666;
+}
+.btn-white .badge {
+  color: #e4e4e4;
+  background-color: #fff;
+}
+/* Button toggle */
+.btn-toggle {
+  background-color: #e4e4e4;
+  color: #666;
+  border-size: 4px;
+  border-size: 5px;
+}
+.btn-toggle:hover,
+.btn-toggle:focus,
+.btn-toggle.focus,
+.btn-toggle:active,
+.btn-toggle.active,
+.open > .dropdown-toggle.btn-toggle {
+  background-color: #eeeeee;
+  color: #666;
+}
+.btn-toggle:active,
+.btn-toggle.active,
+.open > .dropdown-toggle.btn-toggle {
+  background: #d7d7d7;
+  box-shadow: none;
+  color: #666;
+}
+.btn-toggle .badge {
+  color: #e4e4e4;
+  background-color: #fff;
+}
+/* Button light */
+.btn-light {
+  background-color: #fff;
+  color: inherit;
+  border: 1px solid #BDC4C9;
+}
+.btn-light:hover,
+.btn-light:focus,
+.btn-light.focus,
+.btn-light:active,
+.btn-light.active,
+.open > .dropdown-toggle.btn-light {
+  background-color: #f9f9f9;
+  color: inherit;
+}
+.btn-light:active,
+.btn-light.active,
+.open > .dropdown-toggle.btn-default {
+  box-shadow: none;
+  color: inherit;
+}
+/* Button Success */
+.btn-success {
+  background-color: #26a65b;
+  color: #fff;
+}
+.btn-success:hover,
+.btn-success:focus,
+.btn-success.focus,
+.btn-success:active,
+.btn-success.active,
+.open > .dropdown-toggle.btn-success {
+  background-color: #2ab764;
+  color: #fff;
+}
+.btn-success:active,
+.btn-success.active,
+.open > .dropdown-toggle.btn-success {
+  background: #219150;
+  box-shadow: none;
+  color: #fff;
+}
+.btn-success .badge {
+  color: #26a65b;
+  background-color: #fff;
+}
+/* Button Info */
+.btn-info {
+  background-color: #51b7a3;
+  color: #fff;
+}
+.btn-info:hover,
+.btn-info:focus,
+.btn-info.focus,
+.btn-info:active,
+.btn-info.active,
+.open > .dropdown-toggle.btn-info {
+  background-color: #5fbdab;
+  color: #fff;
+}
+.btn-info:active,
+.btn-info.active,
+.open > .dropdown-toggle.btn-info {
+  background: #46a995;
+  box-shadow: none;
+  color: #fff;
+}
+.btn-info .badge {
+  color: #51b7a3;
+  background-color: #fff;
+}
+/* Button Warning */
+.btn-warning {
+  background-color: #f39c12;
+  color: #fff;
+}
+.btn-warning:hover,
+.btn-warning:focus,
+.btn-warning.focus,
+.btn-warning:active,
+.btn-warning.active,
+.open > .dropdown-toggle.btn-warning {
+  background-color: #f4a425;
+  color: #fff;
+}
+.btn-warning:active,
+.btn-warning.active,
+.open > .dropdown-toggle.btn-warning {
+  background: #e08e0b;
+  box-shadow: none;
+  color: #fff;
+}
+.btn-warning .badge {
+  color: #f39c12;
+  background-color: #fff;
+}
+/* Button Danger */
+.btn-danger {
+  background-color: #ef4836;
+  color: #fff;
+}
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger.focus,
+.btn-danger:active,
+.btn-danger.active,
+.open > .dropdown-toggle.btn-danger {
+  background-color: #f15949;
+  color: #fff;
+}
+.btn-danger:active,
+.btn-danger.active,
+.open > .dropdown-toggle.btn-danger {
+  background: #ed321e;
+  box-shadow: none;
+  color: #fff;
+}
+.btn-danger .badge {
+  color: #ef4836;
+  background-color: #fff;
+}
+/* Button Color11 */
+.btn-option1 {
+  background-color: #9a80b9;
+  color: #fff;
+}
+.btn-option1:hover,
+.btn-option1:focus,
+.btn-option1.focus,
+.btn-option1:active,
+.btn-option1.active,
+.open > .dropdown-toggle.btn-option1 {
+  background-color: #a48dc0;
+  color: #fff;
+}
+.btn-option1:active,
+.btn-option1.active,
+.open > .dropdown-toggle.btn-option1 {
+  background: #8d70b0;
+  box-shadow: none;
+  color: #fff;
+}
+.btn-option1 .badge {
+  color: #9a80b9;
+  background-color: #fff;
+}
+/* Button Color12 */
+.btn-option2 {
+  background-color: #a2ded0;
+  color: #333;
+}
+.btn-option2:hover,
+.btn-option2:focus,
+.btn-option2.focus,
+.btn-option2:active,
+.btn-option2.active,
+.open > .dropdown-toggle.btn-option2 {
+  background-color: #b1e3d8;
+  color: #333;
+}
+.btn-option2:active,
+.btn-option2.active,
+.open > .dropdown-toggle.btn-option2 {
+  background: #8fd7c6;
+  box-shadow: none;
+  color: #333;
+}
+.btn-option2 .badge {
+  color: #a2ded0;
+  background-color: #fff;
+}
+/* Button Color13 */
+.btn-option3 {
+  background-color: #d2527f;
+  color: #fff;
+}
+.btn-option3:hover,
+.btn-option3:focus,
+.btn-option3.focus,
+.btn-option3:active,
+.btn-option3.active,
+.open > .dropdown-toggle.btn-option3 {
+  background-color: #d6628b;
+  color: #fff;
+}
+.btn-option3:active,
+.btn-option3.active,
+.open > .dropdown-toggle.btn-option3 {
+  background: #cd3e70;
+  box-shadow: none;
+  color: #fff;
+}
+.btn-option3 .badge {
+  color: #d2527f;
+  background-color: #fff;
+}
+/* Button Color14 */
+.btn-option4 {
+  background-color: #c78568;
+  color: #fff;
+}
+.btn-option4:hover,
+.btn-option4:focus,
+.btn-option4.focus,
+.btn-option4:active,
+.btn-option4.active,
+.open > .dropdown-toggle.btn-option4 {
+  background-color: #cd9177;
+  color: #fff;
+}
+.btn-option4:active,
+.btn-option4.active,
+.open > .dropdown-toggle.btn-option4 {
+  background: #c07655;
+  box-shadow: none;
+  color: #fff;
+}
+.btn-option4 .badge {
+  color: #c78568;
+  background-color: #fff;
+}
+/* Button Color15 */
+.btn-option5 {
+  background-color: #e99844;
+  color: #fff;
+}
+.btn-option5:hover,
+.btn-option5:focus,
+.btn-option5.focus,
+.btn-option5:active,
+.btn-option5.active,
+.open > .dropdown-toggle.btn-option4 {
+  background-color: #eba256;
+  color: #fff;
+}
+.btn-option5:active,
+.btn-option5.active,
+.open > .dropdown-toggle.btn-option5 {
+  background: #e68b2d;
+  box-shadow: none;
+  color: #fff;
+}
+.btn-option5 .badge {
+  color: #e99844;
+  background-color: #fff;
+}

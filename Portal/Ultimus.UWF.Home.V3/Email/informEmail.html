@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div>
+        &nbsp;&nbsp;&nbsp;&nbsp;尊敬的用户&nbsp;<span id="userName">@Model.rdName</span>，
+        您的直属领导SD：<span id="user-nav">@Model.sdName</span>，授权您进行您所辖分店Buysmart所有单外采购审批中SD审批节点的审批操作，授权信息如下：<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;Dear <span id="userName">@Model.rdName</span>，
+        your direct manager: &nbsp;<span id="user-nav">@Model.sdName</span>&nbsp;,authorizes you to approve the SD approval node in all the out of catalogue purchase approvals in BuySMART  for the sites under your management.
+        The authorization information is as follows:<br />
+        <p>1.	事业部名称/BU Name：<span class="orgName">@Model.sdOrgName</span></p>
+        <p>2.	被授权RD/Authorized RD：<span class="rdName">@Model.rdName</span></p>
+        <p>3.	授权日期/Authorized Time：<span class="startTime">@Model.startTime</span>至<span class="endTime">@Model.endTime</span></p>
+        <p>4.	授权范围/ Authorized Scope：<span class="authRange">@Model.authRange</span></p>
+        <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;The delegatee has the necessary professional skills and accepts to exercise the DOA in full compliance with
+            all Group and Dimension procedures and policies. Non-compliance to the DOA as outlined in this document may
+            result in disciplinary actions. 被授权人拥有完成审批所需的专业知识及技能，并将完全按照集团及相关流程政策执行
+            审批。不遵守本文件中概述的DOA可能会导致纪律处分。
+        </p>
+        <p>  &nbsp;&nbsp;&nbsp;&nbsp;The authority delegated in this document shall not be sub-delegated. 上述授权不能二次授权。</p>
+        <p>
+            <a href="@(Model.RootPath)/Portal/Ultimus.UWF.Home.V3/RDconfirm.aspx?rdEmpNo=@(Model.rdCode)&sdEmpNo=@(Model.sdEmpNo)&sdOrgName=@(Model.sdOrgName)&orgName=@(Model.orgName)&authRange=@(Model.authRange)" style="font-size:14pt;">我已知晓并接受/I know and accept</a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="@(Model.RootPath)/Portal/Ultimus.UWF.Home.V3/RDconfirm.aspx?rdEmpNo=@(Model.rdCode)&sdEmpNo=@(Model.sdEmpNo)&sdOrgName=@(Model.sdOrgName)&orgName=@(Model.orgName)&authRange=@(Model.authRange)" style="font-size:14pt;">拒绝/Reject</a>
+        </p>
+    </div>
+
+
+
+
+</body>
+</html>

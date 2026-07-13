@@ -1,0 +1,201 @@
+﻿.blue
+{
+    float: none;
+    color: #009ffb;
+}
+
+.red
+{
+    float: none;
+    color: red;
+}
+
+.left
+{
+    float: left;
+}
+
+.right
+{
+    float: right;
+}
+
+.hidden
+{
+    display: none;
+}
+
+.hide
+{
+    display: none;
+}
+
+.center
+{
+    text-align: center;
+}
+
+.strong
+{
+    font-weight: bold;
+}
+
+.mr10
+{
+    margin-right: 10px;
+}
+
+.mt10
+{
+    margin-top: 10px;
+}
+
+.mt20
+{
+    margin-top: 20px;
+}
+
+.pt5
+{
+    padding-top: 5px;
+}
+
+.pt10
+{
+    padding-top: 10px;
+}
+
+.pb10
+{
+    padding-bottom: 10px;
+}
+
+.pr10
+{
+    padding-right: 10px;
+}
+
+.pl10
+{
+    padding-left: 10px;
+}
+
+.len1
+{
+    width: 30px;
+}
+
+.len2
+{
+    width: 60px;
+}
+
+.len3
+{
+    width: 90px;
+}
+
+.len4
+{
+    width: 120px;
+}
+
+.len5
+{
+    width: 150px;
+}
+
+.len6
+{
+    width: 180px;
+}
+
+.len7
+{
+    width: 210px;
+}
+
+.len8
+{
+    width: 240px;
+}
+
+.len9
+{
+    width: 270px;
+}
+
+.len10
+{
+    width: 300px;
+}
+
+.fileuploadpo
+{
+    background: url("../img/uploadnew.png") no-repeat scroll 0 0 transparent;
+    width: 50px;
+    display: inline-block;
+    border: none;
+    float: left;
+}
+
+.showFile
+{
+    width: 200px;
+    float: left;
+    margin-right: 5px;
+    padding-left: -30px;
+    margin-top: 5px;
+    height: 20px;
+    text-align: left;
+}
+.pager
+{
+    line-height: 24px;
+    display: block;
+    float: right;
+    margin-right:-5px !important;
+}
+
+    .pager span
+    {
+        border: 1px solid #CCCCCC;
+        margin: 0 0 0 3px;
+        padding: 1px 10px;
+        float: left;
+        background: #5A98DE;
+        color: #fff;
+    }
+
+    .pager a
+    {
+        border: 1px solid #CCCCCC;
+        display: block;
+        overflow: hidden;
+        float: left;
+        margin: 0 0 0 3px;
+        padding: 1px 10px;
+        font: 500 14px/24px 'Microsoft YaHei';
+        color: #666;
+    }
+
+        .pager a:hover
+        {
+            border: 1px solid #ccc;
+            background-color: #5A98DE;
+            color: #ffffff;
+            margin: 0 0 0 3px;
+            padding: 1px 10px;
+            text-decoration: none;
+        }
+
+    .pager .cpb
+    {
+        border: 1px solid #5A98DE;
+        font-weight: 500;
+        color: #fff !important;
+        background-color: #5A98DE;
+        font-family: 'Microsoft YaHei';
+        font-size: 14px;
+    }
+

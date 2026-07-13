@@ -1,0 +1,14 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    尊敬的 <span id="TaskUserName">@Model.CREATEBY</span>,<br />
+    有一个京东订单需要您进行确认，请点击下方按钮进行确认<br />
+    Dear <span id="TaskUserLoginName">@Model.CREATEBY</span>,<br />
+    You need to confirm a JD order, please click the below button to confirm<br />
+    <p> <a href="@(Model.JdRootPath)/Portal/Ultimus.UWF.Home.V3/JdNewRequest.aspx?orderID=@(Model.DOCUMENTNO)&loginName=@(Model.CREATEBY)" style="font-size:14pt;">确认/confirm</a></p>
+</body>
+</html>

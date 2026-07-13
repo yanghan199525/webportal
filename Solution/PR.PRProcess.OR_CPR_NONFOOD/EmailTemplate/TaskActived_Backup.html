@@ -1,0 +1,318 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;" />
+    <title></title>
+    <style type="text/css">
+        body
+        {
+            font-family:'等线','Microsoft YaHei','Calibri';
+        }
+
+        table{ background:#ccc;}
+        td
+        {
+            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    Hi @Model.TaskUserName,<br />
+    您有一条 @Model.ProcessCN 流程的待办邮件通知。You have a task for approval of @Model.ProcessEN !<br /><br />
+    <table  cellspacing="0" style="width: 100%; border-top: 1px solid #ccc">
+        <tr style="background-color:#CCCCCC ;">
+            <td colspan="2" >
+                <div ><strong>基础信息 General Information</strong></div>
+            </td>
+        </tr>
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_OR_CPR_NONFOOD"))
+        {
+        <tr>
+            <td width="31%" bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                申请人<br />Applicant
+            </td>
+            <td width="69%" bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"APPLICANT")
+            </td>
+        </tr>
+        <tr>
+            <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                流水单号<br /> Document No
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"DOCUMENTNO")
+            </td>
+        </tr>
+        <tr>
+            <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                申请日期<br /> Request Date
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"REQUESTDATE")
+            </td>
+        </tr>
+        <tr>
+            <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                部门<br />Department
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"DEPARTMENT")
+            </td>
+        </tr>
+        <tr>
+            <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                流程摘要<br />Summary
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"PROCESSSUMMARY")
+            </td>
+        </tr>
+        <tr>
+            <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.OR_CPR_NONFOOD.DOCUMENTNO
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"DOCUMENTNO")
+            </td>
+        </tr>
+        <tr>
+            <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.OR_CPR_NONFOOD.PurchasingPurpose
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"PurchasingPurpose")
+            </td>
+        </tr>
+        <tr>
+            <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.OR_CPR_NONFOOD.SITECODE
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SITECODE")
+            </td>
+        </tr>
+        <tr>
+            <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.OR_CPR_NONFOOD.SITENAME
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SITENAME")
+            </td>
+        </tr>
+        <tr>
+            <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.OR_CPR_NONFOOD.DELIVERYDATE
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"DELIVERYDATE")
+            </td>
+        </tr>
+        <tr>
+            <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.OR_CPR_NONFOOD.SUPPLIERCODE
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SUPPLIERCODE")
+            </td>
+        </tr>
+        <tr>
+            <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.OR_CPR_NONFOOD.SUPPLIERNAME
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"SUPPLIERNAME")
+            </td>
+        </tr>
+        <tr>
+            <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.OR_CPR_NONFOOD.USER_SIGNEDAPPROVER
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"USER_SIGNEDAPPROVER")
+            </td>
+        </tr>
+        <tr>
+            <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.OR_CPR_NONFOOD.USER_SIGNEDAPPROVER2
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"USER_SIGNEDAPPROVER2")
+            </td>
+        </tr>
+        <tr>
+            <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.OR_CPR_NONFOOD.USER_SIGNEDAPPROVER3
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"USER_SIGNEDAPPROVER3")
+            </td>
+        </tr>
+        <tr>
+            <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.OR_CPR_NONFOOD.POAmount
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"POAmount")
+            </td>
+        </tr>
+        <tr>
+            <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.OR_CPR_NONFOOD.IsCapex
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"IsCapex")
+            </td>
+        </tr>
+        <tr>
+            <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.OR_CPR_NONFOOD.APPREMARK
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"APPREMARK")
+            </td>
+        </tr>
+        <tr>
+            <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
+                PR.PRProcess.OR_CPR_NONFOOD.DELIVERY
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.GetColumnValue(row,"DELIVERY")
+            </td>
+        </tr>
+        }
+    </table>
+        <table  cellspacing="0" style="width: 100%; border-top: 1px solid #ccc">
+            <tr style="background-color:#CCCCCC ;">
+            <td colspan=" 8" >
+                <div align="left"><strong>PR.PRProcess.OR_CPR_NONFOOD.OR_CPR_NONFOOD_ITEMS</strong></div>
+            </td>
+            </tr>
+            
+            <tr>
+                <td style="text-align:center" bgcolor="#FFFFFF">
+                    PR.PRProcess.OR_CPR_NONFOOD.SKUCode
+                </td>
+                <td style="text-align:center" bgcolor="#FFFFFF"colspan="2">
+                    PR.PRProcess.OR_CPR_NONFOOD.SKUName
+                </td>
+                <td style="text-align:center" bgcolor="#FFFFFF">
+                    PR.PRProcess.OR_CPR_NONFOOD.MaterialType
+                </td>
+                <td style="text-align:center" bgcolor="#FFFFFF">
+                    PR.PRProcess.OR_CPR_NONFOOD.OrderUnit
+                </td>
+                <td style="text-align:center" bgcolor="#FFFFFF">
+                    PR.PRProcess.OR_CPR_NONFOOD.OrderQuantity
+                </td>
+                <td style="text-align:center" bgcolor="#FFFFFF">
+                    PR.PRProcess.OR_CPR_NONFOOD.Price
+                </td>
+                <td style="text-align:center" bgcolor="#FFFFFF">
+                    PR.PRProcess.OR_CPR_NONFOOD.TaxRate
+                </td>
+                <td style="text-align:center" bgcolor="#FFFFFF">
+                    PR.PRProcess.OR_CPR_NONFOOD.GoodsAmount
+                </td>
+            </tr>
+            @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_OR_CPR_NONFOOD_ITEMS"))
+            {
+            <tr>
+                <td bgcolor="#FFFFFF"colspan="2">
+                    @Model.GetColumnValue(row,"SKUCode")
+                </td>
+                <td bgcolor="#FFFFFF">
+                    @Model.GetColumnValue(row,"SKUName")
+                </td>
+                <td bgcolor="#FFFFFF">
+                    @Model.GetColumnValue(row,"MaterialType")
+                </td>
+                <td bgcolor="#FFFFFF">
+                    @Model.GetColumnValue(row,"OrderUnit")
+                </td>
+                <td bgcolor="#FFFFFF">
+                    @Model.GetColumnValue(row,"OrderQuantity")
+                </td>
+                <td bgcolor="#FFFFFF">
+                    @Model.GetColumnValue(row,"Price")
+                </td>
+                <!--<td bgcolor="#FFFFFF">
+                    @Model.GetColumnValue(row,"TaxRate")
+                </td>-->
+                <td bgcolor="#FFFFFF">
+                    @Model.GetColumnValue(row,"GoodsAmount")
+                </td>
+            </tr>
+            }
+        </table>
+        <table  cellspacing="0" style="width: 100%; border-top: 1px solid #ccc">
+        <tr style="background-color:#CCCCCC ;">
+            <td colspan="5" >
+                <div align="left"><strong>审批历史记录 Approval History</strong></div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:center; " bgcolor="#FFFFFF">
+                步骤 Step
+            </td>
+            <td style="text-align: center; " bgcolor="#FFFFFF">
+                日期 Date
+            </td>
+            <td style="text-align: center; " bgcolor="#FFFFFF">
+                审批人 Approver
+            </td>
+            <td style="text-align: center; " bgcolor="#FFFFFF">
+                审批结果 Action
+            </td>
+            <td style="text-align:center;" bgcolor="#FFFFFF">
+                意见 Comments
+            </td>
+        </tr>
+        @foreach(Ultimus.UWF.Workflow.Entity.ApprovalHistoryEntity var in @Model.ApprovalHistoryList)
+        {
+        <tr>
+            <td bgcolor="#FFFFFF">
+                @var.STEPNAME
+            </td>
+            <td  bgcolor="#FFFFFF">
+                @{
+                string strdate="";
+                DateTime date= var.CREATEDATE;
+                if (date!=null)
+                {
+                strdate= date.ToString("MM-dd");
+                }
+                @strdate
+                }
+
+            </td>
+            <td bgcolor="#FFFFFF">
+                @var.APPROVERNAME
+            </td>
+            <td bgcolor="#FFFFFF">
+                @var.ACTION
+            </td>
+            <td bgcolor="#FFFFFF">
+                @var.COMMENTS
+            </td>
+        </tr>
+        }
+        <tr>
+            <td colspan="5" bgcolor="#FFFFFF">
+               <a href="@(Model.RootPath)/Portal/Ultimus.UWF.Home.V3/Workflow/EmailSendForm.aspx?taskid=@(Model.TaskID)&username=@(Model.TaskUserLoginName)&type=0&EmailType=email" style="font-size:16pt;">同意 Approve</a>
+                        
+               <a href="@(Model.RootPath)/Portal/Ultimus.UWF.Home.V3/Workflow/EmailSendForm.aspx?taskid=@(Model.TaskID)&username=@(Model.TaskUserLoginName)&type=1&EmailType=email" style="font-size:16pt;">退回 Return</a>
+            </td>
+        </tr>
+    </table>
+    
+    <br />
+    如需使用电脑查看流程详细信息，请<a href="@Model.BodyView">点击链接查阅！ </a>
+    <br />
+    If you want to view this form in computer，please click <a href="@Model.BodyView">here！ </a>
+    <br />
+    <br />
+
+</body>
+</html>

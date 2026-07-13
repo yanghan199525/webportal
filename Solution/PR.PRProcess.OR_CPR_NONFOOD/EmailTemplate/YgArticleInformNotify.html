@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+<title></title>
+<style type="text/css">
+    body {
+        font-family: '等线','Microsoft YaHei','Calibri';
+    }
+
+    table {
+        background: #ccc;
+    }
+
+    td {
+        border-bottom: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        border-left: 1px solid #ccc;
+    }
+
+    .bgcss {
+        background-color: white;
+        border-left: 0px;
+        border-right: 0px;
+    }
+</style>
+</head>
+<body>
+    尊敬的 <span id="TaskUserName">@Model.TaskUserName</span>,<br />
+    施耐德订单中存在京东物料，以下内容为京东物料详情。<br />
+    Dear <span id="TaskUserLoginName">@Model.TaskUserName</span>,<br />
+    There are JD articles in Schneider's order. The following are the details of JD articles<br /><br />
+    <table cellspacing="0" style="width: 100%; border-top: 1px solid #5C5C5C">
+
+        <tr>
+            <td width="18%" bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                采购申请业务编号<br />OR ID
+            </td>
+            <td width="16%" bgcolor="#FFFFFF">
+                @Model.orderID
+            </td>
+            <td width="16%" bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                申请人<br />Requestor
+            </td>
+            <td width="16%" bgcolor="#FFFFFF">
+                @Model.APPLICANT
+            </td>
+            <td width="20%" bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                利润中心编号<br />Profit Center Code
+            </td>
+            <td width="14%" bgcolor="#FFFFFF">
+                @Model.SITECODE
+            </td>
+        </tr>
+        <tr>
+
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                利润中心名称<br />Profit Center Description
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.SITENAME
+            </td>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                供应商编号<br />Supplier Code
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.SUPPLIERCODE
+            </td>
+            <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
+                供应商名称<br />Supplier Name
+            </td>
+            <td bgcolor="#FFFFFF">
+                @Model.SUPPLIERNAME
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6" class="bgcss">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="text-align:center" bgcolor="#B1CBF5" colspan="2">
+                电商物料名称<br />SKUName
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                采购单位<br />OrderUnit
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                采购数量<br />OrderQuantity
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                物品单价<br />Price
+            </td>
+            <td style="text-align:center" bgcolor="#B1CBF5">
+                金额<br />GoodsAmount
+            </td>
+        </tr>
+          @foreach(var @item in @Model.sku)
+        {
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+              @item.SKUName
+            </td>
+            <td bgcolor="#FFFFFF" style="text-align:right;">
+               @item.OrderUnit
+            </td>
+            <td bgcolor="#FFFFFF">
+              @item.OrderQuantity
+            </td>
+            <td bgcolor="#FFFFFF" style="text-align:right;">
+               @item.Price
+            </td>
+            <td bgcolor="#FFFFFF" style="text-align:right;">
+              @item.GoodsAmount
+            </td>
+        </tr>
+        }
+        <tr>
+            <td colspan="5" bordercolor="#5C5C5C" bgcolor="#B1CBF5" style="text-align:right;">
+                合计金额<br />Total Amount
+            </td>
+            <td bgcolor="#FFFFFF" style="text-align:right;">
+                @Model.Amount
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6" class="bgcss">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="bgcss">&nbsp;</td>
+        </tr>
+
+    </table>
+    <br />
+    <br />
+    <br />
+</body>
+</html>

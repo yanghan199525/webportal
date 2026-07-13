@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1705
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UPL.Common.MasterDataReport", "UPL.Common.MasterDataReport.csproj", "{8B83B3E4-5D67-43F9-B77E-84C52DE70DDA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B83B3E4-5D67-43F9-B77E-84C52DE70DDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B83B3E4-5D67-43F9-B77E-84C52DE70DDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B83B3E4-5D67-43F9-B77E-84C52DE70DDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B83B3E4-5D67-43F9-B77E-84C52DE70DDA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F4B1D4D8-F761-4154-B016-376E0B8FB419}
+	EndGlobalSection
+EndGlobal
