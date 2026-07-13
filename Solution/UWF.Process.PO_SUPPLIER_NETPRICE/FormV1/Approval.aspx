@@ -275,7 +275,7 @@
                                                     <ult:Label ID="fld_TAXRATESUPPLIER" title="" data-type='string' data-field="TAXRATESUPPLIER" runat="server" Text='<%#Eval("TAXRATESUPPLIER")%>'  Format="" Width="90%"></ult:Label>
                                                 </td>
                                                 <td class="hidden td_TAXRATEDIFFER" data-label='<%=Lang.Get("UWF.Process.PO_SUPPLIER_NETPRICE.TAXRATEDIFFER").Split('<')[0] %>'>
-                                                    <ult:Label ID="fld_TAXRATEDIFFER" title=""  data-field="TAXRATEDIFFER" runat="server" Text='<%#Eval("TAXRATEDIFFER")%>'CssClass="autonumber" Format="" Width="90%"></ult:Label>
+                                                    <ult:Label ID="fld_TAXRATEDIFFER" title=""  data-field="TAXRATEDIFFER" runat="server" Text='<%#Eval("TAXRATEDIFFER")%>' Format="" Width="90%"></ult:Label>
                                                 </td>
                                                 <td class=" td_NETPRICEORDER" data-label='<%=Lang.Get("UWF.Process.PO_SUPPLIER_NETPRICE.NETPRICEORDER").Split('<')[0] %>'>
                                                     <ult:Label ID="fld_NETPRICEORDER" title="" data-field="NETPRICEORDER" runat="server" Text='<%#Eval("NETPRICEORDER")%>' CssClass="autonumber" Format="" Width="90%"></ult:Label>
@@ -284,17 +284,17 @@
                                                     <ult:Label ID="fld_NETPRICESUPPLIER" title=""  data-field="NETPRICESUPPLIER" runat="server" Text='<%#Eval("NETPRICESUPPLIER")%>' CssClass="autonumber" Format="" Width="90%"></ult:Label>
                                                 </td>
                                                 <td class=" td_NETPRICEDIFFER" data-label='<%=Lang.Get("UWF.Process.PO_SUPPLIER_NETPRICE.NETPRICEDIFFER").Split('<')[0] %>'>
-                                                    <ult:Label ID="fld_NETPRICEDIFFER" title=""  data-field="NETPRICEDIFFER" runat="server" Text='<%#Eval("NETPRICEDIFFER")%>'CssClass="autonumber" Format="" Width="90%"></ult:Label>
+                                                    <ult:Label ID="fld_NETPRICEDIFFER"  data-field="NETPRICEDIFFER" runat="server" Text='<%#Eval("NETPRICEDIFFER")%>' Width="90%"></ult:Label>
                                                 </td>
                                                 <td class=" td_ORDERAMOUNTINT" data-label='<%=Lang.Get("UWF.Process.PO_SUPPLIER_NETPRICE.ORDERAMOUNTINT").Split('<')[0] %>'>
-                                                    <ult:Label ID="fld_ORDERAMOUNTINT" title=""  data-field="ORDERAMOUNTINT" runat="server" Text='<%#Eval("ORDERAMOUNTINT")%>' CssClass="autonumber" Format="" Width="90%"></ult:Label>
+                                                    <ult:Label ID="fld_ORDERAMOUNTINT"  data-field="ORDERAMOUNTINT" runat="server" Text='<%#Eval("ORDERAMOUNTINT")%>' CssClass="autonumber"  Width="90%"></ult:Label>
                                                 </td>
 
                                                 <td class="td_SUPPLIERAMOUNTINT" data-label='<%=Lang.Get("UWF.Process.PO_SUPPLIER_NETPRICE.SUPPLIERAMOUNTINT").Split('<')[0] %>'>
-                                                    <ult:Label ID="fld_SUPPLIERAMOUNTINT" title=""  data-field="SUPPLIERAMOUNTINT" runat="server" Text='<%#Eval("SUPPLIERAMOUNTINT")%>'CssClass="autonumber"  Format="" Width="90%"></ult:Label>
+                                                    <ult:Label ID="fld_SUPPLIERAMOUNTINT"   data-field="SUPPLIERAMOUNTINT" runat="server" Text='<%#Eval("SUPPLIERAMOUNTINT")%>'  Width="90%"></ult:Label>
                                                 </td>
                                                 <td class=" td_DIFFERAMOUNTINT" data-label='<%=Lang.Get("UWF.Process.PO_SUPPLIER_NETPRICE.DIFFERAMOUNTINT").Split('<')[0] %>'>
-                                                    <ult:Label ID="fld_DIFFERAMOUNTINT" title=""  data-field="DIFFERAMOUNTINT" runat="server" Text='<%#Eval("DIFFERAMOUNTINT")%>'CssClass="autonumber"  Format="" Width="90%"></ult:Label>
+                                                    <ult:Label ID="fld_DIFFERAMOUNTINT"   data-field="DIFFERAMOUNTINT" runat="server" Text='<%#Eval("DIFFERAMOUNTINT")%>'  Width="90%"></ult:Label>
                                                 </td>
 
                                                 <td class="hidden td_FINALNETPRICE" data-label='<%=Lang.Get("UWF.Process.PO_SUPPLIER_NETPRICE.FINALNETPRICE").Split('<')[0] %>'>
