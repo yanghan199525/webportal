@@ -16,6 +16,7 @@
     //});
     // 为所有.stassetclass元素绑定点击事件
     acceptClick();
+    //approve();
 
 })
 
@@ -151,12 +152,12 @@ function querysearch() {
     }
 }
 function search() {
-    $('[id*="fld_ASSETCLASS"]').each(function () {   
+    $('[id*="fld_ASSETCLASS"]').each(function () {
         $(this).selectpicker({
             liveSearch: true, // 启用搜索功能
             liveSearchPlaceholder: '搜索...', // 搜索框占位文本
             showTick: true, // 显示选中图标
-            
+
         });
         //$(this).show();
         $(this).css({
@@ -203,47 +204,51 @@ function acceptClick() {
     // （可选）页面加载时初始化：触发一次change事件，确保初始状态正确
     //$('.stassetclass').trigger('change');
 }
-//function approve() {
-//    $("#ButtonList1_btnApprove").click(function () {
-//        // 点击后执行的代码
+function beforeSubmit() {
+    // 1. 如果有勾选验收点，则进行校验
+    if (hasCheckedNeedAccept()) {
+        // 2. 如果校验不通过，阻止表单提交
+        if (!acceptCheck()) {
+            return false;
+        }
+    }
+    // 3. 校验通过或未勾选，允许提交
+    return true;
+}
 
-//        if (HasCheckedNeedAccept()) {
-//            if (!acceptCheck()) {
-//                return false;
-//            }
-//        } 
-//        // 示例：阻止默认行为（如果是链接或提交按钮）
-//        // event.preventDefault();
-//    });
-//}
-//function HasCheckedNeedAccept() {
-//    // 匹配所有 class=ckneedacceptItem 的复选框
-//    var $checkBoxList = $(".ckneedacceptItem");
-//    // 筛选出已勾选的
-//    var $checked = $checkBoxList.filter(":checked");
-//    // 返回布尔值：true=存在选中，false=全部未选
-//    return $checked.length > 0;
-//}
-////加载询价单号
-//function acceptCheck() {
-//    debugger
-//    $.ajax({
-//        type: "post",
-//        datatype: "json",
-//        contentType: "application/json",
-//        async: false,
-//        url: 'Approval.aspx/acceptCheck',
-//        data: "{\"siteCode\":\"" + $("#fld_SITECODE") + "\",\"supplierCode\":\"" + $("#fld_SUPPLIERCODE") + "\",\"capexNumber\":\"" + $("#fld_CAPEXNUMBER") + "\",\"formId\":\"" + $("#fld_FORMID") + "\"}",
-//        success: function (data) {
-//            debugger
-//            if (data.d != "1") {
-//                alert("已经存在验收点的数据！");
-//                return false;
-//            } 
-//        }
-//    });
-//}
+function hasCheckedNeedAccept() {
+    return $(".ckneedacceptItem").children("input[type='checkbox']").is(":checked");
+}
 
+// 加载询价单号校验
+function acceptCheck() {
+    var isValid = true;
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        contentType: "application/json",
+        async: false,
+        url: "Approval.aspx/acceptCheck", // 使用绝对路径防出错     
+        data: "{\"siteCode\":\"" + $("#fld_SITECODE").val() + "\",\"supplierCode\":\"" + $("#fld_SUPPLIERCODE").val() + "\",\"capexNumber\":\"" + $("#fld_CAPEXNUMBER").val() + "\",\"formId\":\"" + $("#UserInfo1_fld_FORMID").val() + "\"}",
+        success: function (data) {
+            if (data.d == "1") {
+                alert("已经存在验收点的数据！");
+                isValid = false;
+            }
+            else {
+                isValid = true;
+            }
+        },
+        error: function (xhr, status, error) {
+            //console.error("校验失败详情:", xhr.responseText); // 在控制台打印详细错误
+            alert("校验请求失败，请重试！");
+            isValid = false;
+        }
+    });
+
+    return isValid;
+}
 
 
 

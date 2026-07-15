@@ -13,6 +13,7 @@ using Ultimus.UWF.Common.Interface;
 using System.Data.Common;
 using System.Web.Services;
 using Ultimus.UWF.Form.ProcessControl.V3.userdefinedLogic;
+using System.Data.SqlClient;
 
 namespace UWF.Process.CAPEX_NONFOOD
 {
@@ -140,37 +141,50 @@ namespace UWF.Process.CAPEX_NONFOOD
         }
 
         [WebMethod]
-        public static string acceptCheck(string supplierCode, string siteCode, string capexNumber,string formId)
+        public static string acceptCheck(string supplierCode, string siteCode, string capexNumber, string formId)
         {
-            StringBuilder sSql = new StringBuilder();
-            string DateNow = DateTime.Now.ToString("yyyy-MM-dd");
+            try
+            {
+                StringBuilder sSql = new StringBuilder();
+                // 【修复】：补全了 SELECT TOP 1 1
+                sSql.Append(@"
+            SELECT TOP 1 1 
+            FROM [dbo].[PROC_CAPEX_NONFOOD] h WITH(NOLOCK)
+            INNER JOIN [dbo].[PROC_CAPEX_NONFOOD_ITEMS] i WITH(NOLOCK)
+                ON h.FORMID = i.FORMID 
+            WHERE h.STATUS IN (1, 3) 
+              AND i.NEEDACCEPT = 1 
+              AND h.FORMID <> @FormId");
 
-            var spWhere = string.Empty;
-            if (!string.IsNullOrWhiteSpace(supplierCode))
-            {
-                spWhere = "AND SUPPLIERCODE = '" + supplierCode + "'";
-            }
-            var rfqWhere = string.Empty;
-            if (!string.IsNullOrWhiteSpace(siteCode))
-            {
-                rfqWhere = " AND SITECODE = '" + siteCode + "'";
-            }
-            var articleWhere = string.Empty;
-            if (!string.IsNullOrWhiteSpace(capexNumber.Trim()))
-            {
-                articleWhere = "AND CAPEXNUMBER = '" + capexNumber.Trim() + "'";
-            }
+                var sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("@FormId", formId ?? string.Empty));
 
-            sSql.Append(@"SELECT  h.FORMID
-  FROM [dbo].[PROC_CAPEX_NONFOOD] h
-  inner join  [dbo].[PROC_CAPEX_NONFOOD_ITEMS] i
-  on h.FORMID=i.FORMID where STATUS in(1,3) and NEEDACCEPT=1
-    " + spWhere + " " + articleWhere + "  " + rfqWhere + " AND FORMID<> '" + formId + "' ;");
-            DataTable dt = new DataTable();
-            dt = DataAccess.Instance("BizDB").ExecuteDataTable(sSql.ToString());
-            return dt.Rows.Count > 0 ? "1":"0";
-           
+                if (!string.IsNullOrWhiteSpace(supplierCode))
+                {
+                    sSql.Append(" AND h.SUPPLIERCODE = @SupplierCode");
+                    sqlParams.Add(new SqlParameter("@SupplierCode", supplierCode.Trim()));
+                }
+
+                if (!string.IsNullOrWhiteSpace(siteCode))
+                {
+                    sSql.Append(" AND h.SITECODE = @SiteCode");
+                    sqlParams.Add(new SqlParameter("@SiteCode", siteCode.Trim()));
+                }
+
+                if (!string.IsNullOrWhiteSpace(capexNumber))
+                {
+                    sSql.Append(" AND h.CAPEXNUMBER = @CapexNumber");
+                    sqlParams.Add(new SqlParameter("@CapexNumber", capexNumber.Trim()));
+                }
+
+                object result = DataAccess.Instance("BizDB").ExecuteScalar(sSql.ToString(), sqlParams.ToArray());
+                return result != null && result != DBNull.Value ? "1" : "0";
+            }
+            catch (Exception ex)
+            {
+                // 建议在此处记录日志：FileLogHelper.WriteToFile($"acceptCheck Error: {ex}");
+                return "0";
+            }
         }
-
     }
 }

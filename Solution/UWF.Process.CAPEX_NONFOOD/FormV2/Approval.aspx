@@ -236,10 +236,10 @@
                                 </div>
                             </div>
                         </div>
-                          <!-- FORMID
+                        <%--  <!-- FORMID -->
                         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_FORMID" style="height: ">
                             <div class="form-label">
-                                <%=Lang.Get("PR.PRProcess.HK_CAPEX_NONFOOD.FORMID") %>:
+                                <%=Lang.Get("PR.PRProcess.CAPEX_NONFOOD.FORMID") %>:
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
@@ -247,8 +247,7 @@
                                     </ult:TextBox>
                                 </div>
                             </div>
-                        </div>
-                               -->
+                        </div>--%>
 
                    
 
