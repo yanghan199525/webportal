@@ -78,8 +78,8 @@ FROM (
         [APPROVE], [APPLICANTTEL], [COMPANY], [COSTCENTER], 
         '' AS [APPREMARK], [AMOUNT], [SUPPLIERCODE], [SUPPLIERNAME]
     FROM PROC_HK_CAPEX_NONFOOD
-    WHERE SITECODE = @SiteCode 
-      AND APPLICANTCODE = @ApplicantCode 
+    WHERE SITECODE = '{0}'  
+      AND APPLICANTCODE = '{1}' 
      -- AND REQUESTDATE > DATEADD(DAY, -60, GETDATE())
     
     UNION ALL
@@ -97,8 +97,8 @@ FROM (
         [APPROVE], [APPLICANTTEL], [COMPANY], [COSTCENTER], 
         '' AS [APPREMARK], [AMOUNT], [SUPPLIERCODE], [SUPPLIERNAME]
     FROM PROC_HK_CAPEX_SERVICE
-    WHERE SITECODE = @SiteCode 
-      AND APPLICANTCODE = @ApplicantCode 
+    WHERE SITECODE = '{0}' 
+      AND APPLICANTCODE ='{1}' 
      -- AND REQUESTDATE > DATEADD(DAY, -60, GETDATE())
 ) AS AAA
 -- 2. 使用 CROSS APPLY 高效获取每个表单的最新审批记录，彻底替代 ROW_NUMBER()
@@ -111,8 +111,7 @@ CROSS APPLY (
       --AND CREATEDATE > DATEADD(DAY, -60, GETDATE())
     ORDER BY ID DESC
 ) AS WF
-WHERE AAA.INCIDENT <> -1  -- 3. 保持类型一致，避免隐式转换导致索引失效
-ORDER BY AAA.REQUESTDATE DESC", pcCode, empNo
+WHERE AAA.INCIDENT <> -1", pcCode, empNo
 );
             //Ultimus.UWF.Form.WebControls.Repeater cptLog = Page.FindControl("OR_CPR_LOG") as Ultimus.UWF.Form.WebControls.Repeater;
             //cptLog.Source = string.Format();
@@ -305,7 +304,7 @@ VALUES
         // <summary>
         /// 调用存储过程并返回数据
         /// </summary>
-        private DataTable GetDataFromStoredProcedure(string siteCode,string applicantCode)
+        private DataTable GetDataFromStoredProcedure(string siteCode, string applicantCode)
         {
 
             DataAccess db = DataAccess.Instance("BizDB");
@@ -323,7 +322,7 @@ VALUES
                 db.AddInParameter(cmd, "@SiteCode", DbType.String, siteCode);
                 db.AddInParameter(cmd, "@ApplicantCode", DbType.String, applicantCode);
 
-               return  db.ExecuteDataTable(cmd);
+                return db.ExecuteDataTable(cmd);
             }
 
 
