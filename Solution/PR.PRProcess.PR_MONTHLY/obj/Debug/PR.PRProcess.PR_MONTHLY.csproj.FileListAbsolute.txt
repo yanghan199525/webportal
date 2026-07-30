@@ -1,0 +1,11 @@
+C:\UWF\Solution\PR.PRProcess.PR_MONTHLY\bin\PR.PRProcess.PR_MONTHLY.dll
+C:\UWF\Solution\PR.PRProcess.PR_MONTHLY\bin\PR.PRProcess.PR_MONTHLY.pdb
+C:\UWF\Solution\PR.PRProcess.PR_MONTHLY\obj\Debug\PR.PRProcess.PR_MONTHLY.csprojAssemblyReference.cache
+C:\UWF\Solution\PR.PRProcess.PR_MONTHLY\obj\Debug\PR.PRProcess.PR_MONTHLY.csproj.CoreCompileInputs.cache
+C:\UWF\Solution\PR.PRProcess.PR_MONTHLY\obj\Debug\PR.PRProcess.PR_MONTHLY.dll
+C:\UWF\Solution\PR.PRProcess.PR_MONTHLY\obj\Debug\PR.PRProcess.PR_MONTHLY.pdb
+C:\UWF\Solution\PR.PRProcess.PR_MONTHLY\bin\PR.PRProcess.PR_MONTHLY.dll.config
+D:\Project\sodexo\trunk\WebPortal\Solution\PR.PRProcess.PR_MONTHLY\obj\Debug\PR.PRProcess.PR_MONTHLY.csprojAssemblyReference.cache
+D:\Project\sodexo\trunk\WebPortal\Solution\PR.PRProcess.PR_MONTHLY\obj\Debug\PR.PRProcess.PR_MONTHLY.csproj.CoreCompileInputs.cache
+D:\Project\sodexo\trunk\WebPortal\Solution\PR.PRProcess.PR_MONTHLY\obj\Debug\PR.PRProcess.PR_MONTHLY.dll
+D:\Project\sodexo\trunk\WebPortal\Solution\PR.PRProcess.PR_MONTHLY\obj\Debug\PR.PRProcess.PR_MONTHLY.pdb

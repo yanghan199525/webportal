@@ -1,0 +1,2 @@
+D:\Project\sodexo\trunk\WebPortal\Solution\UWF.Process.PR_ALL\obj\Debug\UWF.Process.PR_ALL.csprojAssemblyReference.cache
+D:\Project\sodexo\trunk\WebPortal\Solution\UWF.Process.PR_ALL\obj\Debug\UWF.Process.PR_ALL.csproj.CoreCompileInputs.cache

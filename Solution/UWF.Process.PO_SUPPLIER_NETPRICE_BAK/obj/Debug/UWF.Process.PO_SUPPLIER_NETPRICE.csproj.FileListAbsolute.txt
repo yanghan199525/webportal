@@ -1,0 +1,2 @@
+D:\Project\sodexo\trunk\WebPortal\Solution\UWF.Process.PO_SUPPLIER_NETPRICE\obj\Debug\UWF.Process.PO_SUPPLIER_NETPRICE.csprojAssemblyReference.cache
+D:\Project\sodexo\trunk\WebPortal\Solution\UWF.Process.PO_SUPPLIER_NETPRICE\obj\Debug\UWF.Process.PO_SUPPLIER_NETPRICE.csproj.CoreCompileInputs.cache

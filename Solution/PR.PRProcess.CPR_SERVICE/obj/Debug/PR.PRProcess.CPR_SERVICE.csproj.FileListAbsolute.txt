@@ -1,0 +1,7 @@
+C:\UWF\Solution\PR.PRProcess.CPR_SERVICE\obj\Debug\PR.PRProcess.CPR_SERVICE.csprojResolveAssemblyReference.cache
+C:\UWF\Solution\PR.PRProcess.CPR_SERVICE\obj\Debug\PR.PRProcess.CPR_SERVICE.csprojAssemblyReference.cache
+C:\UWF\Solution\PR.PRProcess.CPR_SERVICE\obj\Debug\PR.PRProcess.CPR_SERVICE.csproj.CoreCompileInputs.cache
+C:\UWF\Solution\PR.PRProcess.CPR_SERVICE\obj\Debug\PR.PRProcess.CPR_SERVICE.dll
+C:\UWF\Solution\PR.PRProcess.CPR_SERVICE\obj\Debug\PR.PRProcess.CPR_SERVICE.pdb
+D:\Project\sodexo\trunk\WebPortal\Solution\PR.PRProcess.CPR_SERVICE\obj\Debug\PR.PRProcess.CPR_SERVICE.csprojAssemblyReference.cache
+D:\Project\sodexo\trunk\WebPortal\Solution\PR.PRProcess.CPR_SERVICE\obj\Debug\PR.PRProcess.CPR_SERVICE.csproj.CoreCompileInputs.cache

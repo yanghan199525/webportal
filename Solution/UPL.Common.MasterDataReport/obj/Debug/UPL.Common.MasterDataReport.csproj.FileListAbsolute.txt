@@ -1,0 +1,6 @@
+D:\Project\sodexo\trunk\WebPortal\Solution\UPL.Common.MasterDataReport\obj\Debug\UPL.Common.MasterDataReport.csproj.CoreCompileInputs.cache
+D:\Project\sodexo\trunk\WebPortal\bin\UPL.Common.MasterDataReport.dll
+D:\Project\sodexo\trunk\WebPortal\bin\UPL.Common.MasterDataReport.pdb
+D:\Project\sodexo\trunk\WebPortal\Solution\UPL.Common.MasterDataReport\obj\Debug\UPL.Common.MasterDataReport.csproj.CopyComplete
+D:\Project\sodexo\trunk\WebPortal\Solution\UPL.Common.MasterDataReport\obj\Debug\UPL.Common.MasterDataReport.dll
+D:\Project\sodexo\trunk\WebPortal\Solution\UPL.Common.MasterDataReport\obj\Debug\UPL.Common.MasterDataReport.pdb

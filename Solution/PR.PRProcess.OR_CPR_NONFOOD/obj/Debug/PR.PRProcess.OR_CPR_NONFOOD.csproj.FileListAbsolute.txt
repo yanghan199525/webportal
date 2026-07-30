@@ -1,0 +1,2 @@
+D:\Project\sodexo\trunk\WebPortal\Solution\PR.PRProcess.OR_CPR_NONFOOD\obj\Debug\PR.PRProcess.OR_CPR_NONFOOD.csprojAssemblyReference.cache
+D:\Project\sodexo\trunk\WebPortal\Solution\PR.PRProcess.OR_CPR_NONFOOD\obj\Debug\PR.PRProcess.OR_CPR_NONFOOD.csproj.CoreCompileInputs.cache

@@ -1,0 +1,6 @@
+C:\UWF\Solution\PR.PRProcess.PR_SERVICE\bin\PR.PRProcess.PR_SERVICE.dll
+C:\UWF\Solution\PR.PRProcess.PR_SERVICE\bin\PR.PRProcess.PR_SERVICE.pdb
+C:\UWF\Solution\PR.PRProcess.PR_SERVICE\obj\Debug\PR.PRProcess.PR_SERVICE.csprojAssemblyReference.cache
+C:\UWF\Solution\PR.PRProcess.PR_SERVICE\obj\Debug\PR.PRProcess.PR_SERVICE.csproj.CoreCompileInputs.cache
+C:\UWF\Solution\PR.PRProcess.PR_SERVICE\obj\Debug\PR.PRProcess.PR_SERVICE.dll
+C:\UWF\Solution\PR.PRProcess.PR_SERVICE\obj\Debug\PR.PRProcess.PR_SERVICE.pdb

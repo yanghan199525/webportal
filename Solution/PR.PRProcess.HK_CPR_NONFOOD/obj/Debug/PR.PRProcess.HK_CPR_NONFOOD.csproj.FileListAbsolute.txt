@@ -1,0 +1,2 @@
+C:\UWF\Solution\PR.PRProcess.HK_CPR_NONFOOD\obj\Debug\PR.PRProcess.HK_CPR_NONFOOD.csprojAssemblyReference.cache
+C:\UWF\Solution\PR.PRProcess.HK_CPR_NONFOOD\obj\Debug\PR.PRProcess.HK_CPR_NONFOOD.csproj.CoreCompileInputs.cache

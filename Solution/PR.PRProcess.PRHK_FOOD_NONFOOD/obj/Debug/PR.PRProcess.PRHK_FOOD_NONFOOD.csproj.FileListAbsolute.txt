@@ -1,0 +1,6 @@
+C:\UWF\Solution\PR.PRProcess.PRHK_FOOD_NONFOOD\bin\PR.PRProcess.PRHK_FOOD_NONFOOD.dll
+C:\UWF\Solution\PR.PRProcess.PRHK_FOOD_NONFOOD\bin\PR.PRProcess.PRHK_FOOD_NONFOOD.pdb
+C:\UWF\Solution\PR.PRProcess.PRHK_FOOD_NONFOOD\obj\Debug\PR.PRProcess.PRHK_FOOD_NONFOOD.csprojAssemblyReference.cache
+C:\UWF\Solution\PR.PRProcess.PRHK_FOOD_NONFOOD\obj\Debug\PR.PRProcess.PRHK_FOOD_NONFOOD.csproj.CoreCompileInputs.cache
+C:\UWF\Solution\PR.PRProcess.PRHK_FOOD_NONFOOD\obj\Debug\PR.PRProcess.PRHK_FOOD_NONFOOD.dll
+C:\UWF\Solution\PR.PRProcess.PRHK_FOOD_NONFOOD\obj\Debug\PR.PRProcess.PRHK_FOOD_NONFOOD.pdb

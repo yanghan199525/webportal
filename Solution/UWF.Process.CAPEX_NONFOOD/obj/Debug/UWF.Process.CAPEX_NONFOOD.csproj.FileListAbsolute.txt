@@ -1,0 +1,2 @@
+D:\Project\sodexo\trunk\WebPortal\Solution\UWF.Process.CAPEX_NONFOOD\obj\Debug\UWF.Process.CAPEX_NONFOOD.csprojAssemblyReference.cache
+D:\Project\sodexo\trunk\WebPortal\Solution\UWF.Process.CAPEX_NONFOOD\obj\Debug\UWF.Process.CAPEX_NONFOOD.csproj.CoreCompileInputs.cache

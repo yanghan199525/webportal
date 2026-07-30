@@ -1,0 +1,2 @@
+D:\Project\sodexo\trunk\WebPortal\Solution\UWF.Process.PO_SUPPLIER_SUMMARY\obj\Debug\UWF.Process.PO_SUPPLIER_SUMMARY.csprojAssemblyReference.cache
+D:\Project\sodexo\trunk\WebPortal\Solution\UWF.Process.PO_SUPPLIER_SUMMARY\obj\Debug\UWF.Process.PO_SUPPLIER_SUMMARY.csproj.CoreCompileInputs.cache

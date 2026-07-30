@@ -1,0 +1,9 @@
+D:\Project\sodexo\trunk\WebPortal\Solution\UWF.Process.DemoProcess\obj\Debug\UWF.Process.DemoProcess.csprojAssemblyReference.cache
+D:\Project\sodexo\trunk\WebPortal\Solution\UWF.Process.DemoProcess\obj\Debug\UWF.Process.DemoProcess.csproj.CoreCompileInputs.cache
+D:\Project\sodexo\trunk\WebPortal\Solution\UWF.Process.DemoProcess\bin\UWF.Process.DemoProcess.dll.config
+D:\Project\sodexo\trunk\WebPortal\Solution\UWF.Process.DemoProcess\bin\UWF.Process.DemoProcess.dll
+D:\Project\sodexo\trunk\WebPortal\Solution\UWF.Process.DemoProcess\bin\UWF.Process.DemoProcess.pdb
+D:\Project\sodexo\trunk\WebPortal\Solution\UWF.Process.DemoProcess\bin\MyLib.dll
+D:\Project\sodexo\trunk\WebPortal\Solution\UWF.Process.DemoProcess\obj\Debug\UWF.Process.DemoProcess.csproj.CopyComplete
+D:\Project\sodexo\trunk\WebPortal\Solution\UWF.Process.DemoProcess\obj\Debug\UWF.Process.DemoProcess.dll
+D:\Project\sodexo\trunk\WebPortal\Solution\UWF.Process.DemoProcess\obj\Debug\UWF.Process.DemoProcess.pdb

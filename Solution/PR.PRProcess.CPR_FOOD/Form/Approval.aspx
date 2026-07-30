@@ -466,7 +466,7 @@
                                             <td class="td_no" data-label='<%=Lang.Get("No").Split('<')[0] %>'>
                                                 <div class="index"><%#Eval("ROWNO")%> </div>
                                                 <ult:TextBox ID="fld_ROWNO" data-field="ROWNO" CssClass="index hidden" runat="server" ControlValue='<%#Eval("ROWNO")%>'>
-                                                </ult:TextBox> 
+                                                </ult:TextBox>
                                             </td>
                                             <td class=" td_APPLYREASON" data-label='<%=Lang.Get("PR.PRProcess.CPR_FOOD.APPLYREASON").Split('<')[0] %>'>
                                                 <ult:TextBox ID="fld_APPLYREASON" title="" data-type='string' onblur="checkExpression(this)" data-field="APPLYREASON" CssClass="item-control  ReadOnly" ControlValue='<%#Eval("APPLYREASON")%>' runat="server">
@@ -486,11 +486,11 @@
                                                 </ult:TextBox>
                                             </td>
                                             <td class=" td_SITEPRICE" data-label='<%=Lang.Get("PR.PRProcess.CPR_FOOD.SITEPRICE").Split('<')[0] %>'>
-                                                <ult:TextBox ID="fld_SITEPRICE" title="" data-type='number' onblur="checkExpression(this)" data-field="SITEPRICE" CssClass="item-control  ReadOnly autonumber" ControlValue='<%#Eval("SITEPRICE")%>' runat="server">
+                                                <ult:TextBox ID="fld_SITEPRICE" title="" data-type='number' onblur="checkExpression(this)" data-field="SITEPRICE" CssClass="item-control  ReadOnly" ControlValue='<%#Eval("SITEPRICE")%>' runat="server">
                                                 </ult:TextBox>
                                             </td>
                                             <td class=" td_ORDERQUANTITY" data-label='<%=Lang.Get("PR.PRProcess.CPR_FOOD.ORDERQUANTITY").Split('<')[0] %>'>
-                                                <ult:TextBox ID="fld_ORDERQUANTITY" title="" data-type='number' onblur="checkExpression(this)" data-field="ORDERQUANTITY" CssClass="item-control ReadOnly validate[required,custom[number]] autonumber" ControlValue='<%#Eval("ORDERQUANTITY")%>' runat="server" onchange="SumAmount(this)" data-errormessage-type-mismatch="采购数量必须大于0<br />Purchase quantity must be greater than 0">
+                                                <ult:TextBox ID="fld_ORDERQUANTITY" title="" data-type='number' onblur="checkExpression(this)" data-field="ORDERQUANTITY" CssClass="item-control ReadOnly validate[required,custom[number]]" ControlValue='<%#Eval("ORDERQUANTITY")%>' runat="server" onchange="SumAmount(this)" data-errormessage-type-mismatch="采购数量必须大于0<br />Purchase quantity must be greater than 0">
                                                 </ult:TextBox>
                                             </td>
                                             <%-- <td class="td_INVOICETYPE" data-label='<%=Lang.Get("PR.PRProcess.CPR_FOOD.INVOICETYPE").Split('<')[0] %>'>    
