@@ -23,18 +23,16 @@ namespace UWF.Process.PO_AMENDMENT
     AAA.[APPLICANTCODE], AAA.[REQUESTDATE], AAA.[COMPLETEDATE], AAA.[DEPARTMENT], AAA.[DEPARTMENTID],
     AAA.[PROCESSSUMMARY], AAA.[STATUS], AAA.[PurchasingPurpose], AAA.[SITECODE], AAA.[SITENAME],
     AAA.[DELIVERYDATE], AAA.[Requirement], AAA.[APPROVEDATE], AAA.[DELIVERY], AAA.[APPROVE],
-    AAA.[APPLICANTTEL], AAA.[COMPANY], AAA.[COSTCENTER], AAA.[APPREMARK], AAA.[AMOUNT], AAA.[ACTION],
-    WF.* --强烈建议将 WF.* 替换为实际需要的具体字段，避免回表开销
+    AAA.[APPLICANTTEL], AAA.[COMPANY], AAA.[COSTCENTER], AAA.[APPREMARK], AAA.[AMOUNT], WF.[ACTION]
 FROM PROC_PO_AMENDMENT AAA
 -- 【核心优化】：使用 CROSS APPLY 逐行动态关联，精准获取每个 FORMID 的最新审批记录
 CROSS APPLY(
-    SELECT TOP 1 *
+   SELECT TOP (1) ACTION
     FROM WF_APPROVALHISTORY
     WHERE FORMID = AAA.FORMID
     ORDER BY ID DESC
 ) WF
-WHERE AAA.INCIDENT != '-1'
-ORDER BY AAA.REQUESTDATE DESC";
+WHERE AAA.INCIDENT != '-1'";
             rpt.Sort = "REQUESTDATE DESC";
         }
         protected void lbExport_Click(object sender, EventArgs e)
@@ -46,7 +44,7 @@ ORDER BY AAA.REQUESTDATE DESC";
             {
                 return;
             }
-            dt=ExportLogic.GetSchemaTable("PO_AMENDMENT", dt);
+            dt = ExportLogic.GetSchemaTable("PO_AMENDMENT", dt);
             ExcelUtil.Export(dt);
         }
     }
