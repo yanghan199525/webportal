@@ -1,0 +1,2 @@
+D:\Project\Sodexo\trunk\WebPortal\Solution\UWF.Process.MCPR_SERVICE\obj\Debug\UWF.Process.MCPR_SERVICE.csprojAssemblyReference.cache
+D:\Project\Sodexo\trunk\WebPortal\Solution\UWF.Process.MCPR_SERVICE\obj\Debug\UWF.Process.MCPR_SERVICE.csproj.CoreCompileInputs.cache

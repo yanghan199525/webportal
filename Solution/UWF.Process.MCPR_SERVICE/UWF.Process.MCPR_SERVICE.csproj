@@ -9,8 +9,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UWF.Process.PO_Amendment</RootNamespace>
-    <AssemblyName>UWF.Process.PO_Amendment</AssemblyName>
+    <RootNamespace>UWF.Process.MCPR_SERVICE</RootNamespace>
+    <AssemblyName>UWF.Process.MCPR_SERVICE</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
     <Use64BitIISExpress />
@@ -87,19 +87,19 @@
   <ItemGroup>
     <!-- <Folder Include="Properties\" />-->
     <Content Include="Ajax\HandlerProcess.ashx" />
-    <Content Include="Report\ReportList.aspx" />
-    <Content Include="Report\ReportListAll.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EmailTemplate\CN\TaskActived.html" />
-    <Content Include="EmailTemplate\CN\TaskReturned.html" />
-    <Content Include="EmailTemplate\EN\TaskActived.html" />
-    <Content Include="EmailTemplate\EN\TaskReturned.html" />
+    <Content Include="EmailTemplate\TaskActived.html" />
+    <Content Include="EmailTemplate\TaskCompleted.html" />
+    <Content Include="EmailTemplate\TaskConfirmation.html" />
+    <Content Include="EmailTemplate\TaskRejected.html" />
+    <Content Include="EmailTemplate\TaskReturned.html" />
     <Content Include="FormV1\Approval.aspx" />
     <Content Include="FormV1\Approval.js" />
     <Content Include="FormV1\NewRequest.aspx" />
     <Content Include="FormV1\NewRequest.js" />
     <Content Include="Print\PrintForm.aspx" />
+    <Content Include="Report\ReportList.aspx" />
     <Content Include="Report\ReportList.js" />
     <Content Include="Print\PrintForm.js" />
   </ItemGroup>
@@ -121,13 +121,6 @@
     <Compile Include="Report\ReportList.aspx.cs">
       <DependentUpon>ReportList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\ReportListAll.aspx.cs">
-      <DependentUpon>ReportListAll.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\ReportListAll.aspx.designer.cs">
-      <DependentUpon>ReportListAll.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <PropertyGroup>
