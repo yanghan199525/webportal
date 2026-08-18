@@ -328,29 +328,29 @@ $("input[type='checkbox']").on("change", function () {
         $("#supplerName").selectpicker('refresh');
         $("#supplerName").find("option:selected").val(SupplerCode)
         var tabLen = $(".Articles").find("tr").length;  
-       // for (var i = 1; i <=tabLen; i++) {
-       //     if ($("tr:eq(" + i + ")>td:eq(14)").text() != SupplerCode || $("tr:eq(" + i + ")>td:eq(9)").text()!=FamilyCode) {
-       //         $("tr:eq(" + i + ")>td:eq(0)").find("input[type = 'checkbox']").attr("disabled", true);
-       //         $("tr:eq(" + i + ")>td:eq(8)").find("input[type = 'text']").attr("disabled", true);
-       //         $("tr:eq(" + i + ")").css({
-       //             "color": "darkgray"
-       //         });
-       //     }
-       // }
+        for (var i = 1; i <=tabLen; i++) {
+            if ($("tr:eq(" + i + ")>td:eq(14)").text() != SupplerCode || $("tr:eq(" + i + ")>td:eq(9)").text()!=FamilyCode) {
+                $("tr:eq(" + i + ")>td:eq(0)").find("input[type = 'checkbox']").attr("disabled", true);
+                $("tr:eq(" + i + ")>td:eq(8)").find("input[type = 'text']").attr("disabled", true);
+                $("tr:eq(" + i + ")").css({
+                    "color": "darkgray"
+                });
+            }
+        }
        // CheckSupplier(tabLen);
     } else {
         $(this).val(0);
-       //if ($("input[type='checkbox']:checked").length == 0) {
-       //    BindSuppler(searchRFQInput, "", searchFamilyNameInput);
-       //    var tabLen = $(".Articles").find("tr").length;
-       //    for (var i = 0; i <=tabLen; i++) {
-       //        $("tr:eq(" + i + ")>td:eq(0)").find("input[type = 'checkbox']").attr("disabled", false);
-       //        $("tr:eq(" + i + ")>td:eq(8)").find("input[type = 'text']").attr("disabled", false);
-       //        $("tr:eq(" + i + ")").css({
-       //            "color": "black"
-       //        });
-       //    }
-       //}
+       if ($("input[type='checkbox']:checked").length == 0) {
+           BindSuppler(searchRFQInput, "", searchFamilyNameInput);
+           var tabLen = $(".Articles").find("tr").length;
+           for (var i = 0; i <=tabLen; i++) {
+               $("tr:eq(" + i + ")>td:eq(0)").find("input[type = 'checkbox']").attr("disabled", false);
+               $("tr:eq(" + i + ")>td:eq(8)").find("input[type = 'text']").attr("disabled", false);
+               $("tr:eq(" + i + ")").css({
+                   "color": "black"
+               });
+           }
+       }
     }
 });
     
