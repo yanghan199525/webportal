@@ -31,7 +31,7 @@
     Dear <span id="TaskUserLoginName">@Model.TaskUserNameEn</span>,<br />
     CPR below need your approval. Please click ‘Approve’ or ‘Return’ link to process this order<br /> Or <a href="@(Model.RootPath)">login system</a>  to review pending tasks.<br /><br />
     <table cellspacing="0" style="width: 100%; border-top: 1px solid #5C5C5C">
-        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_MCPR_SERVICE"))
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_MMCPR_SERVICE"))
         {
         <tr>
             <td width="18%" bordercolor="#5C5C5C" bgcolor="#B1CBF5">
@@ -135,7 +135,7 @@
             </td>
         </tr>
         @{
-        var itemRows = Model.GetDataRowList("PROC_MCPR_SERVICE_ITEMS")?.ToList() ?? new List
+        var itemRows = Model.GetDataRowList("PROC_MMCPR_SERVICE_ITEMS")?.ToList() ?? new List
         <Ultimus.UWF.EmailNotification.DataRowEntity>();
             // 按【要求送货日期】分组
             var dateGroups = itemRows.GroupBy(r => Model.GetColumnValue(r, "REQUIREDDELIVERYDATE")).ToList();
@@ -173,7 +173,7 @@
             }
             }
 
-            @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_MCPR_SERVICE"))
+            @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_MMCPR_SERVICE"))
             {
             <tr>
                 <td colspan="5" bordercolor="#5C5C5C" bgcolor="#B1CBF5" style="text-align:right;">
@@ -188,7 +188,7 @@
             <tr>
                 <td colspan="6" class="bgcss">&nbsp;</td>
             </tr>
-            @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_MCPR_SERVICE"))
+            @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_MMCPR_SERVICE"))
             {
             <tr>
                 <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">

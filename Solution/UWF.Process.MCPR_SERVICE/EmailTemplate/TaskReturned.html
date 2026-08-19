@@ -27,7 +27,7 @@
                 <div ><strong>基础信息 General Information</strong></div>
             </td>
         </tr>
-        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_MCPR_SERVICE"))
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_MMCPR_SERVICE"))
         {
         <tr>
             <td width="31%" bordercolor="#FFFFFF" bgcolor="#FFFFFF">
@@ -71,7 +71,7 @@
         </tr>
         <tr>
             <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
-                PR.PRProcess.CPR_SERVICE.APPLYPURPOSE
+                PR.PRProcess.MCPR_SERVICE.APPLYPURPOSE
             </td>
             <td bgcolor="#FFFFFF">
                 @Model.GetColumnValue(row,"APPLYPURPOSE")
@@ -79,7 +79,7 @@
         </tr>
         <tr>
             <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
-                PR.PRProcess.CPR_SERVICE.SUPPLIERTYPE
+                PR.PRProcess.MCPR_SERVICE.SUPPLIERTYPE
             </td>
             <td bgcolor="#FFFFFF">
                 @Model.GetColumnValue(row,"SUPPLIERTYPE")
@@ -87,7 +87,7 @@
         </tr>
         <tr>
             <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
-                PR.PRProcess.CPR_SERVICE.SITECODE
+                PR.PRProcess.MCPR_SERVICE.SITECODE
             </td>
             <td bgcolor="#FFFFFF">
                 @Model.GetColumnValue(row,"SITECODE")
@@ -95,7 +95,7 @@
         </tr>
         <tr>
             <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
-                PR.PRProcess.CPR_SERVICE.SITENAME
+                PR.PRProcess.MCPR_SERVICE.SITENAME
             </td>
             <td bgcolor="#FFFFFF">
                 @Model.GetColumnValue(row,"SITENAME")
@@ -103,7 +103,7 @@
         </tr>
         <tr>
             <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
-                PR.PRProcess.CPR_SERVICE.DELIVERYDATE
+                PR.PRProcess.MCPR_SERVICE.DELIVERYDATE
             </td>
             <td bgcolor="#FFFFFF">
                 @Model.GetColumnValue(row,"DELIVERYDATE")
@@ -111,7 +111,7 @@
         </tr>
         <tr>
             <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
-                PR.PRProcess.CPR_SERVICE.ONLINEORSUPERMARKET
+                PR.PRProcess.MCPR_SERVICE.ONLINEORSUPERMARKET
             </td>
             <td bgcolor="#FFFFFF">
                 @Model.GetColumnValue(row,"ONLINEORSUPERMARKET")
@@ -119,7 +119,7 @@
         </tr>
         <tr>
             <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
-                PR.PRProcess.CPR_SERVICE.SUPPLIERCODE
+                PR.PRProcess.MCPR_SERVICE.SUPPLIERCODE
             </td>
             <td bgcolor="#FFFFFF">
                 @Model.GetColumnValue(row,"SUPPLIERCODE")
@@ -127,7 +127,7 @@
         </tr>
         <tr>
             <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
-                PR.PRProcess.CPR_SERVICE.SUPPLIERNAME
+                PR.PRProcess.MCPR_SERVICE.SUPPLIERNAME
             </td>
             <td bgcolor="#FFFFFF">
                 @Model.GetColumnValue(row,"SUPPLIERNAME")
@@ -135,7 +135,7 @@
         </tr>
         <tr>
             <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
-                PR.PRProcess.CPR_SERVICE.AMOUNT
+                PR.PRProcess.MCPR_SERVICE.AMOUNT
             </td>
             <td bgcolor="#FFFFFF">
                 @Model.GetColumnValue(row,"AMOUNT")
@@ -143,7 +143,7 @@
         </tr>
         <tr>
             <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
-                PR.PRProcess.CPR_SERVICE.USER_SignedApproverName
+                PR.PRProcess.MCPR_SERVICE.USER_SignedApproverName
             </td>
             <td bgcolor="#FFFFFF">
                 @Model.GetColumnValue(row,"USER_SignedApproverName")
@@ -151,7 +151,7 @@
         </tr>
         <tr>
             <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
-                PR.PRProcess.CPR_SERVICE.USER_SignedApprover2Name
+                PR.PRProcess.MCPR_SERVICE.USER_SignedApprover2Name
             </td>
             <td bgcolor="#FFFFFF">
                 @Model.GetColumnValue(row,"USER_SignedApprover2Name")
@@ -159,7 +159,7 @@
         </tr>
         <tr>
             <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
-                PR.PRProcess.CPR_SERVICE.USER_SignedApprover3Name
+                PR.PRProcess.MCPR_SERVICE.USER_SignedApprover3Name
             </td>
             <td bgcolor="#FFFFFF">
                 @Model.GetColumnValue(row,"USER_SignedApprover3Name")
@@ -167,7 +167,7 @@
         </tr>
         <tr>
             <td  bordercolor="#FFFFFF" bgcolor="#FFFFFF">
-                PR.PRProcess.CPR_SERVICE.APPREMARK
+                PR.PRProcess.MCPR_SERVICE.APPREMARK
             </td>
             <td bgcolor="#FFFFFF">
                 @Model.GetColumnValue(row,"APPREMARK")
@@ -178,85 +178,85 @@
         <table  cellspacing="0" style="width: 100%; border-top: 1px solid #ccc">
             <tr style="background-color:#CCCCCC ;">
             <td colspan=" 24" >
-                <div align="left"><strong>PR.PRProcess.CPR_SERVICE.CPR_SERVICE_Items</strong></div>
+                <div align="left"><strong>PR.PRProcess.MCPR_SERVICE.MCPR_SERVICE_Items</strong></div>
             </td>
             </tr>
             
             <tr>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.APPLYREASON
+                    PR.PRProcess.MCPR_SERVICE.APPLYREASON
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.FAMILYCODE
+                    PR.PRProcess.MCPR_SERVICE.FAMILYCODE
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.FAMILYNAME
+                    PR.PRProcess.MCPR_SERVICE.FAMILYNAME
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.SUBFAMILYCODE
+                    PR.PRProcess.MCPR_SERVICE.SUBFAMILYCODE
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.SUBFAMILYNAME
+                    PR.PRProcess.MCPR_SERVICE.SUBFAMILYNAME
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.SUBSUBFAMILYCODE
+                    PR.PRProcess.MCPR_SERVICE.SUBSUBFAMILYCODE
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.SUBSUBFAMILYNAME
+                    PR.PRProcess.MCPR_SERVICE.SUBSUBFAMILYNAME
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.ARTICLENAME
+                    PR.PRProcess.MCPR_SERVICE.ARTICLENAME
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.ARTICLECODE
+                    PR.PRProcess.MCPR_SERVICE.ARTICLECODE
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.ORDERUNIT
+                    PR.PRProcess.MCPR_SERVICE.ORDERUNIT
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.UNIT
+                    PR.PRProcess.MCPR_SERVICE.UNIT
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.CONSUMPTIONUNIT
+                    PR.PRProcess.MCPR_SERVICE.CONSUMPTIONUNIT
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.CONVERSION
+                    PR.PRProcess.MCPR_SERVICE.CONVERSION
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.STOCK
+                    PR.PRProcess.MCPR_SERVICE.STOCK
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.NETVOMULE
+                    PR.PRProcess.MCPR_SERVICE.NETVOMULE
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.GROSSWEIGHT
+                    PR.PRProcess.MCPR_SERVICE.GROSSWEIGHT
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.NETVOMULEUNIT
+                    PR.PRProcess.MCPR_SERVICE.NETVOMULEUNIT
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.GROSSWEIGHTUNIT
+                    PR.PRProcess.MCPR_SERVICE.GROSSWEIGHTUNIT
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.SITEPRICE
+                    PR.PRProcess.MCPR_SERVICE.SITEPRICE
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.ORDERQUANTITY
+                    PR.PRProcess.MCPR_SERVICE.ORDERQUANTITY
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.ORDERUNITVALUE
+                    PR.PRProcess.MCPR_SERVICE.ORDERUNITVALUE
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.UNITVALUE
+                    PR.PRProcess.MCPR_SERVICE.UNITVALUE
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.CONSUMPTIONUNITVALUE
+                    PR.PRProcess.MCPR_SERVICE.CONSUMPTIONUNITVALUE
                 </td>
                 <td style="text-align:center" bgcolor="#FFFFFF">
-                    PR.PRProcess.CPR_SERVICE.SUBTOTALAMOUNT
+                    PR.PRProcess.MCPR_SERVICE.SUBTOTALAMOUNT
                 </td>
             </tr>
-            @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_MCPR_SERVICE_ITEMS"))
+            @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_MMCPR_SERVICE_ITEMS"))
             {
             <tr>
                 <td bgcolor="#FFFFFF">

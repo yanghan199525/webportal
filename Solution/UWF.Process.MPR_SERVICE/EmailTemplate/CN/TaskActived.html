@@ -32,7 +32,7 @@
                 <div><strong>基础信息</strong></div>
             </td>
         </tr>
-        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_MPR_SERVICE"))
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_MMPR_SERVICE"))
         {
         <tr>
             <td width="31%" bordercolor="#FFFFFF" bgcolor="#FFFFFF">
@@ -95,7 +95,7 @@
             <table cellspacing="0" style="width: 100%; border-top: 1px solid #ccc">
                 <tr style="background-color: #CCCCCC;">
                     <td colspan=" 1">
-                        <div align="left"><strong>MPR_SERVICE_ITEMS</strong></div>
+                        <div align="left"><strong>MMMPR_SERVICE_ITEMS</strong></div>
                     </td>
                 </tr>
 
@@ -104,7 +104,7 @@
                                 ARTICLECODE
                             </td>
                 </tr>
-                @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_MPR_SERVICE_ITEMS"))
+                @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_MMMPR_SERVICE_ITEMS"))
                 {
                 <tr>
                             <td bgcolor="#FFFFFF">

@@ -31,7 +31,7 @@
     Dear <span id="TaskUserLoginName">@Model.TaskUserNameEn</span>,<br />
     CPR below is approved but requested delivery date is overtime. Please click ‘Modify’ link below to modify, <span style="color:red;">Otherwise CPR cannot be generated.</span><br /><br />
     <table cellspacing="0" style="width: 100%; border-top: 1px solid #5C5C5C">
-        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_MCPR_SERVICE"))
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_MMCPR_SERVICE"))
         {
         <tr>
             <td width="18%" bordercolor="#5C5C5C" bgcolor="#B1CBF5">
@@ -127,7 +127,7 @@
                 金额<br />Sub Total Amount
             </td>
         </tr>
-        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_MCPR_SERVICE_ITEMS"))
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_MMCPR_SERVICE_ITEMS"))
         {
         <tr>
             <td bgcolor="#FFFFFF">
@@ -150,7 +150,7 @@
             </td>
         </tr>
         }
-        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_MCPR_SERVICE"))
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_MMCPR_SERVICE"))
         {
         <tr>
             <td colspan="5" bordercolor="#5C5C5C" bgcolor="#B1CBF5" style="text-align:right;">
@@ -164,7 +164,7 @@
         <tr>
             <td colspan="6" class="bgcss">&nbsp;</td>
         </tr>
-        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_MCPR_SERVICE"))
+        @foreach(Ultimus.UWF.EmailNotification.DataRowEntity row in @Model.GetDataRowList("PROC_MMCPR_SERVICE"))
         {
         <tr>
             <td bordercolor="#5C5C5C" bgcolor="#B1CBF5">
@@ -220,7 +220,7 @@
         </tr>
         <tr>
             <td colspan="6" bgcolor="#FFFFFF">
-                <a href="@(Model.RootPath)/Solution/PR.PRProcess.CPR_SERVICE/Form/Approval.aspx?ProcessName=CPR_SERVICE&StepName=Applicant Confirmation&Incident=@(Model.TaskIncident)&TaskID=@(Model.TaskID)&UserName=@(Model.TaskUserLoginName)&Type=MYTASK" style="font-size:14pt;">修改/Modify</a>
+                <a href="@(Model.RootPath)/Solution/PR.PRProcess.MCPR_SERVICE/Form/Approval.aspx?ProcessName=MCPR_SERVICE&StepName=Applicant Confirmation&Incident=@(Model.TaskIncident)&TaskID=@(Model.TaskID)&UserName=@(Model.TaskUserLoginName)&Type=MYTASK" style="font-size:14pt;">修改/Modify</a>
             </td>
         </tr>
     </table>
@@ -228,8 +228,8 @@
     <!--<table cellspacing="0" style="width: 100%; border-top: 1px solid #5C5C5C">
         <tr>
             <td colspan="5" bgcolor="#FFFFFF">
-                <a href="@(Model.RootPath)/Solution/PR.PRProcess.CPR_SERVICE/Form/Approval.aspx?ProcessName=CPR_SERVICE&StepName=Applicant Confirmation&Incident=@(Model.TaskIncident)&TaskID=@(Model.TaskID)&UserName=@(Model.TaskUserLoginName)&Type=MYTASK" style="font-size:14pt;">修改/Modify</a>
-              <a href="@(Model.RootPath)/Solution/PR.PRProcess.CPR_SERVICE/Form/Approval.aspx?ProcessName=CPR_SERVICE&StepName=Applicant Confirmation&Incident=@(Model.TaskIncident)&TaskID=@(Model.TaskID)&UserName=@(Model.TaskUserLoginName)&Type=MYTASK" style="font-size:15pt;">终止/Abort</a>
+                <a href="@(Model.RootPath)/Solution/PR.PRProcess.MCPR_SERVICE/Form/Approval.aspx?ProcessName=MCPR_SERVICE&StepName=Applicant Confirmation&Incident=@(Model.TaskIncident)&TaskID=@(Model.TaskID)&UserName=@(Model.TaskUserLoginName)&Type=MYTASK" style="font-size:14pt;">修改/Modify</a>
+              <a href="@(Model.RootPath)/Solution/PR.PRProcess.MCPR_SERVICE/Form/Approval.aspx?ProcessName=MCPR_SERVICE&StepName=Applicant Confirmation&Incident=@(Model.TaskIncident)&TaskID=@(Model.TaskID)&UserName=@(Model.TaskUserLoginName)&Type=MYTASK" style="font-size:15pt;">终止/Abort</a>
             </td>
         </tr>
     </table>-->

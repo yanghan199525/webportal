@@ -9,7 +9,7 @@ using MyLib;
 using Ultimus.UWF.Common.Logic;
 using Ultimus.UWF.Workflow.Logic;
 
-namespace UWF.Process.MCPR_SERVICE
+namespace UWF.Process.MMCPR_SERVICE
 {
     public partial class ReportList : System.Web.UI.Page
     {
@@ -17,7 +17,7 @@ namespace UWF.Process.MCPR_SERVICE
     {
     Ultimus.UWF.Form.WebControls.Repeater rpt = Page.FindControl("rptList") as Ultimus.UWF.Form.WebControls.Repeater;
     ProcessFormLogic process = new ProcessFormLogic();
-    rpt.Source = "BizDB.select * from PROC_MCPR_SERVICE where 1=1 "+process.GetReportViewSql    ("MCPR_SERVICE",SessionLogic.GetLoginName());
+    rpt.Source = "BizDB.select * from PROC_MMCPR_SERVICE where 1=1 "+process.GetReportViewSql    ("MMCPR_SERVICE",SessionLogic.GetLoginName());
     rpt.Sort = "incident desc";
     }
     protected void lbExport_Click(object sender, EventArgs e)
@@ -29,7 +29,7 @@ namespace UWF.Process.MCPR_SERVICE
     {
     return;
     }
-    //dt=ExportLogic.GetExportTable("MCPR_SERVICE");
+    //dt=ExportLogic.GetExportTable("MMCPR_SERVICE");
     ExcelUtil.Export(dt);
     }
 

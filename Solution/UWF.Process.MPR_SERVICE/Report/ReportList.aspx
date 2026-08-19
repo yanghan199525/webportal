@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ReportList.aspx.cs" Inherits="UWF.Process.MPR_SERVICE.ReportList" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ReportList.aspx.cs" Inherits="UWF.Process.MMPR_SERVICE.ReportList" %>
 <%@ Register Assembly="Ultimus.UWF.Form" Namespace="Ultimus.UWF.Form.WebControls" TagPrefix="ult" %>
 <%@ Register Assembly="AspNetPager" Namespace="Wuqi.Webdiyer" TagPrefix="webdiyer" %>
 <%@ Import Namespace="Ultimus.UWF.Common.Logic" %>
@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Ultimus BPM , Ultimus Business Process Management">
     <meta name="keywords" content="ultimus, bpm, workflow, business process management" />
-    <title>MPR_SERVICE Report</title>
+    <title>MMPR_SERVICE Report</title>
     <link rel="stylesheet" href="../../../common/assets37/css/base.min.css">
     <link rel="stylesheet" href="../../../common/assets/css/style.css">
     <style type="text/css">
@@ -77,7 +77,7 @@
                             <i class="pe-7s-medal icon-gradient bg-tempting-azure"></i>
                         </div>
                         <div>
-                            <div class="page-title-subheading"><h4>MPR_SERVICE <%= Lang.Get("Report") %></h4></div>
+                            <div class="page-title-subheading"><h4>MMPR_SERVICE <%= Lang.Get("Report") %></h4></div>
                         </div>
                     </div>
                     <div class="page-title-actions">
@@ -202,13 +202,13 @@
                                         <%=Lang.Get("Form_RequestDate")%>
                                     </th>
                                         <th nowrap="nowrap" style="min-width:100px;text-align:center;">
-                                            <%=Lang.Get("UWF.Process.MPR_SERVICE.SITECODE") %>
+                                            <%=Lang.Get("UWF.Process.MMPR_SERVICE.SITECODE") %>
                                         </th>
                                     <th>PDF</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <ult:Repeater ID="rptList" OnItemCommand="rpSource_ItemCommand" Source="BizDB.PROC_MPR_SERVICE" PagerID="AspNetPager1" runat="server">
+                                <ult:Repeater ID="rptList" OnItemCommand="rpSource_ItemCommand" Source="BizDB.PROC_MMPR_SERVICE" PagerID="AspNetPager1" runat="server">
                                     <ItemTemplate>
                                         <tr>
                                             <td>

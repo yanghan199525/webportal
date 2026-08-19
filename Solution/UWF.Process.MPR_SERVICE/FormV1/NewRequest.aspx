@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="NewRequest.aspx.cs" Inherits="UWF.Process.MPR_SERVICE.NewRequest" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="NewRequest.aspx.cs" Inherits="PR.PRProcess.MPR_SERVICE.NewRequest" %>
 <%@ Register Src="../../Ultimus.UWF.Form.ProcessControl.V3/UserInfo.ascx" TagName="UserInfo" TagPrefix="ui" %>
 <%@ Register Src="../../Ultimus.UWF.Form.ProcessControl.V3/ApprovalHistory.ascx" TagName="ApprovalHistory" TagPrefix="ah" %>
 <%@ Register Src="../../Ultimus.UWF.Form.ProcessControl.V3/MultiAttachments.ascx" TagName="Attachments" TagPrefix="attach" %>
@@ -16,12 +16,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
     <meta name="description" content="Ultimus BPM , Ultimus Business Process Management">
     <meta name="keywords" content="ultimus, bpm, workflow, business process management" />
-    <title><%=Lang.Get(Request.QueryString["ProcessName"]) %></title>
+    <title>MPR_SERVICE</title>
     <script runat="server">
         protected void Page_Load(object sender, EventArgs e)
         {
-            Ultimus.UWF.Form.WebControls.Repeater fld_detail_PROC_MPR_SERVICE_ITEMS = Page.FindControl("fld_detail_PROC_MPR_SERVICE_ITEMS") as Ultimus.UWF.Form.WebControls.Repeater;
-            fld_detail_PROC_MPR_SERVICE_ITEMS.AfterBind += new System.EventHandler(AfterBind);
+            ButtonList buttonList1 = Page.FindControl("ButtonList1") as ButtonList;
+            buttonList1.BeforeSubmit += new System.ComponentModel.CancelEventHandler(NewRequest_BeforeSubmit);
+            buttonList1.AfterSubmit += new System.ComponentModel.CancelEventHandler(NewRequest_AfterSubmit);
+            Ultimus.UWF.Form.WebControls.Repeater fld_detail_PROC_MMPR_SERVICE_ITEMS = Page.FindControl("fld_detail_PROC_MMPR_SERVICE_ITEMS") as Ultimus.UWF.Form.WebControls.Repeater;
+            fld_detail_PROC_MMPR_SERVICE_ITEMS.AfterBind += new System.EventHandler(AfterBind);
 
             AfterLoad();
         }
@@ -31,11 +34,11 @@
         {
             //如果明细表没有数据，那么给明细表加空行
             ProcessFormLogic _form = new ProcessFormLogic();
-            Ultimus.UWF.Form.WebControls.Repeater fld_detail_PROC_MPR_SERVICE_ITEMS = Page.FindControl("fld_detail_PROC_MPR_SERVICE_ITEMS") as Ultimus.UWF.Form.WebControls.Repeater;
-            if(fld_detail_PROC_MPR_SERVICE_ITEMS.Items.Count==0)
+            Ultimus.UWF.Form.WebControls.Repeater fld_detail_PROC_MMPR_SERVICE_ITEMS = Page.FindControl("fld_detail_PROC_MMPR_SERVICE_ITEMS") as Ultimus.UWF.Form.WebControls.Repeater;
+            if(fld_detail_PROC_MMPR_SERVICE_ITEMS.Items.Count==0)
             {
                 UserInfo userInfo1 = Page.FindControl("UserInfo1") as UserInfo;
-                _form.AddBlankRow(userInfo1, fld_detail_PROC_MPR_SERVICE_ITEMS,1);
+                _form.AddBlankRow(userInfo1, fld_detail_PROC_MMPR_SERVICE_ITEMS,1);
             }
         }
     </script>
@@ -44,8 +47,8 @@
 
     <form id="form1" runat="server">
         <!--定义UserInfo-->
-            <ui:userinfo id="UserInfo1" processtitle="MPR_SERVICE" processprefix="" tablename="PROC_MPR_SERVICE"
-   tablenamedetail="PROC_MPR_SERVICE_ITEMS" runat="server"></ui:userinfo>
+            <ui:userinfo id="UserInfo1" processtitle="MPR_SERVICE" processprefix="PR" tablename="PROC_MPR_SERVICE"
+   tablenamedetail="PROC_MMPR_SERVICE_ITEMS" runat="server"></ui:userinfo>
             <!--End main table-->
             <!--Start 接UserInfo Div的结束标记,请不要删除-->
             </div></div></div></div>
@@ -59,7 +62,7 @@
                         <div class="panel-title">
                             <div class="fa-title">
                                 <i class="fa fa-check-square-o"></i><span class="padding-r-5"></span>
-                                <%=Lang.Get("UWF.Process.MPR_SERVICE.MPR_SERVICE") %>
+                                <%=Lang.Get("PR.PRProcess.MPR_SERVICE.MPR_SERVICE") %>
                             </div>
 
                             <ul class="panel-tools">
@@ -68,67 +71,147 @@
                             </ul>
                         </div>
 
-                        <div class="panel-body form-table">
-                                    <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_SITECODE" style="height:">
-                                        <div class="form-label">
-                                            <%=Lang.Get("UWF.Process.MPR_SERVICE.SITECODE") %>:
-                                        </div>
-                                        <div class="form-field">
-                                            <div class="form-ctl">
-                                                    <ult:TextBox ID="fld_SITECODE" data-type='string' title="" onblur="" data-field="SITECODE"   Variable="" ControlValue="" CssClass="form-control  " runat="server">
-                                                    </ult:TextBox>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="panel-body form-table" >
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_DOCUMENTNO" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.MPR_SERVICE.DOCUMENTNO") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                     <ult:TextBox ID="fld_DOCUMENTNO" data-type='string'  title="" onblur="checkExpression(this)" data-field="DOCUMENTNO"   Variable="" ControlValue="" CssClass="form-control   ReadOnly" runat="server">
+                    </ult:textbox>
+             </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_PurchasingPurpose" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.MPR_SERVICE.PurchasingPurpose") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                     <ult:TextBox ID="fld_PURCHASINGPURPOSE" data-type='string'  title="" onblur="checkExpression(this)" data-field="PURCHASINGPURPOSE"   Variable="" ControlValue="" CssClass="form-control   ReadOnly" runat="server">
+                    </ult:textbox>
+             </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_SITECODE" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.MPR_SERVICE.SITECODE") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                     <ult:TextBox ID="fld_SITECODE" data-type='string'  title="" onblur="checkExpression(this)" data-field="SITECODE"   Variable="" ControlValue="" CssClass="form-control   ReadOnly" runat="server">
+                    </ult:textbox>
+             </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_SITENAME" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.MPR_SERVICE.SITENAME") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                     <ult:TextBox ID="fld_SITENAME" data-type='string'  title="" onblur="checkExpression(this)" data-field="SITENAME"   Variable="" ControlValue="" CssClass="form-control   ReadOnly" runat="server">
+                    </ult:textbox>
+             </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_DELIVERYDATE" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.MPR_SERVICE.DELIVERYDATE") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                     <ult:TextBox ID="fld_DELIVERYDATE" data-type='string'  title="" onblur="checkExpression(this)" data-field="DELIVERYDATE"   Variable="" ControlValue="" CssClass="form-control   ReadOnly" runat="server">
+                    </ult:textbox>
+             </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_AMOUNT" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.MPR_SERVICE.AMOUNT") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                     <ult:TextBox ID="fld_AMOUNT" data-type='string'  title="" onblur="checkExpression(this)" data-field="AMOUNT"   Variable="" ControlValue="" CssClass="form-control   ReadOnly" runat="server">
+                    </ult:textbox>
+             </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_Requirement" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.MPR_SERVICE.Requirement") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                     <ult:TextBox ID="fld_REQUIREMENT" data-type='string'  title="" onblur="checkExpression(this)" data-field="REQUIREMENT"   Variable="" ControlValue="" CssClass="form-control   ReadOnly" runat="server">
+                    </ult:textbox>
+             </div></div>
+         </div>
+         <div class="col-lg-8 col-sm-6 col-xs-12 form-cell " id="div_field_APPREMARK" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.MPR_SERVICE.APPREMARK") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                     <ult:TextBox ID="fld_APPREMARK" data-type='string'  title="" onblur="checkExpression(this)" data-field="APPREMARK"   Variable="" ControlValue="" CssClass="form-control   ReadOnly" runat="server">
+                    </ult:textbox>
+             </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_APPROVEDATE" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.MPR_SERVICE.APPROVEDATE") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                     <ult:TextBox ID="fld_APPROVEDATE" data-type='string'  title="" onblur="checkExpression(this)" data-field="APPROVEDATE"   Variable="APPROVEDATE" ControlValue="" CssClass="form-control  " runat="server">
+                    </ult:textbox>
+             </div></div>
+         </div>
+         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_APPROVE" style="height:">
+             <div class="form-label">
+                 <%=Lang.Get("PR.PRProcess.MPR_SERVICE.APPROVE") %>:
+             </div>
+             <div class="form-field"><div class="form-ctl">
+                     <ult:TextBox ID="fld_APPROVE" data-type='string'  title="" onblur="checkExpression(this)" data-field="APPROVE"   Variable="APPROVE" ControlValue="" CssClass="form-control  " runat="server">
+                    </ult:textbox>
+             </div></div>
+         </div>
+            
+            <!--补充空单元格-->
 
-                            <!--补充空单元格-->
-                                <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden-sm hidden-xs" style="height:">
-                                    <div class="form-label">
-                                    </div>
-                                    <div class="form-field">
-                                    </div>
+                            <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden-sm hidden-xs" style="height:">
+                                <div class="form-label">
                                 </div>
-                                <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden-sm hidden-xs" style="height:">
-                                    <div class="form-label">
-                                    </div>
-                                    <div class="form-field">
-                                    </div>
+                                <div class="form-field">
                                 </div>
-
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!--1.2多行-->
-            <!--Start Item table-->
-            <div class="row" id="div_panel_MPR_SERVICE_ITEMS">
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-title">
-                            <div class="fa-title"><i class="fa fa-bars"></i><span class="padding-r-5"></span><%=Lang.Get("UWF.Process.MPR_SERVICE.MPR_SERVICE_ITEMS") %></div>
+                    <!--Start Item table-->
+            <div class="row" id="div_panel_MMPR_SERVICE_ITEMS">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-title">
+                        <div class="fa-title"><i class="fa fa-bars"></i><span class="padding-r-5"></span><%=Lang.Get("PR.PRProcess.MPR_SERVICE.MMPR_SERVICE_ITEMS") %></div>
 
-                            <ul class="panel-tools">
-                                <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li>
-                                <li><a class="icon expand-tool"><i class="fa fa-expand"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="panel-body">
-                            <!--Start detail table-->
-                            <table id="tb_MPR_SERVICE_ITEMS" class="table table-bordered table-condensed form-detail-table form-resp-table tablerequired" width="100%">
-                                <thead>
-                                    <tr>
-                                        <td class="hidden">
-                                            <input id="tb_MPR_SERVICE_ITEMS_rowCount" type="text" runat="server" />
-                                        </td>
-                                        <td class="th_no" style="width: 50px">
-                                            <%=Lang.Get("No") %>
-                                        </td>
-                                            <td style=""  class=" td_ARTICLECODE"><%=Lang.Get("UWF.Process.MPR_SERVICE.ARTICLECODE") %></td>
-                                        <td style="width: 60px"><%=Lang.Get("Action") %></td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <ult:Repeater ID="fld_detail_PROC_MPR_SERVICE_ITEMS" runat="server">
+                        <ul class="panel-tools">
+                            <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li>
+                            <li><a class="icon expand-tool"><i class="fa fa-expand"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <!--Start detail table-->
+                        <table id="tb_MMPR_SERVICE_ITEMS" class="table table-bordered table-condensed form-detail-table form-resp-table tablerequired" width="100%">
+                            <thead>
+                                <tr>
+                                    <td class="hidden">
+                                        <input id="tb_MMPR_SERVICE_ITEMS_rowCount" type="text" runat="server" />
+                                    </td>
+                                    <td class="th_no" style="width:50px">
+                                        <%=Lang.Get("No") %>
+                                    </td>
+                                    <td style=""  class="hidden td_ARTICLECODE"><%=Lang.Get("PR.PRProcess.MPR_SERVICE.ARTICLECODE") %></td>
+                                    <td style=""  class=" td_ARTICLENAME"><%=Lang.Get("PR.PRProcess.MPR_SERVICE.ARTICLENAME") %></td>
+                                    <td style=""  class="hidden td_SUBSUBFAMILYCODE"><%=Lang.Get("PR.PRProcess.MPR_SERVICE.SUBSUBFAMILYCODE") %></td>
+                                    <td style=""  class=" td_SUBSUBFAMILYNAME"><%=Lang.Get("PR.PRProcess.MPR_SERVICE.SUBSUBFAMILYNAME") %></td>
+                                    <td style=""  class=" td_ORDERUNIT"><%=Lang.Get("PR.PRProcess.MPR_SERVICE.ORDERUNIT") %></td>
+                                    <td style=""  class=" td_SITEPRICE"><%=Lang.Get("PR.PRProcess.MPR_SERVICE.SITEPRICE") %></td>
+                                    <td style=""  class=" td_ORDERQUANTITY"><%=Lang.Get("PR.PRProcess.MPR_SERVICE.ORDERQUANTITY") %></td>
+                                    <td style=""  class=" td_SUBTOTALAMOUNT"><%=Lang.Get("PR.PRProcess.MPR_SERVICE.SUBTOTALAMOUNT") %></td>
+                                    <td style="width:60px"><%=Lang.Get("Action") %></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ult:Repeater ID="fld_detail_PROC_MMPR_SERVICE_ITEMS" runat="server">
                                     <ItemTemplate>
                                         <tr>
                                             <td class="hidden">
@@ -139,49 +222,96 @@
                                                 <ult:TextBox ID="fld_ROWNO" data-field="ROWNO" CssClass="index hidden" runat="server" ControlValue='<%#Eval("ROWNO")%>' >
                                                     </ult:TextBox>
                                             </td>
-                                        <td class=" td_ARTICLECODE" data-label='<%=Lang.Get("UWF.Process.MPR_SERVICE.ARTICLECODE").Split('<')[0] %>'>
-                                                <ult:TextBox ID="fld_ARTICLECODE" title="" data-type='string' onblur=""  data-field="ARTICLECODE" CssClass="item-control  " ControlValue='<%#Eval("ARTICLECODE")%>' runat="server">
-                                                </ult:TextBox>
-
-                                        </td>
+                                            <td class="hidden td_ARTICLECODE" data-label='<%=Lang.Get("PR.PRProcess.MPR_SERVICE.ARTICLECODE").Split('<')[0] %>'>
+                                                    <ult:TextBox ID="fld_ARTICLECODE"  title="" data-type='string' onblur="checkExpression(this)"  data-field="ARTICLECODE" CssClass="item-control   ReadOnly" ControlValue='<%#Eval("ARTICLECODE")%>' runat="server" >
+                                                    </ult:TextBox>
+                                            </td>
+                                            <td class=" td_ARTICLENAME" data-label='<%=Lang.Get("PR.PRProcess.MPR_SERVICE.ARTICLENAME").Split('<')[0] %>'>
+                                                    <ult:TextBox ID="fld_ARTICLENAME"  title="" data-type='string' onblur="checkExpression(this)"  data-field="ARTICLENAME" CssClass="item-control   ReadOnly" ControlValue='<%#Eval("ARTICLENAME")%>' runat="server" >
+                                                    </ult:TextBox>
+                                            </td>
+                                            <td class="hidden td_SUBSUBFAMILYCODE" data-label='<%=Lang.Get("PR.PRProcess.MPR_SERVICE.SUBSUBFAMILYCODE").Split('<')[0] %>'>
+                                                    <ult:TextBox ID="fld_SUBSUBFAMILYCODE"  title="" data-type='string' onblur="checkExpression(this)"  data-field="SUBSUBFAMILYCODE" CssClass="item-control   ReadOnly" ControlValue='<%#Eval("SUBSUBFAMILYCODE")%>' runat="server" >
+                                                    </ult:TextBox>
+                                            </td>
+                                            <td class=" td_SUBSUBFAMILYNAME" data-label='<%=Lang.Get("PR.PRProcess.MPR_SERVICE.SUBSUBFAMILYNAME").Split('<')[0] %>'>
+                                                    <ult:TextBox ID="fld_SUBSUBFAMILYNAME"  title="" data-type='string' onblur="checkExpression(this)"  data-field="SUBSUBFAMILYNAME" CssClass="item-control   ReadOnly" ControlValue='<%#Eval("SUBSUBFAMILYNAME")%>' runat="server" >
+                                                    </ult:TextBox>
+                                            </td>
+                                            <td class=" td_ORDERUNIT" data-label='<%=Lang.Get("PR.PRProcess.MPR_SERVICE.ORDERUNIT").Split('<')[0] %>'>
+                                                    <ult:TextBox ID="fld_ORDERUNIT"  title="" data-type='string' onblur="checkExpression(this)"  data-field="ORDERUNIT" CssClass="item-control   ReadOnly" ControlValue='<%#Eval("ORDERUNIT")%>' runat="server" >
+                                                    </ult:TextBox>
+                                            </td>
+                                            <td class=" td_SITEPRICE" data-label='<%=Lang.Get("PR.PRProcess.MPR_SERVICE.SITEPRICE").Split('<')[0] %>'>
+                                                    <ult:TextBox ID="fld_SITEPRICE"  title="" data-type='string' onblur="checkExpression(this)"  data-field="SITEPRICE" CssClass="item-control   ReadOnly" ControlValue='<%#Eval("SITEPRICE")%>' runat="server" >
+                                                    </ult:TextBox>
+                                            </td>
+                                            <td class=" td_ORDERQUANTITY" data-label='<%=Lang.Get("PR.PRProcess.MPR_SERVICE.ORDERQUANTITY").Split('<')[0] %>'>
+                                                    <ult:TextBox ID="fld_ORDERQUANTITY"  title="" data-type='string' onblur="checkExpression(this)"  data-field="ORDERQUANTITY" CssClass="item-control   ReadOnly" ControlValue='<%#Eval("ORDERQUANTITY")%>' runat="server" >
+                                                    </ult:TextBox>
+                                            </td>
+                                            <td class=" td_SUBTOTALAMOUNT" data-label='<%=Lang.Get("PR.PRProcess.MPR_SERVICE.SUBTOTALAMOUNT").Split('<')[0] %>'>
+                                                    <ult:TextBox ID="fld_SUBTOTALAMOUNT"  title="" data-type='string' onblur="checkExpression(this)"  data-field="SUBTOTALAMOUNT" CssClass="item-control   ReadOnly" ControlValue='<%#Eval("SUBTOTALAMOUNT")%>' runat="server" >
+                                                    </ult:TextBox>
+                                            </td>
                                             <td>
-                                                <a onclick="if(confirm('<%=Lang.Get("SecurityList_ConfirmDelete") %>？')){deleteRow('tb_MPR_SERVICE_ITEMS',this);}return false;"
+                                                <button onclick="if(confirm('<%=Lang.Get("SecurityList_ConfirmDelete") %>？')){deleteRow('tb_MMPR_SERVICE_ITEMS',this);}return false;"
                                                     class="btn btn-icon btn-sm">
                                                     <i class="fa fa-trash"></i>
-                                                </a>
+                                                </button>
 
                                             </td>
                                         </tr>
                                     </ItemTemplate>
-                                </ult:repeater>
-                                </tbody>
-                            </table>
-                            <div class="padding-t-5"></div>
+                                </ult:Repeater>
+                            </tbody>
+                        </table>
+                        <div class="padding-t-5"></div>
 
-                            <a onclick="addRow('tb_MPR_SERVICE_ITEMS');return false;" runat="server" id="btn_MPR_SERVICE_ITEMS"
+                        <button onclick="addRow('tb_MMPR_SERVICE_ITEMS');return false;"
                             class="btn btn-icon btn-default hidden-print">
-                                <%=Lang.Get("Form_AddRow") %></a>
-                        </div>
-                        <!--End detail table-->
+                            <%=Lang.Get("Form_AddRow") %></button>
                     </div>
+                    <!--End detail table-->
                 </div>
             </div>
-            <!--End Item table-->
+        </div>
+        <!--End Item table-->
 
-        <attach:attachments id="Attachments1" runat="server"></attach:attachments>
+      <%--  <attach:attachments id="Attachments1" runat="server"></attach:attachments>--%>
         <ah:approvalhistory id="ApprovalHistory1" showaction="true" runat="server"></ah:approvalhistory>
         <btn:buttonlist id="ButtonList1" runat="server"></btn:buttonlist>
 
-        <div class="hidden">
-            <asp:TextBox ID="txt_Judge1" runat="server"></asp:TextBox>
-            <asp:TextBox ID="txt_Judge2" runat="server"></asp:TextBox>
-            <asp:TextBox ID="txt_Judge3" runat="server"></asp:TextBox>
-        </div>
     </form>
     <div id='div_lang' data-lang='<%=Lang.GetLang() %>'></div>
-    <script type='text/javascript' src='<%=WebUtil.GetRootPath()%>/Solution/UPL.Common.BussinessControl/Script/ueditor/ueditor.config.js'></script>
-    <script type='text/javascript' src='<%=WebUtil.GetRootPath()%>/Solution/UPL.Common.BussinessControl/Script/ueditor/ueditor.all.js'></script>
-    <script type='text/javascript' src='<%=WebUtil.GetRootPath()%>/Solution/UPL.Common.BussinessControl/Script/BussinessCommon.js?t=f25f0bfe-0706-4b02-bf50-783e4ad02b14'></script>
-    <script type='text/javascript' src='NewRequest.js?t=8b62c1a2-75d3-4426-933a-d6ea38451b0e'></script>
+    <script type='text/javascript' src='NewRequest.js?t=c042bc91-6824-4950-9924-61083b52c1f4'></script>
+        <script type='text/javascript' src='math_common.js?t=dc64a1ef-95e5-4fb4-a793-a14f354d8a33'></script>
+    <script src="math_common.js"></script>
+     <script type="text/javascript">
+         $(function () {
+             //员工编号 进行显示
+    $("#UserInfo1_read_APPLICANTACCOUNT").parent("div").parent("div").parent("div").removeAttr("hidden");
+    //隐藏之前的 申请部门
+    $("#UserInfo1_read_DEPARTMENT").parent("div").parent("div").parent("div").hide();
+             var Amount = $("#fld_AMOUNT").val();
+             $("#fld_AMOUNT").val(thousands(Amount));
+             $("#fld_AMOUNT").next("span").text($("#fld_AMOUNT").val());
+             $("#tb_MMPR_SERVICE_ITEMS").find("thead").find("td:last").addClass("hidden");
+             $("#tb_MMPR_SERVICE_ITEMS").find("tbody").find("td:last").addClass("hidden");
+             $(".td_ORDERQUANTITY").find("span").each(function (index, element) {
+                   num= parseInt($(this).text());
+                 $(this).text(num);
+             })
+             // td_SITEPRICE
+               $(".td_SITEPRICE").find("span").each(function (index, element) {
+                   $(this).text(thousands($(this).text()));
+             })
+             //td_SUBTOTALAMOUNT
+               $(".td_SUBTOTALAMOUNT").find("span").each(function (index, element) {
+                   $(this).text(thousands($(this).text()));
+             })
+         })
+      
+    </script>
 </body>
 </html>
