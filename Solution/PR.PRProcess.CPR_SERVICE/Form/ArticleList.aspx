@@ -200,6 +200,6 @@
             </div>
     </form>  
 <%=WebUtil.IncludeJsV3() %>
-<script src='ArticleList.js?t=feb6e0a6-7bd6-4bb1-9a2b-df8439e326ds'></script>
+<script src='ArticleList.js?t=feb6e0a6-7bd6-4bb1-9a2b-df8439e327ds'></script>
 </body>
 </html>
