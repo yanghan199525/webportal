@@ -9,7 +9,6 @@
 <%@ Import Namespace="Ultimus.UWF.Form.ProcessControl.V3" %>
 <%@ Import Namespace="Ultimus.UWF.Workflow.Logic" %>
 <%@ Register Assembly="Ultimus.UWF.Form" Namespace="Ultimus.UWF.Form.WebControls" TagPrefix="ult" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +28,6 @@
             overflow: hidden;
             vertical-align: middle;
         }
-
         /* 自定义选择按钮 */
         .custom-file-btn {
             background-color: #409EFF;
@@ -44,7 +42,6 @@
             .custom-file-btn:hover {
                 background-color: #66b1ff;
             }
-
         /* 文件信息显示区域 */
         .file-info {
             padding: 6px 12px;
@@ -59,7 +56,6 @@
             text-overflow: ellipsis;
             display: inline-block;
         }
-
         /* 上传按钮样式 */
         .upload-btn {
             background-color: #67c23a;
@@ -76,7 +72,6 @@
             .upload-btn:hover {
                 background-color: #85ce61;
             }
-
         /* 错误提示样式（统一红色） */
         .error {
             font-size: 13px;
@@ -98,86 +93,62 @@
     <script type="text/javascript">
         function onUploadCompleted() {
             var tabId = 'tb_MCPR_SERVICE_ITEMS';
-            // console.log("函数执行成功00！"); // 控制台查看输出
             try {
                 var SupplierType = $("#fld_SUPPLIERTYPE").val();
-                //if (SupplierType == "5") {
-                //}
-
-                // console.log("函数执行成功01！"+SupplierType); // 控制台查看输出
-
                 var tabCtl = document.getElementById(tabId);
                 for (var i = 0; i < tabCtl.rows.length; i++) {
                     var existrow = tabCtl.rows[i];
-                    // console.log("函数执行成功02！"+existrow); // 控制台查看输出
-                    var fld_CHECKED = $(existrow).find("input[id*='fld_CHECKED']").is(':checked')
-                    //console.log("函数执行成功03！"+fld_CHECKED); // 控制台查看输出
+                    var fld_CHECKED = $(existrow).find("input[id*='fld_CHECKED']").is(':checked');
                     if (fld_CHECKED) {
-                        // $(existrow).find("input[id*='fld_INVOICETYPE']").val($("#fld_INVOICETYPE").val());
-
                         $(existrow).find("input[id*='fld_INVOICENUMBER']").val($("#fld_INVOICENUMBER").val());
-
                         $(existrow).find("input[id*='fld_BUYERNAME']").val($("#fld_BUYERNAME").val());
-
                         $(existrow).find("input[id*='fld_BUYERTAXID']").val($("#fld_BUYERTAXID").val());
-
-
                         $(existrow).find("input[id*='fld_INVOICEPATH']").val($("#fld_INVOICEPATH").val());
-                        //syncInvoiceLink($(existrow).find("input[id*='fld_INVOICEPATH']"));
                         initInvoiceLinks();
-
                     }
                 }
-
-                //$("#fld_SUPPLIERTYPE").attr("disabled", "disabled");
                 hiddenSupplierType();
             }
             catch (e) {
             }
         }
-         function initInvoiceLinks() {
+        function initInvoiceLinks() {
             // 遍历所有表体行的INVOICEPATH文本框
             $("#tb_MCPR_SERVICE_ITEMS tbody tr td.td_INVOICEPATH [data-field='INVOICEPATH']").each(function () {
-                syncInvoiceLink(this); // 同步当前文本框对应的链接
+                syncInvoiceLink(this);
             });
         }
-
         function syncInvoiceLink(textbox) {
-
             const $textbox = $(textbox);
-            const pathValue = $textbox.val().trim(); // 获取文本框中的路径值
-            console.log(11, pathValue);
-            const $link = $textbox.next(".invoice-path-link"); // 找到同级的链接标签
-
+            const pathValue = $textbox.val().trim();
+            const $link = $textbox.next(".invoice-path-link");
             if (pathValue) {
-                // 路径有值：更新链接的href和显示文本
                 $link.attr("href", pathValue);
-                $link.text(pathValue.split('_').length > 1 ? pathValue.split('_').pop() : pathValue); // 超长路径省略显示
-                $link.show(); // 显示链接
+                $link.text(pathValue.split('_').length > 1 ? pathValue.split('_').pop() : pathValue);
+                $link.show();
             } else {
-                // 路径为空：隐藏链接
                 $link.hide();
             }
-
         }
     </script>
     <script runat="server">
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            ButtonList buttonList1 = Page.FindControl("ButtonList1") as ButtonList;
-            buttonList1.BeforeSubmit += new System.ComponentModel.CancelEventHandler(NewRequest_BeforeSubmit);
-            buttonList1.AfterSubmit += new System.ComponentModel.CancelEventHandler(NewRequest_AfterSubmit);
-            Ultimus.UWF.Form.WebControls.Repeater fld_detail_PROC_MCPR_SERVICE_Items = Page.FindControl("fld_detail_PROC_MCPR_SERVICE_Items") as Ultimus.UWF.Form.WebControls.Repeater;
-            fld_detail_PROC_MCPR_SERVICE_Items.AfterBind += new System.EventHandler(AfterBind);
+            if (!IsPostBack)
+            {
+                ButtonList buttonList1 = Page.FindControl("ButtonList1") as ButtonList;
+                buttonList1.BeforeSubmit += new System.ComponentModel.CancelEventHandler(NewRequest_BeforeSubmit);
+                buttonList1.AfterSubmit += new System.ComponentModel.CancelEventHandler(NewRequest_AfterSubmit);
 
+                Ultimus.UWF.Form.WebControls.Repeater fld_detail_PROC_MCPR_SERVICE_Items = Page.FindControl("fld_detail_PROC_MCPR_SERVICE_Items") as Ultimus.UWF.Form.WebControls.Repeater;
+                fld_detail_PROC_MCPR_SERVICE_Items.AfterBind += new System.EventHandler(AfterBind);
+            }
             AfterLoad();
         }
 
         //Repeater绑定完成
         void AfterBind(object sender, EventArgs e)
         {
-            //如果明细表没有数据，那么给明细表加空行
             ProcessFormLogic _form = new ProcessFormLogic();
             Ultimus.UWF.Form.WebControls.Repeater fld_detail_PROC_MCPR_SERVICE_Items = Page.FindControl("fld_detail_PROC_MCPR_SERVICE_Items") as Ultimus.UWF.Form.WebControls.Repeater;
             if (fld_detail_PROC_MCPR_SERVICE_Items.Items.Count == 0)
@@ -187,37 +158,38 @@
             }
         }
     </script>
-
-
 </head>
 <body>
-
     <form id="form1" runat="server">
         <!--定义UserInfo-->
-        <ui:userinfo id="UserInfo1" processtitle="MCPR_SERVICE" processprefix="CPRS" tablename="PROC_MCPR_SERVICE"
-            tablenamedetail="PROC_MMCPR_SERVICE_ITEMS" runat="server"></ui:userinfo>
+        <ui:userinfo id="UserInfo1"
+            processtitle="MCPR_SERVICE"
+            processprefix="CPRS"
+            tablename="PROC_MCPR_SERVICE"
+            tablenamedetail="PROC_MMCPR_SERVICE_ITEMS"
+            runat="server">
+        </ui:userinfo>
         <!--End main table-->
         <!--Start 接UserInfo Div的结束标记,请不要删除-->
         </div></div></div></div>
-            <!--End 接UserInfo Div的结束标记,请不要删除-->
+        <!--End 接UserInfo Div的结束标记,请不要删除-->
+
         <!--1.对Table做循环，判断单行,多行-->
         <!--1.1单行-->
         <div class="row" id="div_panel_MCPR_SERVICE">
             <div class="col-md-12">
                 <div class="panel panel-default">
-
                     <div class="panel-title">
                         <div class="fa-title">
-                            <i class="fa fa-check-square-o"></i><span class="padding-r-5"></span>
+                            <i class="fa fa-check-square-o"></i>
+                            <span class="padding-r-5"></span>
                             <%=Lang.Get("PR.PRProcess.MCPR_SERVICE.MCPR_SERVICE") %>
                         </div>
-
                         <ul class="panel-tools">
                             <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li>
                             <li><a class="icon expand-tool"><i class="fa fa-expand"></i></a></li>
                         </ul>
                     </div>
-
                     <div class="panel-body form-table">
                         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_APPLYPURPOSE" style="height: ">
                             <div class="form-label">
@@ -225,7 +197,17 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:DropDownList ID="fld_APPLYPURPOSE" title="" onblur="checkExpression(this)" data-field="APPLYPURPOSE" Variable="" CssClass="form-control  selector " Source="DataSource.SODEXO_申请目的" Filter="" ControlValue="" runat="server" onchange="changeApplyPurpose()">
+                                    <ult:DropDownList ID="fld_APPLYPURPOSE"
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="APPLYPURPOSE"
+                                        Variable=""
+                                        CssClass="form-control selector "
+                                        Source="DataSource.SODEXO_申请目的"
+                                        Filter=""
+                                        ControlValue=""
+                                        runat="server"
+                                        onchange="changeApplyPurpose()">
                                     </ult:DropDownList>
                                 </div>
                             </div>
@@ -236,22 +218,18 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:DropDownList ID="fld_SUPPLIERTYPE" title="" onblur="checkExpression(this)" data-field="SUPPLIERTYPE" Variable="SUPPLIERTYPE" CssClass="form-control  selector validate[required]" Source="DataSource.SODEXO_采购类型" Filter="" ControlValue="" runat="server" onchange="changeSupplierType()">
+                                    <ult:DropDownList ID="fld_SUPPLIERTYPE"
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="SUPPLIERTYPE"
+                                        Variable="SUPPLIERTYPE"
+                                        CssClass="form-control selector validate[required]"
+                                        Source="DataSource.SODEXO_采购类型"
+                                        Filter=""
+                                        ControlValue=""
+                                        runat="server"
+                                        onchange="changeSupplierType()">
                                     </ult:DropDownList>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_DELIVERYDATE" style="height: ">
-                            <div class="form-label">
-                                <%=Lang.Get("PR.PRProcess.MCPR_SERVICE.DELIVERYDATE") %><span style='color: red'>*</span>:
-                            </div>
-                            <div class="form-field">
-                                <div class="form-ctl">
-                                    <div class="input-prepend input-group">
-                                        <ult:TextBox ID="fld_DELIVERYDATE" title="" data-field="DELIVERYDATE" data-type="text" Format="" Variable="DELIVERYDATE" CssClass="form-control Wdate validate[required,funcCall[futureDateTime]]" runat="server" data-errormessage-type-mismatch="要求送货日期必须为明天下午6点以后，默认时间为早上6点30分<br/>Required delivery date must be after 6pm tomorrow, default time is 6:30am" onClick="WdatePicker({readOnly:false,startDate:'%y-%M-%d 06:30:00',dateFmt:'yyyy-MM-dd HH:mm:00',alwaysUseStartDate:false})">
-                                        </ult:TextBox>
-                                        <span class="add-on input-group-addon hidden-xs"><i class="fa fa-calendar"></i></span>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -261,7 +239,15 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_SITECODE" data-type='string' title="" onblur="checkExpression(this)" data-field="SITECODE" Variable="" ControlValue="" CssClass="form-control   ReadOnly" runat="server">
+                                    <ult:TextBox ID="fld_SITECODE"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="SITECODE"
+                                        Variable=""
+                                        ControlValue=""
+                                        CssClass="form-control ReadOnly"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
@@ -272,12 +258,19 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_SITENAME" data-type='string' title="" onblur="checkExpression(this)" data-field="SITENAME" Variable="" ControlValue="" CssClass="form-control   ReadOnly" runat="server">
+                                    <ult:TextBox ID="fld_SITENAME"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="SITENAME"
+                                        Variable=""
+                                        ControlValue=""
+                                        CssClass="form-control ReadOnly"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_ServiceEstimatedFinishTime" style="height: ">
                             <div class="form-label">
                                 <%=Lang.Get("PR.PRProcess.MCPR_SERVICE.ServiceEstimatedFinishTime") %><span style='color: red'>*</span>:
@@ -285,14 +278,22 @@
                             <div class="form-field">
                                 <div class="form-ctl">
                                     <div class="input-prepend input-group">
-                                        <ult:TextBox ID="fld_ServiceEstimatedFinishTime" title="" data-field="ServiceEstimatedFinishTime" data-type="text" Format="" Variable="ServiceEstimatedFinishTime" CssClass="form-control Wdate validate[required,funcCall[futureFinishTime]]" runat="server" data-errormessage-type-mismatch="服务预计完成时间必须大于当天<br/>The estimated service completion time must be greater than the current day" onClick="WdatePicker({readOnly:false,dateFmt:'yyyy-MM-dd',alwaysUseStartDate:false})">
+                                        <ult:TextBox ID="fld_ServiceEstimatedFinishTime"
+                                            title=""
+                                            data-field="ServiceEstimatedFinishTime"
+                                            data-type="text"
+                                            Format=""
+                                            Variable="ServiceEstimatedFinishTime"
+                                            CssClass="form-control Wdate validate[required,funcCall[futureFinishTime]]"
+                                            runat="server"
+                                            data-errormessage-type-mismatch="服务预计完成时间必须大于当天<br/>The estimated service completion time must be greater than the current day"
+                                            onClick="WdatePicker({readOnly:false,dateFmt:'yyyy-MM-dd',alwaysUseStartDate:false})">
                                         </ult:TextBox>
                                         <span class="add-on input-group-addon hidden-xs"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                         <!--补充空单元格-->
                         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" style="border-left: 0px; height: " id="SupplementaryBlank">
                             <div class="form-label" style="background-color: transparent;">
@@ -302,26 +303,21 @@
                             <div class="form-field">
                             </div>
                         </div>
-                        <%--<div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_ONLINEORSUPERMARKET" style="height: ">
-                            <div class="form-label">
-                                <%=Lang.Get("PR.PRProcess.MCPR_SERVICE.ONLINEORSUPERMARKET") %><span style='color: red'>*</span>:
-                            </div>
-                            <div class="form-field">
-                                <div class="form-ctl">
-                                    <ult:RadioButtonList ID="fld_ONLINEORSUPERMARKET" title="" data-field="ONLINEORSUPERMARKET" Variable="ONLINEORSUPERMARKET" CssClass="validate[required]" Source="DataSource." Filter="" ControlValue="" RepeatDirection="Horizontal" runat="server">
-                                        <asp:ListItem Text="是" Value="1"></asp:ListItem>
-                                        <asp:ListItem Text="否" Value="0" Selected="True"></asp:ListItem>
-                                    </ult:RadioButtonList>
-                                </div>
-                            </div>
-                        </div>--%>
                         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_SUPPLIERCODE" style="height: ">
                             <div class="form-label">
                                 <%=Lang.Get("PR.PRProcess.MCPR_SERVICE.SUPPLIERCODE") %>:
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_SUPPLIERCODE" data-type='string' title="" onblur="checkExpression(this)" data-field="SUPPLIERCODE" Variable="" ControlValue="" CssClass="form-control validate[required] ReadOnly" runat="server">
+                                    <ult:TextBox ID="fld_SUPPLIERCODE"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="SUPPLIERCODE"
+                                        Variable=""
+                                        ControlValue=""
+                                        CssClass="form-control validate[required] ReadOnly"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
@@ -332,7 +328,15 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_SUPPLIERNAME" data-type='string' title="" onblur="checkExpression(this)" data-field="SUPPLIERNAME" Variable="" ControlValue="" CssClass="form-control validate[required] ReadOnly" runat="server">
+                                    <ult:TextBox ID="fld_SUPPLIERNAME"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="SUPPLIERNAME"
+                                        Variable=""
+                                        ControlValue=""
+                                        CssClass="form-control validate[required] ReadOnly"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
@@ -343,7 +347,15 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_ASSETTYPE" data-type='string' title="" onblur="checkExpression(this)" data-field="ASSETTYPE" Variable="ASSETTYPE" ControlValue="" CssClass="form-control  " runat="server">
+                                    <ult:TextBox ID="fld_ASSETTYPE"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="ASSETTYPE"
+                                        Variable="ASSETTYPE"
+                                        ControlValue=""
+                                        CssClass="form-control"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
@@ -354,7 +366,15 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_AMOUNT" data-type='string' title="" onblur="checkExpression(this)" data-field="AMOUNT" Variable="AMOUNT" ControlValue="" CssClass="form-control ReadOnly autonumber" runat="server">
+                                    <ult:TextBox ID="fld_AMOUNT"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="AMOUNT"
+                                        Variable="AMOUNT"
+                                        ControlValue=""
+                                        CssClass="form-control ReadOnly autonumber"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
@@ -365,7 +385,15 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_PURCHASINGAGENT" data-type='string' title="" onblur="checkExpression(this)" data-field="PURCHASINGAGENT" Variable="PURCHASINGAGENT" ControlValue="" CssClass="form-control  " runat="server">
+                                    <ult:TextBox ID="fld_PURCHASINGAGENT"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="PURCHASINGAGENT"
+                                        Variable="PURCHASINGAGENT"
+                                        ControlValue=""
+                                        CssClass="form-control"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
@@ -377,9 +405,25 @@
                             <div class="form-field">
                                 <div class="form-ctl">
                                     <div class="input-prepend input-group">
-                                        <ult:TextBox ID="fld_USER_SIGNEDAPPROVERNAME" data-type='string' title="" onblur="checkExpression(this)" data-field="USER_SIGNEDAPPROVERNAME" Variable="" ControlValue="" CssClass="form-control   ReadOnly" runat="server">
+                                        <ult:TextBox ID="fld_USER_SIGNEDAPPROVERNAME"
+                                            data-type='string'
+                                            title=""
+                                            onblur="checkExpression(this)"
+                                            data-field="USER_SIGNEDAPPROVERNAME"
+                                            Variable=""
+                                            ControlValue=""
+                                            CssClass="form-control ReadOnly"
+                                            runat="server">
                                         </ult:TextBox>
-                                        <ult:TextBox ID="fld_USER_SIGNEDAPPROVER" data-type='string' title="" onblur="checkExpression(this)" data-field="USER_SIGNEDAPPROVER" Variable="USER_SignedApprover" ControlValue="" CssClass="form-control hidden " runat="server">
+                                        <ult:TextBox ID="fld_USER_SIGNEDAPPROVER"
+                                            data-type='string'
+                                            title=""
+                                            onblur="checkExpression(this)"
+                                            data-field="USER_SIGNEDAPPROVER"
+                                            Variable="USER_SignedApprover"
+                                            ControlValue=""
+                                            CssClass="form-control hidden"
+                                            runat="server">
                                         </ult:TextBox>
                                         <span class="add-on input-group-addon USER_SignedApprover" style="cursor: pointer;" onclick="selectSignedApprover(1,'fld_USER_SIGNEDAPPROVERNAME','','fld_USER_SIGNEDAPPROVER');"><i class="fa fa-search"></i></span>
                                         <span class="add-on input-group-addon" style="cursor: pointer;" onclick="clearSignedApprover()"><i class="fa fa-trash"></i></span>
@@ -394,9 +438,25 @@
                             <div class="form-field">
                                 <div class="form-ctl">
                                     <div class="input-prepend input-group">
-                                        <ult:TextBox ID="fld_USER_SIGNEDAPPROVER2NAME" data-type='string' title="" onblur="checkExpression(this)" data-field="USER_SIGNEDAPPROVER2NAME" Variable="" ControlValue="" CssClass="form-control   ReadOnly" runat="server">
+                                        <ult:TextBox ID="fld_USER_SIGNEDAPPROVER2NAME"
+                                            data-type='string'
+                                            title=""
+                                            onblur="checkExpression(this)"
+                                            data-field="USER_SIGNEDAPPROVER2NAME"
+                                            Variable=""
+                                            ControlValue=""
+                                            CssClass="form-control ReadOnly"
+                                            runat="server">
                                         </ult:TextBox>
-                                        <ult:TextBox ID="fld_USER_SIGNEDAPPROVER2" data-type='string' title="" onblur="checkExpression(this)" data-field="USER_SIGNEDAPPROVER2" Variable="USER_SignedApprover2" ControlValue="" CssClass="form-control hidden " runat="server">
+                                        <ult:TextBox ID="fld_USER_SIGNEDAPPROVER2"
+                                            data-type='string'
+                                            title=""
+                                            onblur="checkExpression(this)"
+                                            data-field="USER_SIGNEDAPPROVER2"
+                                            Variable="USER_SignedApprover2"
+                                            ControlValue=""
+                                            CssClass="form-control hidden"
+                                            runat="server">
                                         </ult:TextBox>
                                         <span class="add-on input-group-addon USER_SignedApprover2" style="cursor: pointer;"><i class="fa fa-search"></i></span>
                                         <span class="add-on input-group-addon" style="cursor: pointer;" onclick="clearSignedApprover2()"><i class="fa fa-trash"></i></span>
@@ -411,9 +471,25 @@
                             <div class="form-field">
                                 <div class="form-ctl">
                                     <div class="input-prepend input-group">
-                                        <ult:TextBox ID="fld_USER_SIGNEDAPPROVER3NAME" data-type='string' title="" onblur="checkExpression(this)" data-field="USER_SIGNEDAPPROVER3NAME" Variable="" ControlValue="" CssClass="form-control   ReadOnly" runat="server">
+                                        <ult:TextBox ID="fld_USER_SIGNEDAPPROVER3NAME"
+                                            data-type='string'
+                                            title=""
+                                            onblur="checkExpression(this)"
+                                            data-field="USER_SIGNEDAPPROVER3NAME"
+                                            Variable=""
+                                            ControlValue=""
+                                            CssClass="form-control ReadOnly"
+                                            runat="server">
                                         </ult:TextBox>
-                                        <ult:TextBox ID="fld_USER_SIGNEDAPPROVER3" data-type='string' title="" onblur="checkExpression(this)" data-field="USER_SIGNEDAPPROVER3" Variable="USER_SignedApprover3" ControlValue="" CssClass="form-control hidden " runat="server">
+                                        <ult:TextBox ID="fld_USER_SIGNEDAPPROVER3"
+                                            data-type='string'
+                                            title=""
+                                            onblur="checkExpression(this)"
+                                            data-field="USER_SIGNEDAPPROVER3"
+                                            Variable="USER_SignedApprover3"
+                                            ControlValue=""
+                                            CssClass="form-control hidden"
+                                            runat="server">
                                         </ult:TextBox>
                                         <span class="add-on input-group-addon USER_SignedApprover3" style="cursor: pointer;"><i class="fa fa-search"></i></span>
                                         <span class="add-on input-group-addon" style="cursor: pointer;" onclick="clearSignedApprover3()"><i class="fa fa-trash"></i></span>
@@ -427,45 +503,72 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_INVOICETYPE" data-type='string' title="" onblur="checkExpression(this)" data-field="INVOICETYPE" Variable="INVOICETYPE" ControlValue="" CssClass="form-control  " runat="server">
+                                    <ult:TextBox ID="fld_INVOICETYPE"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="INVOICETYPE"
+                                        Variable="INVOICETYPE"
+                                        ControlValue=""
+                                        CssClass="form-control"
+                                        runat="server">
                                     </ult:TextBox>
-                                    <%--    <ult:DropDownList ID="fld_INVOICETYPE" title="" onblur="checkExpression(this)" data-field="INVOICETYPE" Variable="" CssClass="form-control" Source="DataSource.SODEXO_发票" Filter="" ControlValue="" runat="server">
-                                    </ult:DropDownList>--%>
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_INVOICENUMBER">
                             <div class="form-label">
                                 <%=Lang.Get("PR.PRProcess.CPR_FOOD.INVOICENUMBER") %>:
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_INVOICENUMBER" data-type='string' title="" onblur="checkExpression(this)" data-field="INVOICENUMBER" Variable="INVOICENUMBER" ControlValue="" CssClass="form-control  " runat="server">
+                                    <ult:TextBox ID="TextBox1"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="INVOICENUMBER"
+                                        Variable="INVOICENUMBER"
+                                        ControlValue=""
+                                        CssClass="form-control"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_BUYERNAME">
                             <div class="form-label">
                                 <%=Lang.Get("PR.PRProcess.CPR_FOOD.BUYERNAME") %>:
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_BUYERNAME" data-type='string' title="" onblur="checkExpression(this)" data-field="BUYERNAME" Variable="BUYERNAME" ControlValue="" CssClass="form-control  " runat="server">
+                                    <ult:TextBox ID="TextBox2"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="BUYERNAME"
+                                        Variable="BUYERNAME"
+                                        ControlValue=""
+                                        CssClass="form-control"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_BUYERTAXID">
                             <div class="form-label">
                                 <%=Lang.Get("PR.PRProcess.CPR_FOOD.BUYERTAXID") %>:
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_BUYERTAXID" data-type='string' title="" onblur="checkExpression(this)" data-field="BUYERTAXID" Variable="BUYERTAXID" ControlValue="" CssClass="form-control  " runat="server">
+                                    <ult:TextBox ID="TextBox3"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="BUYERTAXID"
+                                        Variable="BUYERTAXID"
+                                        ControlValue=""
+                                        CssClass="form-control"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
@@ -476,8 +579,16 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:RadioButtonList ID="fld_FIXEDASSETS" title="" data-field="FIXEDASSETS" Variable="" CssClass="" Source="DataSource." Filter="" ControlValue="" RepeatDirection="Horizontal" runat="server">
-
+                                    <ult:RadioButtonList ID="fld_FIXEDASSETS"
+                                        title=""
+                                        data-field="FIXEDASSETS"
+                                        Variable=""
+                                        CssClass=""
+                                        Source="DataSource."
+                                        Filter=""
+                                        ControlValue=""
+                                        RepeatDirection="Horizontal"
+                                        runat="server">
                                         <asp:ListItem Text="否" Value="02" Selected="True"></asp:ListItem>
                                     </ult:RadioButtonList>
                                 </div>
@@ -489,7 +600,16 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:RadioButtonList ID="fld_SHOWREMARK" title="" data-field="SHOWREMARK" Variable="" CssClass="validate[required]" Source="DataSource." Filter="" ControlValue="" RepeatDirection="Horizontal" runat="server">
+                                    <ult:RadioButtonList ID="fld_SHOWREMARK"
+                                        title=""
+                                        data-field="SHOWREMARK"
+                                        Variable=""
+                                        CssClass="validate[required]"
+                                        Source="DataSource."
+                                        Filter=""
+                                        ControlValue=""
+                                        RepeatDirection="Horizontal"
+                                        runat="server">
                                         <asp:ListItem Text="是" Value="1"></asp:ListItem>
                                         <asp:ListItem Text="否" Value="0" Selected="True"></asp:ListItem>
                                     </ult:RadioButtonList>
@@ -502,7 +622,16 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:RadioButtonList ID="fld_IsPrePaid" title="" data-field="IsPrePaid" Variable="IsPrePaid" CssClass="validate[required]" Source="DataSource." Filter="" ControlValue="" RepeatDirection="Horizontal" runat="server">
+                                    <ult:RadioButtonList ID="fld_IsPrePaid"
+                                        title=""
+                                        data-field="IsPrePaid"
+                                        Variable="IsPrePaid"
+                                        CssClass="validate[required]"
+                                        Source="DataSource."
+                                        Filter=""
+                                        ControlValue=""
+                                        RepeatDirection="Horizontal"
+                                        runat="server">
                                         <asp:ListItem Text="是" Value="1"></asp:ListItem>
                                         <asp:ListItem Text="否" Value="0" Selected="True"></asp:ListItem>
                                     </ult:RadioButtonList>
@@ -515,7 +644,15 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_INVOICEPATH" data-type='string' title="" onblur="checkExpression(this)" data-field="INVOICEPATH" Variable="INVOICEPATH" ControlValue="" CssClass="form-control  " runat="server">
+                                    <ult:TextBox ID="TextBox4"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="INVOICEPATH"
+                                        Variable="INVOICEPATH"
+                                        ControlValue=""
+                                        CssClass="form-control"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
@@ -526,28 +663,37 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_APPREMARK" title="" data-field="APPREMARK" data-type='string' Format="" Variable="" ControlValue="" TextMode="Multiline" CssClass="form-control validate[required]" onblur="checkExpression(this)" runat="server" data-errormessage-type-mismatch="申请备注必填<br/>The Remarks required is not empty">
+                                    <ult:TextBox ID="fld_APPREMARK"
+                                        title=""
+                                        data-field="APPREMARK"
+                                        data-type='string'
+                                        Format=""
+                                        Variable=""
+                                        ControlValue=""
+                                        TextMode="Multiline"
+                                        CssClass="form-control validate[required]"
+                                        onblur="checkExpression(this)"
+                                        runat="server"
+                                        data-errormessage-type-mismatch="申请备注必填<br/>The Remarks required is not empty">
                                     </ult:TextBox>
                                 </div>
                             </div>
                         </div>
-                        <%--<div class="col-lg-12 col-sm-6 col-xs-12 form-cell " id="div_field_ceshi" style="height: ">
-                            <div class="form-label">
-                                测试日期
-                            </div>
-                            <div class="form-field">
-                                <div class="form-ctl">
-                                    <input type="text" style="width:100%;" class="Wdate" onClick="WdatePicker({readOnly:false,startDate:'%y-%M-%d 06:30:00',dateFmt:'yyyy-MM-dd HH:mm:00',alwaysUseStartDate:false})">
-                                </div>
-                            </div>
-                        </div>--%>
                         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_APPROVEDATE" style="height: ">
                             <div class="form-label">
                                 <%=Lang.Get("PR.PRProcess.MCPR_SERVICE.APPROVEDATE") %>:
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_APPROVEDATE" data-type='datetime' title="" onblur="checkExpression(this)" data-field="APPROVEDATE" Variable="APPROVEDATE" ControlValue="" CssClass="form-control  " runat="server">
+                                    <ult:TextBox ID="fld_APPROVEDATE"
+                                        data-type='datetime'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="APPROVEDATE"
+                                        Variable="APPROVEDATE"
+                                        ControlValue=""
+                                        CssClass="form-control"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
@@ -558,7 +704,15 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_PCCOMPCODE" data-type='string' title="" onblur="checkExpression(this)" data-field="PCCOMPCODE" Variable="PCCOMPCODE" ControlValue="" CssClass="form-control  " runat="server">
+                                    <ult:TextBox ID="fld_PCCOMPCODE"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="PCCOMPCODE"
+                                        Variable="PCCOMPCODE"
+                                        ControlValue=""
+                                        CssClass="form-control"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
@@ -569,7 +723,15 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_APPLYPURPOSETXT" data-type='string' title="" onblur="checkExpression(this)" data-field="APPLYPURPOSETXT" Variable="" ControlValue="" CssClass="form-control  " runat="server">
+                                    <ult:TextBox ID="fld_APPLYPURPOSETXT"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="APPLYPURPOSETXT"
+                                        Variable=""
+                                        ControlValue=""
+                                        CssClass="form-control"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
@@ -580,7 +742,15 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_SUPPLIERTYPETXT" data-type='string' title="" onblur="checkExpression(this)" data-field="SUPPLIERTYPETXT" Variable="" ControlValue="" CssClass="form-control  " runat="server">
+                                    <ult:TextBox ID="fld_SUPPLIERTYPETXT"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="SUPPLIERTYPETXT"
+                                        Variable=""
+                                        ControlValue=""
+                                        CssClass="form-control"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
@@ -591,7 +761,15 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_ASSETTYPETXT" data-type='string' title="" onblur="checkExpression(this)" data-field="ASSETTYPETXT" Variable="" ControlValue="" CssClass="form-control  " runat="server">
+                                    <ult:TextBox ID="fld_ASSETTYPETXT"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="ASSETTYPETXT"
+                                        Variable=""
+                                        ControlValue=""
+                                        CssClass="form-control"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
@@ -602,29 +780,34 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_CPRFAMILYCODE" data-type='string' title="" onblur="checkExpression(this)" data-field="CPRFAMILYCODE" Variable="" ControlValue="" CssClass="form-control  " runat="server">
+                                    <ult:TextBox ID="fld_CPRFAMILYCODE"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="CPRFAMILYCODE"
+                                        Variable=""
+                                        ControlValue=""
+                                        CssClass="form-control"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
                         </div>
-                        <%--<div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_ONLINEORSUPERMARKETTXT" style="height: ">
-                            <div class="form-label">
-                                <%=Lang.Get("PR.PRProcess.MCPR_SERVICE.ONLINEORSUPERMARKETTXT") %>:
-                            </div>
-                            <div class="form-field">
-                                <div class="form-ctl">
-                                    <ult:TextBox ID="fld_ONLINEORSUPERMARKETTXT" data-type='string' title="" onblur="checkExpression(this)" data-field="ONLINEORSUPERMARKETTXT" Variable="" ControlValue="" CssClass="form-control  " runat="server">
-                                    </ult:TextBox>
-                                </div>
-                            </div>
-                        </div>--%>
                         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_SIGNEDAPPROVERNUMBER" style="height: ">
                             <div class="form-label">
                                 <%=Lang.Get("PR.PRProcess.MCPR_SERVICE.SIGNEDAPPROVERNUMBER") %>:
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_SIGNEDAPPROVERNUMBER" data-type='string' title="" onblur="checkExpression(this)" data-field="SIGNEDAPPROVERNUMBER" Variable="SIGNEDAPPROVERNUMBER" ControlValue="" CssClass="form-control  " runat="server">
+                                    <ult:TextBox ID="fld_SIGNEDAPPROVERNUMBER"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="SIGNEDAPPROVERNUMBER"
+                                        Variable="SIGNEDAPPROVERNUMBER"
+                                        ControlValue=""
+                                        CssClass="form-control"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
@@ -635,7 +818,15 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_DELIVERY" data-type='string' title="" onblur="checkExpression(this)" data-field="DELIVERY" Variable="DELIVERY" ControlValue="" CssClass="form-control  " runat="server">
+                                    <ult:TextBox ID="fld_DELIVERY"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="DELIVERY"
+                                        Variable="DELIVERY"
+                                        ControlValue=""
+                                        CssClass="form-control"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
@@ -646,7 +837,15 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_APPROVE" data-type='string' title="" onblur="checkExpression(this)" data-field="APPROVE" Variable="APPROVE" ControlValue="" CssClass="form-control  " runat="server">
+                                    <ult:TextBox ID="fld_APPROVE"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="APPROVE"
+                                        Variable="APPROVE"
+                                        ControlValue=""
+                                        CssClass="form-control"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
@@ -658,7 +857,15 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_SEGMENTDIRECTOR" data-type='string' title="" onblur="checkExpression(this)" data-field="SEGMENTDIRECTOR" Variable="SEGMENTDIRECTOR" ControlValue="" CssClass="form-control  " runat="server">
+                                    <ult:TextBox ID="fld_SEGMENTDIRECTOR"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="SEGMENTDIRECTOR"
+                                        Variable="SEGMENTDIRECTOR"
+                                        ControlValue=""
+                                        CssClass="form-control"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
@@ -669,19 +876,34 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_USER_SEGMENTDIRECTOR_1" data-type='string' title="" onblur="checkExpression(this)" data-field="USER_SEGMENTDIRECTOR_1" Variable="USER_SEGMENTDIRECTOR_1" ControlValue="" CssClass="form-control  " runat="server">
+                                    <ult:TextBox ID="fld_USER_SEGMENTDIRECTOR_1"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="USER_SEGMENTDIRECTOR_1"
+                                        Variable="USER_SEGMENTDIRECTOR_1"
+                                        ControlValue=""
+                                        CssClass="form-control"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_ISCOR" style="height: ">
                             <div class="form-label">
                                 <%=Lang.Get("PR.PRProcess.MCPR_SERVICE.ISCOR") %>:
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_ISCOR" data-type='string' title="" onblur="checkExpression(this)" data-field="ISCOR" Variable="ISCOR" ControlValue="" CssClass="form-control  " runat="server">
+                                    <ult:TextBox ID="fld_ISCOR"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="ISCOR"
+                                        Variable="ISCOR"
+                                        ControlValue=""
+                                        CssClass="form-control"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
@@ -692,47 +914,54 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_ISCORName" data-type='string' title="" onblur="checkExpression(this)" data-field="ISCORName" Variable="ISCORName" ControlValue="" CssClass="form-control  " runat="server">
+                                    <ult:TextBox ID="fld_ISCORName"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="ISCORName"
+                                        Variable="ISCORName"
+                                        ControlValue=""
+                                        CssClass="form-control"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-lg-4 col-sm-6 col-xs-12 form-cell  hidden" id="div_field_ISSALARY" style="height: ">
+                        <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_ISSALARY" style="height: ">
                             <div class="form-label" id="ISSALARY">
                                 <%=Lang.Get("PR.PRProcess.MCPR_SERVICE.ISSALARY")%>:
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <ult:TextBox ID="fld_ISSALARY" data-type='string' title="" onblur="checkExpression(this)" data-field="ISSALARY" Variable="ISSALARY" ControlValue="" CssClass="form-control ReadOnly" runat="server">
+                                    <ult:TextBox ID="fld_ISSALARY"
+                                        data-type='string'
+                                        title=""
+                                        onblur="checkExpression(this)"
+                                        data-field="ISSALARY"
+                                        Variable="ISSALARY"
+                                        ControlValue=""
+                                        CssClass="form-control ReadOnly"
+                                        runat="server">
                                     </ult:TextBox>
                                 </div>
                             </div>
                         </div>
-
-                        <%-- <div class="col-lg-4 col-sm-6 col-xs-12 form-cell  hidden" id="div_field_ORIGINALAMOUNT" style="height: ">
-                            <div class="form-label" id="ORIGINALAMOUNT">
-                                <%=Lang.Get("PR.PRProcess.MCPR_SERVICE.ORIGINALAMOUNT")%>:
-                            </div>
-                            <div class="form-field">
-                                <div class="form-ctl">
-                                    <ult:TextBox ID="fld_ORIGINALAMOUNT" data-type='string' title="" onblur="checkExpression(this)" data-field="ORIGINALAMOUNT" Variable="ORIGINALAMOUNT" ControlValue="" CssClass="form-control ReadOnly" runat="server">
-                                    </ult:TextBox>
-                                </div>
-                            </div>
-                        </div>--%>
                     </div>
                 </div>
             </div>
         </div>
+
         <!--1.2多行-->
         <!--Start Item table-->
         <div class="row" id="div_panel_MCPR_SERVICE_Items">
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-title">
-                        <div class="fa-title"><i class="fa fa-bars"></i><span class="padding-r-5"></span><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.MCPR_SERVICE_Items") %></div>
-
+                        <div class="fa-title">
+                            <i class="fa fa-bars"></i>
+                            <span class="padding-r-5"></span>
+                            <%=Lang.Get("PR.PRProcess.MCPR_SERVICE.MCPR_SERVICE_Items") %>
+                        </div>
                         <ul class="panel-tools">
                             <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li>
                             <li><a class="icon expand-tool"><i class="fa fa-expand"></i></a></li>
@@ -746,55 +975,62 @@
                                     <td class="hidden">
                                         <input id="tb_MCPR_SERVICE_ITEMS_rowCount" type="text" runat="server" />
                                     </td>
-                                    <td class="th_ch" style="width: 50px">勾选
-                                    </td>
-                                    <td class="th_no" style="width: 50px">
-                                        <%=Lang.Get("No") %>
-                                    </td>
-                                    <td style="" class=" td_APPLYREASON"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.APPLYREASON") %><span style='color: red'>*</span></td>
-                                    <td style="" class=" td_SUBSUBFAMILYNAME"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.SUBSUBFAMILYNAME") %></td>
-                                    <td style="" class=" td_ARTICLENAME"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.ARTICLENAME") %></td>
-                                    <td style="" class=" td_ORDERUNIT"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.ORDERUNIT") %></td>
-                                    <td style="" class=" td_SITEPRICE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.SITEPRICE") %><span style='color: red'>*</span></td>
-                                    <td style="" class=" td_ORDERQUANTITY"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.ORDERQUANTITY") %> <span style='color: red'>*</span></td>
-                                    <td style="" class="td_INVOICENUMBER"><%=Lang.Get("PR.PRProcess.CPR_FOOD.INVOICENUMBER") %><span style='color: red'>*</span></td>
-                                    <td style="" class="td_BUYERNAME"><%=Lang.Get("PR.PRProcess.CPR_FOOD.BUYERNAME") %><span style='color: red'>*</span></td>
-                                    <td style="" class="td_BUYERTAXID"><%=Lang.Get("PR.PRProcess.CPR_FOOD.BUYERTAXID") %><span style='color: red'>*</span></td>
-                                    <td style="" class="td_INVOICEPATH"><%=Lang.Get("PR.PRProcess.CPR_FOOD.INVOICEPATH") %></td>
-
-                                    <td style="" class="hidden td_FAMILYCODE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.FAMILYCODE") %></td>
-                                    <td style="" class="hidden td_FAMILYNAME"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.FAMILYNAME") %></td>
-                                    <td style="" class="hidden td_SUBFAMILYCODE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.SUBFAMILYCODE") %></td>
-                                    <td style="" class="hidden td_SUBFAMILYNAME"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.SUBFAMILYNAME") %></td>
-                                    <td style="" class="hidden td_SUBSUBFAMILYCODE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.SUBSUBFAMILYCODE") %></td>
-                                    <td style="" class="hidden td_ARTICLECODE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.ARTICLECODE") %></td>
-                                    <td style="" class="hidden td_UNIT"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.UNIT") %></td>
-                                    <td style="" class="hidden td_CONSUMPTIONUNIT"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.CONSUMPTIONUNIT") %></td>
-                                    <td style="" class="hidden td_CONVERSION"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.CONVERSION") %></td>
-                                    <td style="" class="hidden td_STOCK"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.STOCK") %></td>
-                                    <td style="" class="hidden td_NETVOMULE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.NETVOMULE") %></td>
-                                    <td style="" class="hidden td_GROSSWEIGHT"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.GROSSWEIGHT") %></td>
-                                    <td style="" class="hidden td_NETVOMULEUNIT"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.NETVOMULEUNIT") %></td>
-                                    <td style="" class="hidden td_GROSSWEIGHTUNIT"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.GROSSWEIGHTUNIT") %></td>
-                                    <td style="" class="hidden InvoiceType"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.InvoiceType") %></td>
-                                    <td style="" class="hidden td_TAXCODE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.TAXCODE") %></td>
-                                    <td style="" class="hidden td_TAXRATE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.TAXRATE") %></td>
-                                    <td style="" class="hidden InitOrderLimt"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.InitOrderLimt") %></td>
-
-                                    <td style="" class="hidden td_ORDERUNITVALUE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.ORDERUNITVALUE") %></td>
-                                    <td style="" class="hidden td_UNITVALUE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.UNITVALUE") %></td>
-                                    <td style="" class="hidden td_CONSUMPTIONUNITVALUE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.CONSUMPTIONUNITVALUE") %></td>
-                                    <td style="" class="hidden td_SUBTOTALAMOUNT"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.SUBTOTALAMOUNT") %></td>
-                                    <td style="" class="hidden td_SUBSUBFAMILYCE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.SUBSUBFAMILYCE") %></td>
-                                    <td style="" class="hidden td_NETNETPRICE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.NETNETPRICE") %></td>
-                                    <td style="" class="hidden td_ARTICLEID"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.ARTICLEID") %></td>
+                                    <td class="th_ch" style="width: 50px">勾选</td>
+                                    <td class="th_no" style="width: 50px"><%=Lang.Get("No") %></td>
+                                    <td class="td_APPLYREASON"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.APPLYREASON") %><span style='color: red'>*</span></td>
+                                    <td class="td_SUBSUBFAMILYNAME"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.SUBSUBFAMILYNAME") %></td>
+                                    <td class="td_ARTICLENAME"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.ARTICLENAME") %></td>
+                                    <td class="td_ORDERUNIT"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.ORDERUNIT") %></td>
+                                    <td class="td_SITEPRICE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.SITEPRICE") %><span style='color: red'>*</span></td>
+                                    <td class="td_ORDERQUANTITY"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.ORDERQUANTITY") %> <span style='color: red'>*</span></td>
+                                    <td class="td_INVOICENUMBER"><%=Lang.Get("PR.PRProcess.CPR_FOOD.INVOICENUMBER") %><span style='color: red'>*</span></td>
+                                    <td class="td_BUYERNAME"><%=Lang.Get("PR.PRProcess.CPR_FOOD.BUYERNAME") %><span style='color: red'>*</span></td>
+                                    <td class="td_BUYERTAXID"><%=Lang.Get("PR.PRProcess.CPR_FOOD.BUYERTAXID") %><span style='color: red'>*</span></td>
+                                    <td class="td_INVOICEPATH"><%=Lang.Get("PR.PRProcess.CPR_FOOD.INVOICEPATH") %></td>
+                                    <td class="hidden td_FAMILYCODE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.FAMILYCODE") %></td>
+                                    <td class="hidden td_FAMILYNAME"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.FAMILYNAME") %></td>
+                                    <td class="hidden td_SUBFAMILYCODE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.SUBFAMILYCODE") %></td>
+                                    <td class="hidden td_SUBFAMILYNAME"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.SUBFAMILYNAME") %></td>
+                                    <td class="hidden td_SUBSUBFAMILYCODE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.SUBSUBFAMILYCODE") %></td>
+                                    <td class="hidden td_ARTICLECODE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.ARTICLECODE") %></td>
+                                    <td class="hidden td_UNIT"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.UNIT") %></td>
+                                    <td class="hidden td_CONSUMPTIONUNIT"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.CONSUMPTIONUNIT") %></td>
+                                    <td class="hidden td_CONVERSION"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.CONVERSION") %></td>
+                                    <td class="hidden td_STOCK"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.STOCK") %></td>
+                                    <td class="hidden td_NETVOMULE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.NETVOMULE") %></td>
+                                    <td class="hidden td_GROSSWEIGHT"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.GROSSWEIGHT") %></td>
+                                    <td class="hidden td_NETVOMULEUNIT"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.NETVOMULEUNIT") %></td>
+                                    <td class="hidden td_GROSSWEIGHTUNIT"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.GROSSWEIGHTUNIT") %></td>
+                                    <td class="hidden InvoiceType"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.InvoiceType") %></td>
+                                    <td class="hidden td_TAXCODE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.TAXCODE") %></td>
+                                    <td class="hidden td_TAXRATE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.TAXRATE") %></td>
+                                    <td class="hidden InitOrderLimt"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.InitOrderLimt") %></td>
+                                    <td class="hidden td_ORDERUNITVALUE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.ORDERUNITVALUE") %></td>
+                                    <td class="hidden td_UNITVALUE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.UNITVALUE") %></td>
+                                    <td class="hidden td_CONSUMPTIONUNITVALUE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.CONSUMPTIONUNITVALUE") %></td>
+                                    <td class="hidden td_SUBTOTALAMOUNT"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.SUBTOTALAMOUNT") %></td>
+                                    <td class="hidden td_SUBSUBFAMILYCE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.SUBSUBFAMILYCE") %></td>
+                                    <td class="hidden td_NETNETPRICE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.NETNETPRICE") %></td>
+                                    <td class="hidden td_ARTICLEID"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.ARTICLEID") %></td>
+                                    <td class="td_DELIVERYDATE"><%=Lang.Get("PR.PRProcess.MPR_SERVICE.DELIVERYDATE") %></td>
                                     <td style="width: 60px"><%=Lang.Get("Action") %></td>
                                 </tr>
                             </thead>
                             <tbody>
+                                <%-- 服务端分组变量，必须放在Repeater外面 --%>
+                                <% string lastDeliveryDate = null; int groupFlag = 0; %>
                                 <ult:Repeater ID="fld_detail_PROC_MCPR_SERVICE_ITEMS" runat="server">
-                                    <ItemTemplate>
-                                        <tr>
+                                    <itemtemplate>
+                                        <%
+                                            string currDeliveryDate = Eval("DELIVERYDATE")?.ToString();
+                                            if (currDeliveryDate != lastDeliveryDate)
+                                            {
+                                                groupFlag = groupFlag == 0 ? 1 : 0;
+                                                lastDeliveryDate = currDeliveryDate;
+                                            }
+                                            string trBgColor = groupFlag == 1 ? "#f2f7ff" : "#ffffff";
+                                        %>
+                                        <tr style="background-color:<%=trBgColor%>">
                                             <td class="hidden">
                                                 <ult:TextBox ID="fld_FORMID" Text='<%#Eval("FORMID") %>' runat="server" />
                                             </td>
@@ -803,13 +1039,11 @@
                                             </td>
                                             <td class="td_no" data-label='<%=Lang.Get("No").Split('<')[0] %>'>
                                                 <div class="index"><%#Eval("ROWNO")%> </div>
-                                                <ult:TextBox ID="fld_ROWNO" data-field="ROWNO" CssClass="index hidden" runat="server" ControlValue='<%#Eval("ROWNO")%>'>
-                                                </ult:TextBox>
+                                                <ult:TextBox ID="fld_ROWNO" data-field="ROWNO" CssClass="index hidden" runat="server" ControlValue='<%#Eval("ROWNO")%>'></ult:TextBox>
                                             </td>
-                                            <td class=" td_APPLYREASON" data-label='<%=Lang.Get("PR.PRProcess.MCPR_SERVICE.APPLYREASON").Split('<')[0] %>'>
-                                                <ult:TextBox ID="fld_APPLYREASON" title="" data-type='string' onblur="checkExpression(this)" data-field="APPLYREASON" CssClass="item-control  ReadOnly" ControlValue='<%#Eval("APPLYREASON")%>' runat="server">
-                                                </ult:TextBox>
-                                            </td>
+                                            <td class="td_APPLYREASON" data-label='<%=Lang.Get("PR.PRProcess.MCPR_SERVICE.APPLYREASON").Split('<')[0] %>'>
+                                                <ult:TextBox ID="fld_APPLYREASON" title
+
                                             <td class=" td_SUBSUBFAMILYNAME" data-label='<%=Lang.Get("PR.PRProcess.MCPR_SERVICE.SUBSUBFAMILYNAME").Split('<')[0] %>'>
                                                 <ult:TextBox ID="fld_SUBSUBFAMILYNAME" title="" data-type='string' onblur="checkExpression(this)" data-field="SUBSUBFAMILYNAME" CssClass="item-control   ReadOnly" ControlValue='<%#Eval("SUBSUBFAMILYNAME")%>' runat="server">
                                                 </ult:TextBox>
@@ -952,6 +1186,10 @@
                                                 <ult:TextBox ID="fld_ARTICLEID" title="" data-type='string' onblur="checkExpression(this)" data-field="ARTICLEID" CssClass="item-control" ControlValue='<%#Eval("ARTICLEID")%>' runat="server">
                                                 </ult:TextBox>
                                             </td>
+                                            <td class="td_DELIVERYDATE" data-label='<%=Lang.Get("PR.PRProcess.MPR_SERVICE.DELIVERYDATE").Split('<')[0] %>'>
+                                              <ult:TextBox ID="fld_DELIVERYDATE" title="" data-field="DELIVERYDATE" runat="server"Text='<%#Eval("DELIVERYDATE")%>' Width="90%">
+                                                </ult:TextBox>
+                                            </td>
                                             <td>
                                                 <button onclick="if(confirm('<%=Lang.Get("SecurityList_ConfirmDelete") %>？')){deleteCPRRow('tb_MCPR_SERVICE_ITEMS',this);}return false;"
                                                     class="btn btn-icon btn-sm" name="delBtn">
@@ -959,7 +1197,7 @@
                                                 </button>
                                             </td>
                                         </tr>
-                                    </ItemTemplate>
+                                    </itemtemplate>
                                 </ult:Repeater>
                             </tbody>
                         </table>
@@ -976,6 +1214,7 @@
                 </div>
             </div>
         </div>
+
         <!--End Item table-->
         <div class="upload-row hidden" id="div_upload_Inv">
             <!-- 自定义文件选择容器（用于美化） -->
