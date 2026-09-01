@@ -18,7 +18,9 @@ namespace PR.PRProcess.MPR_SERVICE
             string ProcessName = Request.QueryString["ProcessName"];
             string Incident = Request.QueryString["Incident"];
             GetPrService(ProcessName, Incident);
-        }
+
+        }     
+       
 
         public void GetPrService(string ProcessName, string Incident)
         {
