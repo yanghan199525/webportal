@@ -30,18 +30,24 @@
         .td_DELIVERYDATE {
             vertical-align: middle !important;
         }
+        /* JS分组变色class */
+        .group-row-1 {
+            background-color: #f2f7ff !important;
+        }
+        .group-row-0 {
+            background-color: #ffffff !important;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <!--定义UserInfo-->
         <ui:userinfo id="UserInfo1" processtitle="MCPR_SERVICE" processpefix="CPRS" tablename="PROC_MCPR_SERVICE"
-            tablenamedetail="PROC_MMCPR_SERVICE_ITEMS" runat="server"></ui:userinfo>
+            tablenamedetail="PROC_MCPR_SERVICE_ITEMS" runat="server"></ui:userinfo>
         <!--End main table-->
         <!--Start 接UserInfo Div的结束标记,请不要删除-->
         </div></div></div></div>
         <!--End 接UserInfo Div的结束标记,请不要删除-->
-
         <!--1.对Table做循环，判断单行,多行-->
         <!--1.1单行-->
         <div class="row" id="div_panel_MCPR_SERVICE">
@@ -98,31 +104,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <%--<div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_DELIVERYDATE" style="height: ">
-                            <div class="form-label">
-                                <%=Lang.Get("PR.PRProcess.MCPR_SERVICE.DELIVERYDATE") %><span style='color: red'>*</span>:
-                            </div>
-                            <div class="form-field">
-                                <div class="form-ctl">
-                                    <div class="input-prepend input-group" id="edit_DELIVERYDATE">
-                                        <ult:TextBox ID="fld_DELIVERYDATE" data-type='datetime' title="" onblur="checkExpression(this)" data-field="DELIVERYDATE" Variable="" ControlValue="" CssClass="form-control validate[required,custom[dateTimeFormat],futureDateTime[#hdDatetime]]" runat="server" data-errormessage-type-mismatch="要求送货日期必须为明天下午6点以后">
-                                        </ult:TextBox>
-                                        <span class="add-on input-group-addon hidden-xs"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                    <ult:Label ID="read_DELIVERYDATE" title="" Format="" runat="server"></ult:Label>
-                                </div>
-                            </div>
-                        </div>--%>
-
-                        <!--补充空单元格-->
-                        <%--<div class="col-lg-4 col-sm-6 col-xs-12 form-cell" style="border-left: 0px; height: ">
-                            <div class="form-label" style="background-color: transparent;">
-                            </div>
-                            <div class="form-field">
-                            </div>
-                        </div>--%>
-
                         <div class="hidden col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_FIXEDASSETS" style="height: ">
                             <div class="form-label">
                                 <%=Lang.Get("PR.PRProcess.CPR_FOOD.FIXEDASSETS") %>:
@@ -133,25 +114,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <%--<div class="col-lg-4 col-sm-6 col-xs-12 form-cell" style="height: ">
-                            <div class="form-label">
-                            </div>
-                            <div class="form-field">
-                            </div>
-                        </div>--%>
-
-                        <%--<div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_ONLINEORSUPERMARKET" style="height: ">
-                            <div class="form-label">
-                                <%=Lang.Get("PR.PRProcess.MCPR_SERVICE.ONLINEORSUPERMARKET") %><span style='color: red'>*</span>:
-                            </div>
-                            <div class="form-field">
-                                <div class="form-ctl">
-                                    <ult:Label ID="read_ONLINEORSUPERMARKET" title="" Format="" runat="server"></ult:Label>
-                                </div>
-                            </div>
-                        </div>--%>
-
                         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_SUPPLIERCODE" style="height: ">
                             <div class="form-label">
                                 <%=Lang.Get("PR.PRProcess.MCPR_SERVICE.SUPPLIERCODE") %>:
@@ -189,7 +151,6 @@
                             <div class="form-field">
                                 <div class="form-ctl">
                                     <ult:Label ID="read_AMOUNT" title="" Format="" CssClass="autonumber" runat="server"></ult:Label>
-                                    <%--<span style="color:red" id="span_read_ORIGINALAMOUNT">(SSP: <ult:Label ID="read_ORIGINALAMOUNT" title="" Format="" CssClass="autonumber" runat="server"></ult:Label>)</span>--%>
                                 </div>
                             </div>
                         </div>
@@ -289,7 +250,6 @@
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
-                                    <%--<ult:Label ID="read_APPROVEDATE" title="" Format="" runat="server"></ult:Label>--%>
                                     <ult:TextBox ID="var_APPROVEDATE" data-type='datetime' title="" onblur="checkExpression(this)" data-field="APPROVEDATE" Variable="" ControlValue="" CssClass="form-control  " runat="server"></ult:TextBox>
                                 </div>
                             </div>
@@ -394,12 +354,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!--补充空单元格-->
                     </div>
                 </div>
             </div>
         </div>
-
         <!--1.2多行-->
         <!--Start Item table-->
         <div class="row" id="div_panel_MCPR_SERVICE_Items">
@@ -464,20 +422,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                   <%-- 服务端分组变量，必须放在Repeater外面 --%>
-                                <% string lastDeliveryDate = null; int groupFlag = 0; %>
                                 <ult:Repeater ID="fld_detail_PROC_MCPR_SERVICE_ITEMS" runat="server">
                                     <itemtemplate>
-                                        <%
-                                            string currDeliveryDate = Eval("DELIVERYDATE")?.ToString();
-                                            if (currDeliveryDate != lastDeliveryDate)
-                                            {
-                                                groupFlag = groupFlag == 0 ? 1 : 0;
-                                                lastDeliveryDate = currDeliveryDate;
-                                            }
-                                            string trBgColor = groupFlag == 1 ? "#f2f7ff" : "#ffffff";
-                                        %>
-                                        <tr style="background-color:<%=trBgColor%>">
+                                        <tr>
                                             <td class="hidden">
                                                 <ult:Label ID="fld_FORMID" Text='<%#Eval("FORMID") %>' runat="server" />
                                             </td>
@@ -615,18 +562,47 @@
             </div>
         </div>
         <!--End Item table-->
-
         <attach:attachments id="Attachments1" runat="server" readonly="True"></attach:attachments>
         <ath:attachmentadd id="AttachmentsAdd" runat="server" readonly="True"></ath:attachmentadd>
         <ah:approvalhistory id="ApprovalHistory1" showaction="true" runat="server"></ah:approvalhistory>
         <btn:buttonlist id="ButtonList1" runat="server"></btn:buttonlist>
-
         <asp:HiddenField ID="hdDatetime" runat="server" />
-        <%--<asp:HiddenField ID="hdDate" runat="server" />--%>
         <asp:HiddenField ID="hdLanguage" runat="server" />
-    </form>          
+    </form>
     <div id='div_lang' data-lang='<%=Lang.GetLang() %>'></div>
     <script type='text/javascript' src='Approval.js?t=9119cb80-5cf5-45f6-9d3c-20f1ed3e3161'></script>
     <script type='text/javascript' src="My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript">
+        //页面加载完成后执行按DELIVERYDATE分组交替变色
+        function applyDeliveryDateRowColor() {
+            var table = document.getElementById("tb_MCPR_SERVICE_ITEMS");
+            if (!table) return;
+            var trList = table.querySelectorAll("tbody > tr");
+            var lastDate = null;
+            var groupFlag = 0;
+
+            for (var i = 0; i < trList.length; i++) {
+                var tr = trList[i];
+                //移除旧class
+                tr.classList.remove("group-row-0", "group-row-1");
+                var td = tr.querySelector(".td_DELIVERYDATE");
+                if (!td) continue;
+                //取label文本作为日期
+                var currDate = (td.innerText || td.textContent || "").trim();
+
+                if (currDate !== lastDate) {
+                    groupFlag = groupFlag === 0 ? 1 : 0;
+                    lastDate = currDate;
+                }
+                tr.classList.add(groupFlag === 1 ? "group-row-1" : "group-row-0");
+            }
+        }
+        //DOM加载完成执行
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", applyDeliveryDateRowColor);
+        } else {
+            applyDeliveryDateRowColor();
+        }
+    </script>
 </body>
 </html>
