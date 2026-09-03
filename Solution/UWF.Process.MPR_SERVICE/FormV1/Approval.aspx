@@ -200,7 +200,7 @@
                                     <td class="td_SUBTOTALAMOUNT">
                                         <%=Lang.Get("PR.PRProcess.MPR_SERVICE.SUBTOTALAMOUNT") %>
                                     </td>
-                                    <td class="td_DELIVERYDATE">
+                                    <td class="td_DELIVERYDATE hidden">
                                         <%=Lang.Get("PR.PRProcess.MPR_SERVICE.DELIVERYDATE") %>
                                     </td>
                                 </tr>
@@ -301,7 +301,7 @@
                                                            Width="90%">
                                                 </ult:Label>
                                             </td>
-                                            <td class="td_DELIVERYDATE"
+                                            <td class="hidden td_DELIVERYDATE"
                                                 data-label='<%=Lang.Get("PR.PRProcess.MPR_SERVICE.DELIVERYDATE").Split('<')[0] %>'>
                                                 <ult:Label ID="fld_DELIVERYDATE"
                                                            title=""
@@ -332,44 +332,79 @@
     <script type='text/javascript' src='math_common.js?t=dc64a1ef-95e5-4fb4-a793-a14f354d8a33'></script>
     <script src="math_common.js"></script>
     <script type="text/javascript">
-        $(function () {
-            //员工编号 进行显示
-            $("#UserInfo1_read_APPLICANTACCOUNT").parent("div").parent("div").parent("div").removeAttr("hidden");
-            //隐藏之前的 申请部门
-            $("#UserInfo1_read_DEPARTMENT").parent("div").parent("div").parent("div").hide();
-            var Amount = $("#read_AMOUNT").html();
-            $("#read_AMOUNT").html(thousands(Amount));
-            $(".td_ORDERQUANTITY").find("span").each(function (index, element) {
-                let num = parseInt($(this).text());
-                $(this).text(num);
-            });
-            // td_SITEPRICE
-            $(".td_SITEPRICE").find("span").each(function (index, element) {
-                $(this).text(thousands($(this).text()));
-            });
-            //td_SUBTOTALAMOUNT
-            $(".td_SUBTOTALAMOUNT").find("span").each(function (index, element) {
-                $(this).text(thousands($(this).text()));
-            });
+       $(function () {
+    //员工编号 进行显示
+    $("#UserInfo1_read_APPLICANTACCOUNT").parent("div").parent("div").parent("div").removeAttr("hidden");
+    //隐藏之前的 申请部门
+    $("#UserInfo1_read_DEPARTMENT").parent("div").parent("div").parent("div").hide();
+    var Amount = $("#read_AMOUNT").html();
+    $("#read_AMOUNT").html(thousands(Amount));
+    $(".td_ORDERQUANTITY").find("span").each(function (index, element) {
+        let num = parseInt($(this).text());
+        $(this).text(num);
+    });
+    // td_SITEPRICE
+    $(".td_SITEPRICE").find("span").each(function (index, element) {
+        $(this).text(thousands($(this).text()));
+    });
+    //td_SUBTOTALAMOUNT
+    $(".td_SUBTOTALAMOUNT").find("span").each(function (index, element) {
+        $(this).text(thousands($(this).text()));
+    });
 
-            // ========= JS实现按DELIVERYDATE分组隔行变色 =========
-            let lastDelivery = null;
-            let colorFlag = 0;
-            $("#tb_MPR_SERVICE_ITEMS > tbody > tr").each(function () {
-                let currVal = $(this).attr("data-deliverydate");
-                //日期发生变化，切换颜色标记
-                if (currVal !== lastDelivery) {
-                    colorFlag = colorFlag === 0 ? 1 : 0;
-                    lastDelivery = currVal;
-                }
-                //设置背景色，可自行修改色值
-                if (colorFlag === 1) {
-                    $(this).css("background-color", "#f2f7ff");
-                } else {
-                    $(this).css("background-color", "#ffffff");
-                }
-            });
-        })
+
+    // ========= 按DELIVERYDATE插入分组标题行 + 组交替底色 =========
+    const $tbody = $("#tb_MPR_SERVICE_ITEMS > tbody");
+    const $allRows = $tbody.find("tr[data-deliverydate]");
+    if ($allRows.length === 0) return;
+
+    //1.按deliverydate分组
+    const groupMap = {};
+    const groupList = [];
+    $allRows.each(function () {
+        const dtRaw = $(this).attr("data-deliverydate") || "";
+        const dt = dtRaw.trim();
+        if (!groupMap[dt]) {
+            groupMap[dt] = [];
+            groupList.push(dt);
+        }
+        groupMap[dt].push(this);
+    });
+
+    //2.获取表格总列数（取第一条明细tr的td数量）
+    const totalCol = $allRows.eq(0).find("td").length;
+    const colors = ["#ffffff", "#F2F7FF"];
+
+    //3.循环每组，插入分组标题行，设置本组底色
+    for (let g = 0; g < groupList.length; g++) {
+        const dateVal = groupList[g];
+        const rowsInGroup = groupMap[dateVal];
+        const $firstRow = $(rowsInGroup[0]);
+        const bgColor = colors[g % colors.length];
+
+        // 创建分组标题tr，整行合并单元格
+        const $groupTr = $("<tr></tr>");
+        const $groupTd = $("<td></td>");
+        $groupTd.attr("colspan", totalCol);
+        $groupTd.css({
+            "background-color": "#E6EDF7",
+            "font-weight": "bold",
+            "padding": "6px 8px"
+        });
+        const displayText = dateVal ? ("要求送货日期：" + dateVal) : "要求送货日期：（空）";
+        $groupTd.text(displayText);
+        $groupTr.append($groupTd);
+
+        //插入到本组第一条明细行前面
+        $firstRow.before($groupTr);
+
+        //本组所有明细行设置背景色
+        $(rowsInGroup).each(function () {
+            $(this).find("td").css("background-color", bgColor);
+        });
+    }
+});
+
     </script>
 </body>
 </html>

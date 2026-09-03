@@ -104,6 +104,28 @@
                                 </div>
                             </div>
                         </div>
+                         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_DELIVERYDATE" style="height: ">
+                            <div class="form-label">
+                                <%=Lang.Get("PR.PRProcess.MCPR_SERVICE.DELIVERYDATE") %><span style='color: red'>*</span>:
+                            </div>
+                            <div class="form-field">
+                                <div class="form-ctl">
+                                    <div class="input-prepend input-group" id="edit_DELIVERYDATE">
+                                        <%--<ult:TextBox ID="fld_DELIVERYDATESHOW" title="" data-field="DELIVERYDATESHOW" data-type="date" Format="" Variable="DELIVERYDATESHOW" CssClass="form-control validate[required,custom[dateFormat],futureDateTime[#hdDate]]" runat="server"  data-errormessage-type-mismatch="要求送货日期必须为明天下午6点以后，默认时间为早上6点<br/>Required delivery date must be after 6pm tomorrow, default time is 6am">
+                                        </ult:TextBox>
+                                        <ult:TextBox ID="fld_DELIVERYDATE" title="" data-field="DELIVERYDATE" data-type="datetime" Format="" Variable="DELIVERYDATE" CssClass="form-control hidden validate[required,custom[dateTimeFormat]]" runat="server">
+                                        </ult:TextBox>--%>
+                                        <ult:TextBox ID="fld_DELIVERYDATE" data-type='text' title="" onblur="checkExpression(this)" data-field="DELIVERYDATE" Variable="" ControlValue="" CssClass="form-control Wdate validate[required,funcCall[futureDateTime]]" runat="server" data-errormessage-type-mismatch="要求送货日期必须为明天下午6点以后，默认时间为早上6点30分<br/>Required delivery date must be after 6pm tomorrow, default time is 6:30am" onClick="WdatePicker({readOnly:false,startDate:'%y-%M-%d 06:30:00',dateFmt:'yyyy-MM-dd HH:mm:00',alwaysUseStartDate:false})">
+                                        </ult:TextBox>
+                                        <span class="add-on input-group-addon hidden-xs"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                    <ult:Label ID="read_DELIVERYDATE" title="" Format="" runat="server">
+                                    </ult:Label>
+                                    <%--<ult:Label ID="read_DELIVERYDATESHOW" class="hidden" title="" Format="" runat="server">
+                                    </ult:Label>--%>
+                                </div>
+                            </div>
+                        </div>
                         <div class="hidden col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_FIXEDASSETS" style="height: ">
                             <div class="form-label">
                                 <%=Lang.Get("PR.PRProcess.CPR_FOOD.FIXEDASSETS") %>:
@@ -424,7 +446,7 @@
                             <tbody>
                                 <ult:Repeater ID="fld_detail_PROC_MCPR_SERVICE_ITEMS" runat="server">
                                     <itemtemplate>
-                                        <tr>
+                                        <tr data-deliverydate='<%#Eval("DELIVERYDATE") %>'>
                                             <td class="hidden">
                                                 <ult:Label ID="fld_FORMID" Text='<%#Eval("FORMID") %>' runat="server" />
                                             </td>
@@ -574,35 +596,59 @@
     <script type='text/javascript' src="My97DatePicker/WdatePicker.js"></script>
     <script type="text/javascript">
         //页面加载完成后执行按DELIVERYDATE分组交替变色
-        function applyDeliveryDateRowColor() {
-            var table = document.getElementById("tb_MCPR_SERVICE_ITEMS");
-            if (!table) return;
-            var trList = table.querySelectorAll("tbody > tr");
-            var lastDate = null;
-            var groupFlag = 0;
+  $(function () {
+   
+    // ========= 按DELIVERYDATE插入分组标题行 + 组交替底色 =========
+    const $tbody = $("#tb_MCPR_SERVICE_ITEMS > tbody");
+    const $allRows = $tbody.find("tr[data-deliverydate]");
+    if ($allRows.length === 0) return;
 
-            for (var i = 0; i < trList.length; i++) {
-                var tr = trList[i];
-                //移除旧class
-                tr.classList.remove("group-row-0", "group-row-1");
-                var td = tr.querySelector(".td_DELIVERYDATE");
-                if (!td) continue;
-                //取label文本作为日期
-                var currDate = (td.innerText || td.textContent || "").trim();
+    //1.按deliverydate分组
+    const groupMap = {};
+    const groupList = [];
+    $allRows.each(function () {
+        const dtRaw = $(this).attr("data-deliverydate") || "";
+        const dt = dtRaw.trim();
+        if (!groupMap[dt]) {
+            groupMap[dt] = [];
+            groupList.push(dt);
+        }
+        groupMap[dt].push(this);
+    });
 
-                if (currDate !== lastDate) {
-                    groupFlag = groupFlag === 0 ? 1 : 0;
-                    lastDate = currDate;
-                }
-                tr.classList.add(groupFlag === 1 ? "group-row-1" : "group-row-0");
-            }
-        }
-        //DOM加载完成执行
-        if (document.readyState === "loading") {
-            document.addEventListener("DOMContentLoaded", applyDeliveryDateRowColor);
-        } else {
-            applyDeliveryDateRowColor();
-        }
+    //2.获取表格总列数（取第一条明细tr的td数量）
+    const totalCol = $allRows.eq(0).find("td").length;
+    const colors = ["#ffffff", "#F2F7FF"];
+
+    //3.循环每组，插入分组标题行，设置本组底色
+    for (let g = 0; g < groupList.length; g++) {
+        const dateVal = groupList[g];
+        const rowsInGroup = groupMap[dateVal];
+        const $firstRow = $(rowsInGroup[0]);
+        const bgColor = colors[g % colors.length];
+
+        // 创建分组标题tr，整行合并单元格
+        const $groupTr = $("<tr></tr>");
+        const $groupTd = $("<td></td>");
+        $groupTd.attr("colspan", totalCol);
+        $groupTd.css({
+            "background-color": "#E6EDF7",
+            "font-weight": "bold",
+            "padding": "6px 8px"
+        });
+        const displayText = dateVal ? ("要求送货日期：" + dateVal) : "要求送货日期：（空）";
+        $groupTd.text(displayText);
+        $groupTr.append($groupTd);
+
+        //插入到本组第一条明细行前面
+        $firstRow.before($groupTr);
+
+        //本组所有明细行设置背景色
+        $(rowsInGroup).each(function () {
+            $(this).find("td").css("background-color", bgColor);
+        });
+    }
+});
     </script>
 </body>
 </html>
