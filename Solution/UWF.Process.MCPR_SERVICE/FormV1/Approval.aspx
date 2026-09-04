@@ -128,7 +128,7 @@
                         </div>
                         <div class="hidden col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_FIXEDASSETS" style="height: ">
                             <div class="form-label">
-                                <%=Lang.Get("PR.PRProcess.CPR_FOOD.FIXEDASSETS") %>:
+                                <%=Lang.Get("PR.PRProcess.MCPR_SERVICE.FIXEDASSETS") %>:
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
@@ -411,10 +411,10 @@
                                     <td style="" class=" td_ORDERUNIT"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.ORDERUNIT") %></td>
                                     <td style="" class=" td_SITEPRICE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.SITEPRICE") %><span style='color: red'>*</span></td>
                                     <td style="" class=" td_ORDERQUANTITY"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.ORDERQUANTITY") %> <span style='color: red'>*</span></td>
-                                    <td style="" class="td_INVOICENUMBER"><%=Lang.Get("PR.PRProcess.CPR_FOOD.INVOICENUMBER") %><span style='color: red'>*</span></td>
-                                    <td style="" class="td_BUYERNAME"><%=Lang.Get("PR.PRProcess.CPR_FOOD.BUYERNAME") %><span style='color: red'>*</span></td>
-                                    <td style="" class="td_BUYERTAXID"><%=Lang.Get("PR.PRProcess.CPR_FOOD.BUYERTAXID") %><span style='color: red'>*</span></td>
-                                    <td style="" class="td_INVOICEPATH"><%=Lang.Get("PR.PRProcess.CPR_FOOD.INVOICEPATH") %></td>
+                                    <td style="" class="td_INVOICENUMBER"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.INVOICENUMBER") %><span style='color: red'>*</span></td>
+                                    <td style="" class="td_BUYERNAME"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.BUYERNAME") %><span style='color: red'>*</span></td>
+                                    <td style="" class="td_BUYERTAXID"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.BUYERTAXID") %><span style='color: red'>*</span></td>
+                                    <td style="" class="td_INVOICEPATH"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.INVOICEPATH") %></td>
                                     <td style="" class="hidden td_FAMILYCODE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.FAMILYCODE") %></td>
                                     <td style="" class="hidden td_FAMILYNAME"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.FAMILYNAME") %></td>
                                     <td style="" class="hidden td_SUBFAMILYCODE"><%=Lang.Get("PR.PRProcess.MCPR_SERVICE.SUBFAMILYCODE") %></td>
@@ -475,16 +475,16 @@
                                             <td class=" td_ORDERQUANTITY" data-label='<%=Lang.Get("PR.PRProcess.MCPR_SERVICE.ORDERQUANTITY").Split('<')[0] %>'>
                                                 <ult:Label ID="fld_ORDERQUANTITY" title="" data-type='number' onblur="checkExpression(this)" data-field="ORDERQUANTITY" CssClass="item-control ReadOnly validate[required,custom[number]] " ControlValue='<%#Eval("ORDERQUANTITY")%>' runat="server" onchange="SumAmount(this)" data-errormessage-type-mismatch="采购数量必须大于0<br />Purchase quantity must be greater than 0"></ult:Label>
                                             </td>
-                                            <td class="td_INVOICENUMBER" data-label='<%=Lang.Get("PR.PRProcess.CPR_FOOD.INVOICENUMBER").Split('<')[0] %>'>
+                                            <td class="td_INVOICENUMBER" data-label='<%=Lang.Get("PR.PRProcess.MCPR_SERVICE.INVOICENUMBER").Split('<')[0] %>'>
                                                 <ult:Label ID="fld_INVOICENUMBER" title="" data-type='string' onblur="checkExpression(this)" data-field="INVOICENUMBER" CssClass="item-control validate[required]" ControlValue='<%#Eval("INVOICENUMBER")%>' runat="server"></ult:Label>
                                             </td>
-                                            <td class="td_BUYERNAME" data-label='<%=Lang.Get("PR.PRProcess.CPR_FOOD.BUYERNAME").Split('<')[0] %>'>
+                                            <td class="td_BUYERNAME" data-label='<%=Lang.Get("PR.PRProcess.MCPR_SERVICE.BUYERNAME").Split('<')[0] %>'>
                                                 <ult:Label ID="fld_BUYERNAME" title="" data-type='string' onblur="checkExpression(this)" data-field="BUYERNAME" CssClass="item-control validate[required]" ControlValue='<%#Eval("BUYERNAME")%>' runat="server"></ult:Label>
                                             </td>
-                                            <td class="td_BUYERTAXID" data-label='<%=Lang.Get("PR.PRProcess.CPR_FOOD.BUYERTAXID").Split('<')[0] %>'>
+                                            <td class="td_BUYERTAXID" data-label='<%=Lang.Get("PR.PRProcess.MCPR_SERVICE.BUYERTAXID").Split('<')[0] %>'>
                                                 <ult:Label ID="fld_BUYERTAXID" title="" data-type='string' onblur="checkExpression(this)" data-field="BUYERTAXID" CssClass="item-control validate[required]" ControlValue='<%#Eval("BUYERTAXID")%>' runat="server"></ult:Label>
                                             </td>
-                                            <td class="td_INVOICEPATH" data-label='<%=Lang.Get("PR.PRProcess.CPR_FOOD.INVOICEPATH").Split('<')[0] %>'>
+                                            <td class="td_INVOICEPATH" data-label='<%=Lang.Get("PR.PRProcess.MCPR_SERVICE.INVOICEPATH").Split('<')[0] %>'>
                                                 <ult:Label ID="fld_INVOICEPATH" title="" data-type='string' onblur="checkExpression(this)" data-field="INVOICEPATH" CssClass="item-control-invoice-path hidden" ControlValue='<%#Eval("INVOICEPATH")%>' runat="server"></ult:Label>
                                                 <a href="" class="invoice-path-link" target="_blank" style="display: none"></a>
                                             </td>
