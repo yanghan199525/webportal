@@ -211,7 +211,7 @@ namespace UWF.Process.MCPR_SERVICE
             {
                 string rootPath = getRootPath();
 
-                string url = string.Format("{4}/Solution/PR.PRProcess.MCPR_SERVICE/Form/NewRequest.aspx?ProcessName=MCPR_SERVICE&StepName=Begin&Incident={0}&TaskID={1}&UserName={2}&Type=MYREQUEST&ServerName=&t=&FORMID={3}&hasformid=0&t=&processStatus=1&ShowType=REPORT", Incident, TaskID, UserName, FORMID, rootPath);
+                string url = string.Format("{4}/Solution/UWF.Process.MCPR_SERVICE/Form/NewRequest.aspx?ProcessName=CPR_SERVICE&StepName=Begin&Incident={0}&TaskID={1}&UserName={2}&Type=MYREQUEST&ServerName=&t=&FORMID={3}&hasformid=0&t=&processStatus=1&ShowType=REPORT", Incident, TaskID, UserName, FORMID, rootPath);
                 Response.Redirect(url);
 
             }
@@ -627,9 +627,9 @@ namespace UWF.Process.MCPR_SERVICE
                     TextBox fld_SITECODE = (TextBox)Page.FindControl("fld_SITECODE");
                     TextBox fld_SUPPLIERCODE = (TextBox)Page.FindControl("fld_SUPPLIERCODE");
                     UserInfo UserInfo = Page.FindControl("UserInfo1") as UserInfo;
-                    Ultimus.UWF.Form.WebControls.Repeater fld_detail_PROC_MCPR_SERVICE_ITEMS = Page.FindControl("fld_detail_PROC_MCPR_SERVICE_ITEMS") as Ultimus.UWF.Form.WebControls.Repeater;
+                    Ultimus.UWF.Form.WebControls.Repeater fld_detail_PROC_CPR_SERVICE_ITEMS = Page.FindControl("fld_detail_PROC_CPR_SERVICE_ITEMS") as Ultimus.UWF.Form.WebControls.Repeater;
                     IWorkflow _workflow = ServiceContainer.Instance().GetService<IWorkflow>();
-                    DataTable Article = _workflow.GetDetailData(UserInfo, fld_detail_PROC_MCPR_SERVICE_ITEMS, UserInfo.FormID);
+                    DataTable Article = _workflow.GetDetailData(UserInfo, fld_detail_PROC_CPR_SERVICE_ITEMS, UserInfo.FormID);
                     foreach (DataRow item in Article.Rows)
                     {
                         string ArticleName = item["ARTICLENAME"].ToString();
@@ -701,9 +701,9 @@ namespace UWF.Process.MCPR_SERVICE
             UserInfo UserInfo = Page.FindControl("UserInfo1") as UserInfo;
             Label read_APPLICANTCODE = (Label)UserInfo.FindControl("read_APPLICANTCODE");//工号ok
 
-            Ultimus.UWF.Form.WebControls.Repeater fld_detail_PROC_MCPR_SERVICE_ITEMS = Page.FindControl("fld_detail_PROC_MCPR_SERVICE_ITEMS") as Ultimus.UWF.Form.WebControls.Repeater;
+            Ultimus.UWF.Form.WebControls.Repeater fld_detail_PROC_CPR_SERVICE_ITEMS = Page.FindControl("fld_detail_PROC_CPR_SERVICE_ITEMS") as Ultimus.UWF.Form.WebControls.Repeater;
             IWorkflow _workflow = ServiceContainer.Instance().GetService<IWorkflow>();
-            DataTable dt2 = _workflow.GetDetailData(UserInfo, fld_detail_PROC_MCPR_SERVICE_ITEMS, UserInfo.FormID);
+            DataTable dt2 = _workflow.GetDetailData(UserInfo, fld_detail_PROC_CPR_SERVICE_ITEMS, UserInfo.FormID);
 
             foreach (DataRow item in dt2.Rows)
             {
@@ -1116,9 +1116,9 @@ VALUES
             TextBox fld_SITECODE = (TextBox)Page.FindControl("fld_SITECODE");
             TextBox fld_SUPPLIERCODE = (TextBox)Page.FindControl("fld_SUPPLIERCODE");
             UserInfo UserInfo = Page.FindControl("UserInfo1") as UserInfo;
-            Ultimus.UWF.Form.WebControls.Repeater fld_detail_PROC_MCPR_SERVICE_ITEMS = Page.FindControl("fld_detail_PROC_MCPR_SERVICE_ITEMS") as Ultimus.UWF.Form.WebControls.Repeater;
+            Ultimus.UWF.Form.WebControls.Repeater fld_detail_PROC_CPR_SERVICE_ITEMS = Page.FindControl("fld_detail_PROC_CPR_SERVICE_ITEMS") as Ultimus.UWF.Form.WebControls.Repeater;
             IWorkflow _workflow = ServiceContainer.Instance().GetService<IWorkflow>();
-            DataTable Article = _workflow.GetDetailData(UserInfo, fld_detail_PROC_MCPR_SERVICE_ITEMS, UserInfo.FormID);
+            DataTable Article = _workflow.GetDetailData(UserInfo, fld_detail_PROC_CPR_SERVICE_ITEMS, UserInfo.FormID);
             string[] resArray = new string[Article.Rows.Count];
 
             DropDownList fld_SUPPLIERTYPE = (DropDownList)Page.FindControl("fld_SUPPLIERTYPE");
@@ -1156,9 +1156,9 @@ VALUES
         {
             string ArticleName = null;
             UserInfo UserInfo = Page.FindControl("UserInfo1") as UserInfo;
-            Ultimus.UWF.Form.WebControls.Repeater fld_detail_PROC_MCPR_SERVICE_ITEMS = Page.FindControl("fld_detail_PROC_MCPR_SERVICE_ITEMS") as Ultimus.UWF.Form.WebControls.Repeater;
+            Ultimus.UWF.Form.WebControls.Repeater fld_detail_PROC_CPR_SERVICE_ITEMS = Page.FindControl("fld_detail_PROC_CPR_SERVICE_ITEMS") as Ultimus.UWF.Form.WebControls.Repeater;
             IWorkflow _workflow = ServiceContainer.Instance().GetService<IWorkflow>();
-            DataTable Article = _workflow.GetDetailData(UserInfo, fld_detail_PROC_MCPR_SERVICE_ITEMS, UserInfo.FormID);
+            DataTable Article = _workflow.GetDetailData(UserInfo, fld_detail_PROC_CPR_SERVICE_ITEMS, UserInfo.FormID);
             foreach (DataRow item in Article.Rows)
             {
                 string OrderQuantity = item["OrderQuantity"].ToString();
@@ -1226,9 +1226,9 @@ VALUES
         private string[] checkArticleCode()
         {
             UserInfo UserInfo = Page.FindControl("UserInfo1") as UserInfo;
-            Ultimus.UWF.Form.WebControls.Repeater fld_detail_PROC_MCPR_SERVICE_Items = Page.FindControl("fld_detail_PROC_MCPR_SERVICE_Items") as Ultimus.UWF.Form.WebControls.Repeater;
+            Ultimus.UWF.Form.WebControls.Repeater fld_detail_PROC_CPR_SERVICE_Items = Page.FindControl("fld_detail_PROC_CPR_SERVICE_Items") as Ultimus.UWF.Form.WebControls.Repeater;
             IWorkflow _workflow = ServiceContainer.Instance().GetService<IWorkflow>();
-            DataTable Article = _workflow.GetDetailData(UserInfo, fld_detail_PROC_MCPR_SERVICE_Items, UserInfo.FormID);
+            DataTable Article = _workflow.GetDetailData(UserInfo, fld_detail_PROC_CPR_SERVICE_Items, UserInfo.FormID);
             string[] resArray = new string[Article.Rows.Count];
 
             DropDownList fld_SUPPLIERTYPE = (DropDownList)Page.FindControl("fld_SUPPLIERTYPE");
