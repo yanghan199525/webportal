@@ -90,10 +90,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="EmailTemplate\Finshed_Nontify.html" />
-    <Content Include="EmailTemplate\IncidentAborted.html" />
     <Content Include="EmailTemplate\Notify.html" />
     <Content Include="EmailTemplate\TaskActived.html" />
-    <Content Include="EmailTemplate\TaskActived_Backup.html" />
     <Content Include="EmailTemplate\TaskCompleted.html" />
     <Content Include="EmailTemplate\TaskConfirmation.html" />
     <Content Include="EmailTemplate\TaskRejected.html" />
