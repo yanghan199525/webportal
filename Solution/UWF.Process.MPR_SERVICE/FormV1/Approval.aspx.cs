@@ -9,7 +9,7 @@ using System.Data;
 using Ultimus.UWF.Form.ProcessControl.V3;
 using MyLib; 
 
-namespace PR.PRProcess.MPR_SERVICE
+namespace UWF.Process.MPR_SERVICE
 {
     public partial class Approval : System.Web.UI.Page
     {

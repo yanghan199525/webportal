@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="NewRequest.aspx.cs" Inherits="PR.PRProcess.MPR_SERVICE.NewRequest" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="NewRequest.aspx.cs" Inherits="UWF.Process.MPR_SERVICE.NewRequest" %>
 <%@ Register Src="../../Ultimus.UWF.Form.ProcessControl.V3/UserInfo.ascx" TagName="UserInfo" TagPrefix="ui" %>
 <%@ Register Src="../../Ultimus.UWF.Form.ProcessControl.V3/ApprovalHistory.ascx" TagName="ApprovalHistory" TagPrefix="ah" %>
 <%@ Register Src="../../Ultimus.UWF.Form.ProcessControl.V3/MultiAttachments.ascx" TagName="Attachments" TagPrefix="attach" %>
@@ -25,8 +25,8 @@
                 buttonList1.BeforeSubmit += new System.ComponentModel.CancelEventHandler(NewRequest_BeforeSubmit);
                 buttonList1.AfterSubmit += new System.ComponentModel.CancelEventHandler(NewRequest_AfterSubmit);
 
-                Ultimus.UWF.Form.WebControls.Repeater fld_detail_PROC_MMPR_SERVICE_ITEMS = Page.FindControl("fld_detail_PROC_MMPR_SERVICE_ITEMS") as Ultimus.UWF.Form.WebControls.Repeater;
-                fld_detail_PROC_MMPR_SERVICE_ITEMS.AfterBind += new System.EventHandler(AfterBind);
+                Ultimus.UWF.Form.WebControls.Repeater fld_detail_PROC_MPR_SERVICE_ITEMS = Page.FindControl("fld_detail_PROC_MPR_SERVICE_ITEMS") as Ultimus.UWF.Form.WebControls.Repeater;
+                fld_detail_PROC_MPR_SERVICE_ITEMS.AfterBind += new System.EventHandler(AfterBind);
             }
             AfterLoad();
         }
@@ -36,11 +36,11 @@
         {
             //如果明细表没有数据，那么给明细表加空行
             ProcessFormLogic _form = new ProcessFormLogic();
-            Ultimus.UWF.Form.WebControls.Repeater fld_detail_PROC_MMPR_SERVICE_ITEMS = Page.FindControl("fld_detail_PROC_MMPR_SERVICE_ITEMS") as Ultimus.UWF.Form.WebControls.Repeater;
-            if (fld_detail_PROC_MMPR_SERVICE_ITEMS.Items.Count == 0)
+            Ultimus.UWF.Form.WebControls.Repeater fld_detail_PROC_MPR_SERVICE_ITEMS = Page.FindControl("fld_detail_PROC_MPR_SERVICE_ITEMS") as Ultimus.UWF.Form.WebControls.Repeater;
+            if (fld_detail_PROC_MPR_SERVICE_ITEMS.Items.Count == 0)
             {
                 UserInfo userInfo1 = Page.FindControl("UserInfo1") as UserInfo;
-                _form.AddBlankRow(userInfo1, fld_detail_PROC_MMPR_SERVICE_ITEMS, 1);
+                _form.AddBlankRow(userInfo1, fld_detail_PROC_MPR_SERVICE_ITEMS, 1);
             }
         }
     </script>
@@ -68,7 +68,7 @@
                         <div class="fa-title">
                             <i class="fa fa-check-square-o"></i>
                             <span class="padding-r-5"></span>
-                            <%=Lang.Get("PR.PRProcess.MPR_SERVICE.MPR_SERVICE") %>
+                            <%=Lang.Get("UWF.Process.MPR_SERVICE.MPR_SERVICE") %>
                         </div>
                         <ul class="panel-tools">
                             <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li>
@@ -78,7 +78,7 @@
                     <div class="panel-body form-table">
                         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_DOCUMENTNO" style="height: ">
                             <div class="form-label">
-                                <%=Lang.Get("PR.PRProcess.MPR_SERVICE.DOCUMENTNO") %>:
+                                <%=Lang.Get("UWF.Process.MPR_SERVICE.DOCUMENTNO") %>:
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
@@ -88,7 +88,7 @@
                         </div>
                         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_PurchasingPurpose" style="height: ">
                             <div class="form-label">
-                                <%=Lang.Get("PR.PRProcess.MPR_SERVICE.PurchasingPurpose") %>:
+                                <%=Lang.Get("UWF.Process.MPR_SERVICE.PurchasingPurpose") %>:
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
@@ -98,7 +98,7 @@
                         </div>
                         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_SITECODE" style="height: ">
                             <div class="form-label">
-                                <%=Lang.Get("PR.PRProcess.MPR_SERVICE.SITECODE") %>:
+                                <%=Lang.Get("UWF.Process.MPR_SERVICE.SITECODE") %>:
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
@@ -108,7 +108,7 @@
                         </div>
                         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_SITENAME" style="height: ">
                             <div class="form-label">
-                                <%=Lang.Get("PR.PRProcess.MPR_SERVICE.SITENAME") %>:
+                                <%=Lang.Get("UWF.Process.MPR_SERVICE.SITENAME") %>:
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
@@ -118,7 +118,7 @@
                         </div>
                         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_AMOUNT" style="height: ">
                             <div class="form-label">
-                                <%=Lang.Get("PR.PRProcess.MPR_SERVICE.AMOUNT") %>:
+                                <%=Lang.Get("UWF.Process.MPR_SERVICE.AMOUNT") %>:
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
@@ -128,7 +128,7 @@
                         </div>
                         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell " id="div_field_Requirement" style="height: ">
                             <div class="form-label">
-                                <%=Lang.Get("PR.PRProcess.MPR_SERVICE.Requirement") %>:
+                                <%=Lang.Get("UWF.Process.MPR_SERVICE.Requirement") %>:
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
@@ -138,7 +138,7 @@
                         </div>
                         <div class="col-lg-8 col-sm-6 col-xs-12 form-cell " id="div_field_APPREMARK" style="height: ">
                             <div class="form-label">
-                                <%=Lang.Get("PR.PRProcess.MPR_SERVICE.APPREMARK") %>:
+                                <%=Lang.Get("UWF.Process.MPR_SERVICE.APPREMARK") %>:
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
@@ -148,7 +148,7 @@
                         </div>
                         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_APPROVEDATE" style="height: ">
                             <div class="form-label">
-                                <%=Lang.Get("PR.PRProcess.MPR_SERVICE.APPROVEDATE") %>:
+                                <%=Lang.Get("UWF.Process.MPR_SERVICE.APPROVEDATE") %>:
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
@@ -158,7 +158,7 @@
                         </div>
                         <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_APPROVE" style="height: ">
                             <div class="form-label">
-                                <%=Lang.Get("PR.PRProcess.MPR_SERVICE.APPROVE") %>:
+                                <%=Lang.Get("UWF.Process.MPR_SERVICE.APPROVE") %>:
                             </div>
                             <div class="form-field">
                                 <div class="form-ctl">
@@ -186,7 +186,7 @@
                         <div class="fa-title">
                             <i class="fa fa-bars"></i>
                             <span class="padding-r-5"></span>
-                            <%=Lang.Get("PR.PRProcess.MPR_SERVICE.MMPR_SERVICE_ITEMS") %>
+                            <%=Lang.Get("UWF.Process.MPR_SERVICE.MPR_SERVICE_ITEMS") %>
                         </div>
                         <ul class="panel-tools">
                             <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li>
@@ -207,31 +207,31 @@
                                         <%=Lang.Get("No") %>
                                     </td>
                                     <td class="hidden td_ARTICLECODE">
-                                        <%=Lang.Get("PR.PRProcess.MPR_SERVICE.ARTICLECODE") %>
+                                        <%=Lang.Get("UWF.Process.MPR_SERVICE.ARTICLECODE") %>
                                     </td>
                                     <td class="td_ARTICLENAME">
-                                        <%=Lang.Get("PR.PRProcess.MPR_SERVICE.ARTICLENAME") %>
+                                        <%=Lang.Get("UWF.Process.MPR_SERVICE.ARTICLENAME") %>
                                     </td>
                                     <td class="hidden td_SUBSUBFAMILYCODE">
-                                        <%=Lang.Get("PR.PRProcess.MPR_SERVICE.SUBSUBFAMILYCODE") %>
+                                        <%=Lang.Get("UWF.Process.MPR_SERVICE.SUBSUBFAMILYCODE") %>
                                     </td>
                                     <td class="td_SUBSUBFAMILYNAME">
-                                        <%=Lang.Get("PR.PRProcess.MPR_SERVICE.SUBSUBFAMILYNAME") %>
+                                        <%=Lang.Get("UWF.Process.MPR_SERVICE.SUBSUBFAMILYNAME") %>
                                     </td>
                                     <td class="td_ORDERUNIT">
-                                        <%=Lang.Get("PR.PRProcess.MPR_SERVICE.ORDERUNIT") %>
+                                        <%=Lang.Get("UWF.Process.MPR_SERVICE.ORDERUNIT") %>
                                     </td>
                                     <td class="td_SITEPRICE">
-                                        <%=Lang.Get("PR.PRProcess.MPR_SERVICE.SITEPRICE") %>
+                                        <%=Lang.Get("UWF.Process.MPR_SERVICE.SITEPRICE") %>
                                     </td>
                                     <td class="td_ORDERQUANTITY">
-                                        <%=Lang.Get("PR.PRProcess.MPR_SERVICE.ORDERQUANTITY") %>
+                                        <%=Lang.Get("UWF.Process.MPR_SERVICE.ORDERQUANTITY") %>
                                     </td>
                                     <td class="td_SUBTOTALAMOUNT">
-                                        <%=Lang.Get("PR.PRProcess.MPR_SERVICE.SUBTOTALAMOUNT") %>
+                                        <%=Lang.Get("UWF.Process.MPR_SERVICE.SUBTOTALAMOUNT") %>
                                     </td>
                                     <td class="td_DELIVERYDATE">
-                                        <%=Lang.Get("PR.PRProcess.MPR_SERVICE.DELIVERYDATE") %>
+                                        <%=Lang.Get("UWF.Process.MPR_SERVICE.DELIVERYDATE") %>
                                     </td>
                                 </tr>
                             </thead>
@@ -252,7 +252,7 @@
                                                 </ult:TextBox>
                                             </td>
                                             <td class="hidden td_ARTICLECODE"
-                                                data-label='<%=Lang.Get("PR.PRProcess.MPR_SERVICE.ARTICLECODE").Split('<')[0] %>'>
+                                                data-label='<%=Lang.Get("UWF.Process.MPR_SERVICE.ARTICLECODE").Split('<')[0] %>'>
                                                 <ult:Label ID="fld_ARTICLECODE"
                                                            title=""
                                                            data-field="ARTICLECODE"
@@ -262,7 +262,7 @@
                                                 </ult:Label>
                                             </td>
                                             <td class="td_ARTICLENAME"
-                                                data-label='<%=Lang.Get("PR.PRProcess.MPR_SERVICE.ARTICLENAME").Split('<')[0] %>'>
+                                                data-label='<%=Lang.Get("UWF.Process.MPR_SERVICE.ARTICLENAME").Split('<')[0] %>'>
                                                 <ult:Label ID="fld_ARTICLENAME"
                                                            title=""
                                                            data-field="ARTICLENAME"
@@ -272,7 +272,7 @@
                                                 </ult:Label>
                                             </td>
                                             <td class="hidden td_SUBSUBFAMILYCODE"
-                                                data-label='<%=Lang.Get("PR.PRProcess.MPR_SERVICE.SUBSUBFAMILYCODE").Split('<')[0] %>'>
+                                                data-label='<%=Lang.Get("UWF.Process.MPR_SERVICE.SUBSUBFAMILYCODE").Split('<')[0] %>'>
                                                 <ult:Label ID="fld_SUBSUBFAMILYCODE"
                                                            title=""
                                                            data-field="SUBSUBFAMILYCODE"
@@ -282,7 +282,7 @@
                                                 </ult:Label>
                                             </td>
                                             <td class="td_SUBSUBFAMILYNAME"
-                                                data-label='<%=Lang.Get("PR.PRProcess.MPR_SERVICE.SUBSUBFAMILYNAME").Split('<')[0] %>'>
+                                                data-label='<%=Lang.Get("UWF.Process.MPR_SERVICE.SUBSUBFAMILYNAME").Split('<')[0] %>'>
                                                 <ult:Label ID="fld_SUBSUBFAMILYNAME"
                                                            title=""
                                                            data-field="SUBSUBFAMILYNAME"
@@ -292,7 +292,7 @@
                                                 </ult:Label>
                                             </td>
                                             <td class="td_ORDERUNIT"
-                                                data-label='<%=Lang.Get("PR.PRProcess.MPR_SERVICE.ORDERUNIT").Split('<')[0] %>'>
+                                                data-label='<%=Lang.Get("UWF.Process.MPR_SERVICE.ORDERUNIT").Split('<')[0] %>'>
                                                 <ult:Label ID="fld_ORDERUNIT"
                                                            title=""
                                                            data-field="ORDERUNIT"
@@ -302,7 +302,7 @@
                                                 </ult:Label>
                                             </td>
                                             <td class="td_SITEPRICE"
-                                                data-label='<%=Lang.Get("PR.PRProcess.MPR_SERVICE.SITEPRICE").Split('<')[0] %>'>
+                                                data-label='<%=Lang.Get("UWF.Process.MPR_SERVICE.SITEPRICE").Split('<')[0] %>'>
                                                 <ult:Label ID="fld_SITEPRICE"
                                                            title=""
                                                            data-field="SITEPRICE"
@@ -312,7 +312,7 @@
                                                 </ult:Label>
                                             </td>
                                             <td class="td_ORDERQUANTITY"
-                                                data-label='<%=Lang.Get("PR.PRProcess.MPR_SERVICE.ORDERQUANTITY").Split('<')[0] %>'>
+                                                data-label='<%=Lang.Get("UWF.Process.MPR_SERVICE.ORDERQUANTITY").Split('<')[0] %>'>
                                                 <ult:Label ID="fld_ORDERQUANTITY"
                                                            title=""
                                                            data-field="ORDERQUANTITY"
@@ -322,7 +322,7 @@
                                                 </ult:Label>
                                             </td>
                                             <td class="td_SUBTOTALAMOUNT"
-                                                data-label='<%=Lang.Get("PR.PRProcess.MPR_SERVICE.SUBTOTALAMOUNT").Split('<')[0] %>'>
+                                                data-label='<%=Lang.Get("UWF.Process.MPR_SERVICE.SUBTOTALAMOUNT").Split('<')[0] %>'>
                                                 <ult:Label ID="fld_SUBTOTALAMOUNT"
                                                            title=""
                                                            data-field="SUBTOTALAMOUNT"
@@ -332,7 +332,7 @@
                                                 </ult:Label>
                                             </td>
                                             <td class="td_DELIVERYDATE"
-                                                data-label='<%=Lang.Get("PR.PRProcess.MPR_SERVICE.DELIVERYDATE").Split('<')[0] %>'>
+                                                data-label='<%=Lang.Get("UWF.Process.MPR_SERVICE.DELIVERYDATE").Split('<')[0] %>'>
                                                 <ult:Label ID="fld_DELIVERYDATE"
                                                            title=""
                                                            data-field="DELIVERYDATE"
@@ -373,8 +373,8 @@
             $("#fld_AMOUNT").val(thousands(Amount));
             $("#fld_AMOUNT").next("span").text($("#fld_AMOUNT").val());
 
-            $("#tb_MMPR_SERVICE_ITEMS").find("thead").find("td:last").addClass("hidden");
-            $("#tb_MMPR_SERVICE_ITEMS").find("tbody").find("td:last").addClass("hidden");
+            $("#tb_MPR_SERVICE_ITEMS").find("thead").find("td:last").addClass("hidden");
+            $("#tb_MPR_SERVICE_ITEMS").find("tbody").find("td:last").addClass("hidden");
 
             $(".td_ORDERQUANTITY").find("span").each(function (index, element) {
                 let num = parseInt($(this).text());

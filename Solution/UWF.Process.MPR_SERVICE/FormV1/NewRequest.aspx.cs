@@ -14,7 +14,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using MyLib;
 
-namespace PR.PRProcess.MPR_SERVICE
+namespace UWF.Process.MPR_SERVICE
 {
     public partial class NewRequest : System.Web.UI.Page
     {

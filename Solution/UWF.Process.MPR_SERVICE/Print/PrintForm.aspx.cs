@@ -9,7 +9,7 @@ using System.Data;
 using Ultimus.UWF.Form.ProcessControl.V3;
 using MyLib; 
 
-namespace UWF.Process.MMPR_SERVICE
+namespace UWF.Process.MPR_SERVICE
 {
     public partial class PrintForm : System.Web.UI.Page
     {
