@@ -112,8 +112,6 @@
       <DependentUpon>NewRequest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Interface\IRecipient.cs" />
-    <Compile Include="Interface\ISubscription.cs" />
     <Compile Include="Print\PrintForm.aspx.cs">
       <DependentUpon>PrintForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

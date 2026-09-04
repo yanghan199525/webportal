@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="PrintForm.aspx.cs" Inherits="UWF.Process.MMCPR_SERVICE.PrintForm" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="PrintForm.aspx.cs" Inherits="UWF.Process.MCPR_SERVICE.PrintForm" %>
 <%@ Register Src="../../Ultimus.UWF.Form.ProcessControl.V3/PrintUserInfo.ascx" TagName="UserInfo" TagPrefix="ui" %>
 <%@ Register Src="../../Ultimus.UWF.Form.ProcessControl.V3/PrintApprovalHistory.ascx" TagName="ApprovalHistory" TagPrefix="ah" %>
 <%@ Register Src="../../Ultimus.UWF.Form.ProcessControl.V3/PrintCirculationUserInfo.ascx" TagName="CirculationUserInfo" TagPrefix="cir" %>
@@ -14,18 +14,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
     <meta name="description" content="Ultimus BPM , Ultimus Business Process Management">
     <meta name="keywords" content="ultimus, bpm, workflow, business process management" />
-    <title>MMCPR_SERVICE</title>
+    <title>MCPR_SERVICE</title>
 </head>
 <body>
     <form id="form1" runat="server">
         <div id="divmain">
 
-                <ui:userinfo id="UserInfo1" processtitle="MMCPR_SERVICE" processpefix="" tablename="PROC_MMCPR_SERVICE"
-   tablenamedetail="PROC_MMCPR_SERVICE_ITEMS" runat="server"></ui:userinfo>
-                <div class="panel  hidden"><%=Lang.Get("UWF.Process.MMCPR_SERVICE.MMCPR_SERVICE") %></div>
+                <ui:userinfo id="UserInfo1" processtitle="MCPR_SERVICE" processpefix="" tablename="PROC_MCPR_SERVICE"
+   tablenamedetail="PROC_MCPR_SERVICE_ITEMS" runat="server"></ui:userinfo>
+                <div class="panel  hidden"><%=Lang.Get("UWF.Process.MCPR_SERVICE.MCPR_SERVICE") %></div>
                 <table border="1" style="width: 100%; border-collapse: collapse;">
                     <tr class="">
-                        <td class="tdlbl tdl_SITECODE"><%=Lang.Get("UWF.Process.MMCPR_SERVICE.SITECODE") %>：</td>
+                        <td class="tdlbl tdl_SITECODE"><%=Lang.Get("UWF.Process.MCPR_SERVICE.SITECODE") %>：</td>
                         <td class="tdtxt tdt_SITECODE">
                                                         <ult:Label ID="read_SITECODE"  Format="" runat="server"></ult:Label>
 </td>
@@ -33,12 +33,12 @@
                         <td class="tdtxt"></td>
                     </tr>
             </table>
-                <div class="panel  "><%=Lang.Get("UWF.Process.MMCPR_SERVICE.MMCPR_SERVICE_ITEMS") %></div>
+                <div class="panel  "><%=Lang.Get("UWF.Process.MCPR_SERVICE.MCPR_SERVICE_ITEMS") %></div>
                 <table border="1" style="width: 100%; border-collapse: collapse;">
                 <tr>
-                    <td style="" class=" thlbl td_ARTICLECODE"><%=Lang.Get("UWF.Process.MMCPR_SERVICE.ARTICLECODE") %></td>
+                    <td style="" class=" thlbl td_ARTICLECODE"><%=Lang.Get("UWF.Process.MCPR_SERVICE.ARTICLECODE") %></td>
                 </tr>
-                <ult:Repeater ID="read_detail_PROC_MMCPR_SERVICE_ITEMS" runat="server">
+                <ult:Repeater ID="read_detail_PROC_MCPR_SERVICE_ITEMS" runat="server">
                   <ItemTemplate>
                     <tr>
                        <td class="Detail_tdtxt   td_ARTICLECODE">
