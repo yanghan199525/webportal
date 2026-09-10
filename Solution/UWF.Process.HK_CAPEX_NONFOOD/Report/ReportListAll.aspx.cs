@@ -111,8 +111,7 @@ CROSS APPLY (
       --AND CREATEDATE > DATEADD(DAY, -60, GETDATE())
     ORDER BY ID DESC
 ) AS WF
-WHERE AAA.INCIDENT <> -1  -- 3. 保持类型一致，避免隐式转换导致索引失效
-ORDER BY AAA.REQUESTDATE DESC", pcCode, empNo);
+WHERE AAA.INCIDENT <> -1 ", pcCode, empNo);
             //Ultimus.UWF.Form.WebControls.Repeater cptLog = Page.FindControl("OR_CPR_LOG") as Ultimus.UWF.Form.WebControls.Repeater;
             //cptLog.Source = string.Format();
         }
