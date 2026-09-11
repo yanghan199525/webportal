@@ -19,15 +19,15 @@
     <meta name="keywords" content="ultimus, bpm, workflow, business process management" />
     <title><%=Lang.Get(Request.QueryString["ProcessName"]) %></title>
     <script runat="server">
-            protected void Page_Load(object sender, EventArgs e)
-            {
-                ButtonList buttonList1 = Page.FindControl("ButtonList1") as ButtonList;
-                buttonList1.BeforeSubmit += new System.ComponentModel.CancelEventHandler(Process);
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            ButtonList buttonList1 = Page.FindControl("ButtonList1") as ButtonList;
+            buttonList1.BeforeSubmit += new System.ComponentModel.CancelEventHandler(Process);
 
-                Ultimus.UWF.Form.WebControls.Repeater read_detail_PROC_PO_SUPPLIER_SUMMARY_ITEMS = Page.FindControl("read_detail_PROC_PO_SUPPLIER_SUMMARY_ITEMS") as Ultimus.UWF.Form.WebControls.Repeater;
-                AfterLoad();
-            }
-     
+            Ultimus.UWF.Form.WebControls.Repeater read_detail_PROC_PO_SUPPLIER_SUMMARY_ITEMS = Page.FindControl("read_detail_PROC_PO_SUPPLIER_SUMMARY_ITEMS") as Ultimus.UWF.Form.WebControls.Repeater;
+            AfterLoad();
+        }
+
     </script>
 </head>
 <body>
@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="panel-body form-table">
-                        
+
                         <div class="col-lg-12 col-sm-6 col-xs-12 form-cell hidden" id="div_field_BATCHNUMBER" style="height: ">
                             <div class="form-label">
                                 <%=Lang.Get("UWF.Process.PO_SUPPLIER_SUMMARY.BATCHNUMBER") %>:
@@ -73,13 +73,12 @@
 
                         </div>
                         <!--补充空单元格-->
-                       <%-- <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden-sm hidden-xs addCell2" style="height: ">
+                        <%-- <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden-sm hidden-xs addCell2" style="height: ">
                             <div class="form-label">
                             </div>
                             <div class="form-field">
                             </div>
                         </div>--%>
-
                     </div>
                 </div>
             </div>
@@ -112,9 +111,9 @@
                                         <td style="" class="  td_SUPPLIERNAME"><%=Lang.Get("UWF.Process.PO_SUPPLIER_SUMMARY.SUPPLIERNAME") %></td>
                                         <td style="" class="  td_COMPANYCODE"><%=Lang.Get("UWF.Process.PO_SUPPLIER_SUMMARY.COMPANYCODE") %></td>
                                         <td style="" class="  td_TOTALAMOUNTORDER"><%=Lang.Get("UWF.Process.PO_SUPPLIER_SUMMARY.TOTALAMOUNTORDER") %></td>
-                                          <td style="" class="  td_TOTALAMOUNTSUPPLIER"><%=Lang.Get("UWF.Process.PO_SUPPLIER_SUMMARY.TOTALAMOUNTSUPPLIER") %></td>
+                                        <td style="" class="  td_TOTALAMOUNTSUPPLIER"><%=Lang.Get("UWF.Process.PO_SUPPLIER_SUMMARY.TOTALAMOUNTSUPPLIER") %></td>
                                         <td style="" class="  td_TOTALAMOUNTDIFFER"><%=Lang.Get("UWF.Process.PO_SUPPLIER_SUMMARY.TOTALAMOUNTDIFFER") %></td>
-                                      
+
                                         <td style="" class="hidden  td_STATECODE"><%=Lang.Get("UWF.Process.PO_SUPPLIER_SUMMARY.STATECODE") %></td>
                                         <td style="" class="hidden  td_BATCHNUMBER"><%=Lang.Get("UWF.Process.PO_SUPPLIER_SUMMARY.BATCHNUMBER") %></td>
                                         <td style="" class="hidden  td_ROWGUID"><%=Lang.Get("UWF.Process.PO_SUPPLIER_SUMMARY.ROWGUID") %></td>
@@ -126,7 +125,7 @@
                                         <ItemTemplate>
                                             <tr>
                                                 <td class=" td_ISALLOW" data-label='<%=Lang.Get("UWF.Process.PO_SUPPLIER_SUMMARY.ISALLOW").Split('<')[0] %>'>
-                                                    <ult:CheckBox ID="fld_ISALLOW" title="" data-type='string' data-field="ISALLOW" CssClass="item-checkbox" runat="server"  Format="" Width="90%" Checked="true"></ult:CheckBox>
+                                                    <ult:CheckBox ID="fld_ISALLOW" title="" data-type='string' data-field="ISALLOW" CssClass="item-checkbox" runat="server" Format="" Width="90%" Checked="true"></ult:CheckBox>
                                                 </td>
                                                 <td class="hidden">
                                                     <ult:Label ID="fld_FORMID" Text='<%#Eval("FORMID") %>' runat="server" />
@@ -144,16 +143,16 @@
                                                     <ult:Label ID="fld_COMPANYCODE" title="" data-type='string' data-field="COMPANYCODE" runat="server" Text='<%#Eval("COMPANYCODE")%>' Format="" Width="90%"></ult:Label>
                                                 </td>
                                                 <td class=" td_TOTALAMOUNTORDER" data-label='<%=Lang.Get("UWF.Process.PO_SUPPLIER_SUMMARY.TOTALAMOUNTORDER").Split('<')[0] %>'>
-                                                    <ult:Label ID="fld_TOTALAMOUNTORDER" title="" data-type='string' data-field="TOTALAMOUNTORDER" runat="server" Text='<%#Eval("TOTALAMOUNTORDER")%>'CssClass="autonumber" Format="" Width="90%"></ult:Label>
+                                                    <ult:Label ID="fld_TOTALAMOUNTORDER" title="" data-field="TOTALAMOUNTORDER" runat="server" Text='<%#Eval("TOTALAMOUNTORDER")%>' CssClass="autonumber"  Format="" Width="90%"></ult:Label>
                                                 </td>
-                                                 <td class=" td_TOTALAMOUNTSUPPLIER" data-label='<%=Lang.Get("UWF.Process.PO_SUPPLIER_SUMMARY.TOTALAMOUNTSUPPLIER").Split('<')[0] %>'>
-                                                    <ult:Label ID="fld_TOTALAMOUNTSUPPLIER" title="" data-type='string' data-field="TOTALAMOUNTSUPPLIER" runat="server" Text='<%#Eval("TOTALAMOUNTSUPPLIER")%>'CssClass="autonumber" Format="" Width="90%"></ult:Label>
+                                                <td class=" td_TOTALAMOUNTSUPPLIER" data-label='<%=Lang.Get("UWF.Process.PO_SUPPLIER_SUMMARY.TOTALAMOUNTSUPPLIER").Split('<')[0] %>'>
+                                                    <ult:Label ID="fld_TOTALAMOUNTSUPPLIER" title="" data-field="TOTALAMOUNTSUPPLIER" runat="server" Text='<%#Eval("TOTALAMOUNTSUPPLIER")%>' CssClass="autonumber"  Format="" Width="90%"></ult:Label>
+                                                </td>
                                                 </td>
                                                 <td class=" td_TOTALAMOUNTDIFFER" data-label='<%=Lang.Get("UWF.Process.PO_SUPPLIER_SUMMARY.TOTALAMOUNTDIFFER").Split('<')[0] %>'>
-                                                    <ult:Label ID="fld_TOTALAMOUNTDIFFER" title="" data-type='string' data-field="TOTALAMOUNTDIFFER" runat="server" Text='<%#Eval("TOTALAMOUNTDIFFER")%>'CssClass="autonumber" Format="" Width="90%"></ult:Label>
+                                                    <ult:Label ID="fld_TOTALAMOUNTDIFFER" title="" data-field="TOTALAMOUNTDIFFER" runat="server" Text='<%#Eval("TOTALAMOUNTDIFFER")%>' CssClass="autonumber" Format="" Width="90%"></ult:Label>
                                                 </td>
-                                               
-                                                <td class="hidden td_STATECODE"  data-label='<%=Lang.Get("UWF.Process.PO_SUPPLIER_SUMMARY.STATECODE").Split('<')[0] %>'>
+                                                <td class="hidden td_STATECODE" data-label='<%=Lang.Get("UWF.Process.PO_SUPPLIER_SUMMARY.STATECODE").Split('<')[0] %>'>
                                                     <ult:Label ID="fld_STATECODE" title="" data-type='string' data-field="STATECODE" runat="server" Text='<%#Eval("STATECODE")%>' Format="" Width="90%"></ult:Label>
                                                 </td>
                                                 <td class="hidden td_BATCHNUMBER" data-label='<%=Lang.Get("UWF.Process.PO_SUPPLIER_SUMMARY.BATCHNUMBER").Split('<')[0] %>'>
