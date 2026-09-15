@@ -136,7 +136,7 @@
                     // =================================
 
                     //回填到选中的明细行
-                    var tabId = 'tb_CPRFOOD_ITEMS';
+                    var tabId = 'tb_CPR_SERVICE_ITEMS';
                     var tabCtl = document.getElementById(tabId);
                     for (var i = 0; i < tabCtl.rows.length; i++) {
                         var existrow = tabCtl.rows[i];
