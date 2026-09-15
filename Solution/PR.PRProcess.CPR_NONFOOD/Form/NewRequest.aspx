@@ -136,7 +136,7 @@
                     // =================================
 
                     //回填到选中的明细行
-                    var tabId = 'tb_CPRFOOD_ITEMS';
+                    var tabId = 'tb_CPR_NONFOOD_ITEMS';
                     var tabCtl = document.getElementById(tabId);
                     for (var i = 0; i < tabCtl.rows.length; i++) {
                         var existrow = tabCtl.rows[i];
@@ -1036,7 +1036,7 @@
     </form>
     <div id='div_lang' data-lang='<%=Lang.GetLang() %>'></div>
     <script type='text/javascript' src='math_common.js?t=dc64a1ef-95e5-4fb4-a793-a14f354d8a33'></script>
-    <script type='text/javascript' src='NewRequest.js?t=feb6e0a6-7bd6-4bb1-9a2b-df8DR25vk8EW6'></script>
+    <script type='text/javascript' src='NewRequest.js?t=feb6e0a6-7bd6-4bb1-9a2b-df8DR25vk8EW1'></script>
     <script type='text/javascript' src="SelectSignedApprover.js"></script>
     <script type='text/javascript' src="My97DatePicker/WdatePicker.js"></script>
     <script type="text/javascript" src="RFQNewRequest.js"></script>

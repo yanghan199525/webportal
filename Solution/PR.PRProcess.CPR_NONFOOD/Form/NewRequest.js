@@ -1790,7 +1790,7 @@ function showInvoiceInfo() {
 }
 function initInvoiceLinks() {
     // 遍历所有表体行的INVOICEPATH文本框
-    $("#tb_CPRFOOD_ITEMS tbody tr td.td_INVOICEPATH [data-field='INVOICEPATH']").each(function () {
+    $("#tb_CPR_NONFOOD_ITEMS tbody tr td.td_INVOICEPATH [data-field='INVOICEPATH']").each(function () {
         syncInvoiceLink(this); // 同步当前文本框对应的链接
     });
 }
