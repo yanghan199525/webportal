@@ -1787,6 +1787,7 @@ and l.orgCode like 'ND%'
             public string NetNetPrice { get; set; }
             public string OrderLimit { get; set; }
 
+
         }
         private string UploadDirectory
         {
