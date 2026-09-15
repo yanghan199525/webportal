@@ -202,6 +202,7 @@ $(function () {
     function hideError() {
         $errorLabel.text('').hide();
     }
+    initInvoiceLinks();
 })
 
 function isOrderQuantity() {
@@ -1808,6 +1809,31 @@ function showInvoiceInfo() {
         config.tableCols.forEach(function (colClass) {
             $(`#tb_CPR_SERVICE_ITEMS thead tr td.${colClass}, #tb_CPR_SERVICE_ITEMS tbody tr td.${colClass}`).hide();
         });
+    }
+
+}
+function initInvoiceLinks() {
+    // 遍历所有表体行的INVOICEPATH文本框
+    $("#tb_CPR_SERVICE_ITEMS tbody tr td.td_INVOICEPATH [data-field='INVOICEPATH']").each(function () {
+        syncInvoiceLink(this); // 同步当前文本框对应的链接
+    });
+}
+
+function syncInvoiceLink(textbox) {
+
+    const $textbox = $(textbox);
+    const pathValue = $textbox.val().trim(); // 获取文本框中的路径值
+    console.log(11, pathValue);
+    const $link = $textbox.next(".invoice-path-link"); // 找到同级的链接标签
+
+    if (pathValue) {
+        // 路径有值：更新链接的href和显示文本
+        $link.attr("href", pathValue);
+        $link.text(pathValue.split('_').length > 1 ? pathValue.split('_').pop() : pathValue); // 超长路径省略显示
+        $link.show(); // 显示链接
+    } else {
+        // 路径为空：隐藏链接
+        $link.hide();
     }
 
 }

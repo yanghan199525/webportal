@@ -9,6 +9,8 @@ var config = {
     // 表格中需要显示/隐藏的列类名（含表头和表体）
     tableCols: ["td_INVOICETYPE", "td_INVOICENUMBER", "td_BUYERNAME", "td_BUYERTAXID", "th_ch","td_INVOICEPATH"]
 };
+
+
 $(function () {
     debugger
     $.ajax({
@@ -223,9 +225,7 @@ $(function () {
         $errorLabel.text('').hide();
     }
 
-    //initInvoiceLinks();
-
-    //onUploadCompleted();
+    initInvoiceLinks();
 })
 //判断是否为代采购，是则隐藏网超选择框
 function changeApplyPurpose(init) {
@@ -1384,6 +1384,7 @@ function deleteCPRRow(tabId, ele) {
 
         $(tabRows[i]).find(".index").html(i);
         $(tabRows[i]).find(".index").val(i);
+        $(tabRows[i]).find(".invoice-path-link").hide();
     }
 }
 
@@ -1847,6 +1848,37 @@ function showInvoiceInfo() {
     }
 
 }
+function initInvoiceLinks() {
+    // 遍历所有表体行的INVOICEPATH文本框
+    $("#tb_CPRFOOD_ITEMS tbody tr td.td_INVOICEPATH [data-field='INVOICEPATH']").each(function () {
+        syncInvoiceLink(this); // 同步当前文本框对应的链接
+    });
+}
+
+function syncInvoiceLink(textbox) {
+
+    const $textbox = $(textbox);
+    const pathValue = $textbox.val().trim(); // 获取文本框中的路径值
+    console.log(11, pathValue);
+    const $link = $textbox.next(".invoice-path-link"); // 找到同级的链接标签
+
+    if (pathValue) {
+        // 路径有值：更新链接的href和显示文本
+        $link.attr("href", pathValue);
+        $link.text(pathValue.split('_').length > 1 ? pathValue.split('_').pop() : pathValue); // 超长路径省略显示
+        $link.show(); // 显示链接
+        console.log(1101, pathValue);
+    } else {
+        // 路径为空：隐藏链接
+        console.log(1102, pathValue);
+        $link.hide();
+    }
+
+}
+
+
+
+
 
 
 

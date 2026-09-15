@@ -1800,10 +1800,8 @@ and l.orgCode like 'ND%'
 
         // 最大文件大小（10MB）
         private readonly int MaxFileSize = 10 * 1024 * 1024;
-
         protected void UploadButton_Click(object sender, EventArgs e)
         {
-
             LogUtil.Info("UploadFile" + 1);
             if (!Directory.Exists(UploadDirectory))
             {
@@ -1814,20 +1812,20 @@ and l.orgCode like 'ND%'
                 if (fileUpload.HasFiles)
                 {
                     var results = new List<UploadResult>();
-
                     foreach (HttpPostedFile file in fileUpload.PostedFiles)
                     {
                         var result = UploadFile(file);
                         results.Add(result);
-
-                        // 更新前端进度（需要配合AJAX使用，此处为示例）
-                        ClientScript.RegisterStartupScript(this.GetType(),
-                            "UploadScript",
-                            "onUploadCompleted();", true);
+                        // 移除循环内 RegisterStartupScript，不要在这里调用js
                     }
 
-                    // 显示上传结果
+                    // 展示上传错误信息
                     ShowUploadResults(results);
+
+                    // 将上传结果序列化为JSON，传给前端JS函数
+                    string jsonResults = Newtonsoft.Json.JsonConvert.SerializeObject(results);
+                    string script = string.Format("onUploadCompleted({0});", jsonResults);
+                    ClientScript.RegisterStartupScript(this.GetType(), "UploadScript", script, true);
                 }
                 else
                 {
@@ -1839,93 +1837,6 @@ and l.orgCode like 'ND%'
                 errorLabel.Text = "上传过程中发生错误: " + ex.Message;
             }
         }
-
-        private UploadResult UploadFile(HttpPostedFile file)
-        {
-            var result = new UploadResult
-            {
-                OriginalFileName = file.FileName,
-                Size = file.ContentLength,
-                Uploaded = false
-            };
-
-            try
-            {
-                // 验证文件类型
-                string fileExtension = Path.GetExtension(file.FileName).ToLower();
-                if (!Array.Exists(AllowedExtensions, ext => ext == fileExtension))
-                {
-                    result.ErrorMessage = "不支持的文件类型";
-                    return result;
-                }
-
-                // 验证文件大小
-                if (file.ContentLength > MaxFileSize)
-                {
-                    result.ErrorMessage = string.Format("文件大小超过限制（最大 {0}MB）", MaxFileSize / (1024 * 1024));
-                    return result;
-                }
-
-                // 生成唯一文件名
-                string uniqueFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff")+"_" +file.FileName;
-                string filePath = Path.Combine(UploadDirectory, uniqueFileName);
-
-                // 保存文件
-                file.SaveAs(filePath);
-
-                result.Uploaded = true;
-                result.SavePath = filePath;
-                result.UniqueFileName = uniqueFileName;
-
-                // 记录上传日志（可根据需要实现）
-              
-
-                string baseUrl = System.Web.Configuration.WebConfigurationManager.AppSettings["BPM_WEB_API_URL"].Trim();
-  
-               var Invoice= HttpUtil.HttpGet(string.Format("{0}/api/bpm/Invoice?path={1}", baseUrl, filePath, "application/json;charset=UTF-8"));
-                LogUtil.Info("UploadFile" + Invoice);
-                if (!string.IsNullOrWhiteSpace(Invoice))
-                {
-                    var InvoiceModel = FromJSON<InvoiceInfo>(Invoice);
-
-                    LogUtil.Info("UploadFile:2" + Invoice);
-                    TextBox fld_INVOICETYPE = (TextBox)Page.FindControl("fld_INVOICETYPE");
-                    fld_INVOICETYPE.Text = InvoiceModel.InvoiceType;
-                   // DropDownList fld_INVOICETYPE = (DropDownList)Page.FindControl("fld_INVOICETYPE");
- 
-                    TextBox fld_INVOICENUMBER = (TextBox)Page.FindControl("fld_INVOICENUMBER");
-                    fld_INVOICENUMBER.Text = InvoiceModel.InvoiceNumber;
-
-                    TextBox fld_BUYERNAME = (TextBox)Page.FindControl("fld_BUYERNAME");
-                    fld_BUYERNAME.Text = InvoiceModel.SellerName;
-
-                    TextBox fld_BUYERTAXID = (TextBox)Page.FindControl("fld_BUYERTAXID");
-                    fld_BUYERTAXID.Text = InvoiceModel.SellerTaxId;
-
-                    TextBox fld_INVOICEPATH = (TextBox)Page.FindControl("fld_INVOICEPATH");
-                    
-                    string webUrl = System.Web.Configuration.WebConfigurationManager.AppSettings["BPM_WEB_URL"].Trim();
-                    fld_INVOICEPATH.Text = filePath.Replace(@"D:\Project\sodexo\trunk\WebPortal\Uploads\", webUrl + "/Uploads/");
-
-                    //if (!string.IsNullOrWhiteSpace(InvoiceModel.InvoiceType))
-                    //{
-                    //    fld_INVOICETYPE.SelectedValue = InvoiceModel.InvoiceType;
-                    //}
-                    //else
-                    //{
-                    //    fld_INVOICETYPE.SelectedValue = "";
-                    //}
-                }
-
-            }
-            catch (Exception ex)
-            {
-                result.ErrorMessage = "保存文件时出错: " + ex.Message;
-            }
-
-            return result;
-        }
-
         private void ShowUploadResults(List<UploadResult> results)
         {
             var successCount = results.Count(r => r.Uploaded);
@@ -1959,16 +1870,70 @@ and l.orgCode like 'ND%'
             catch { /* 忽略日志错误 */ }
         }
 
-    
-}
+        private UploadResult UploadFile(HttpPostedFile file)
+        {
+            var result = new UploadResult
+            {
+                OriginalFileName = file.FileName,
+                Size = file.ContentLength,
+                Uploaded = false,
+                InvoiceData = null
+            };
+            try
+            {
+                string fileExtension = Path.GetExtension(file.FileName).ToLower();
+                if (!Array.Exists(AllowedExtensions, ext => ext == fileExtension))
+                {
+                    result.ErrorMessage = "不支持的文件类型";
+                    return result;
+                }
+                if (file.ContentLength > MaxFileSize)
+                {
+                    result.ErrorMessage = string.Format("文件大小超过限制（最大 {0}MB）", MaxFileSize / (1024 * 1024));
+                    return result;
+                }
+                string uniqueFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "_" + file.FileName;
+                string filePath = Path.Combine(UploadDirectory, uniqueFileName);
+                file.SaveAs(filePath);
+
+                result.Uploaded = true;
+                result.SavePath = filePath;
+                result.UniqueFileName = uniqueFileName;
+
+                string baseUrl = System.Web.Configuration.WebConfigurationManager.AppSettings["BPM_WEB_API_URL"].Trim();
+                var Invoice = HttpUtil.HttpGet(string.Format("{0}/api/bpm/Invoice?path={1}", baseUrl, filePath), "application/json;charset=UTF-8");
+                LogUtil.Info("UploadFile" + Invoice);
+
+                if (!string.IsNullOrWhiteSpace(Invoice))
+                {
+                    var InvoiceModel = FromJSON<InvoiceInfo>(Invoice);
+                    LogUtil.Info("UploadFile:2" + Invoice);
+                    string webUrl = System.Web.Configuration.WebConfigurationManager.AppSettings["BPM_WEB_URL"].Trim();
+                    InvoiceModel.InvoiceWebPath = filePath.Replace(@"D:\Project\sodexo\trunk\WebPortal\Uploads\", webUrl + "/Uploads/");
+
+                    //❗不再后台给TextBox赋值，直接塞到返回对象交给JS
+                    result.InvoiceData = InvoiceModel;
+                }
+            }
+            catch (Exception ex)
+            {
+                result.ErrorMessage = "保存文件时出错: " + ex.Message;
+            }
+            return result;
+        }
+
+
+    }
     public class UploadResult
     {
-        public string OriginalFileName { get; set; }
-        public string UniqueFileName { get; set; }
-        public string SavePath { get; set; }
-        public int Size { get; set; }
         public bool Uploaded { get; set; }
+        public string OriginalFileName { get; set; }
+        public long Size { get; set; }
         public string ErrorMessage { get; set; }
+        public string SavePath { get; set; }
+        public string UniqueFileName { get; set; }
+        //新增：发票识别结果，返回前端
+        public InvoiceInfo InvoiceData { get; set; }
     }
     public class InvoiceInfo
     {
@@ -1985,9 +1950,10 @@ and l.orgCode like 'ND%'
         public string TaxRate { get; set; }
         public string TaxAmount { get; set; }
         public string Issuer { get; set; }
+        public string InvoiceWebPath { get; set; }
 
-      
-    }
+
+}
 
 }
 

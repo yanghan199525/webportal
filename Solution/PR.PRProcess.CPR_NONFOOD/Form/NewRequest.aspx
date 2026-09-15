@@ -95,71 +95,67 @@
             color: #409EFF;
         }
     </style>
-    <script type="text/javascript">
-        function onUploadCompleted() {
-            var tabId = 'tb_CPR_NONFOOD_ITEMS';
-            // console.log("函数执行成功00！"); // 控制台查看输出
-            try {
-                var SupplierType = $("#fld_SUPPLIERTYPE").val();
-                //if (SupplierType == "5") {
-                //}
+     <script type="text/javascript">
+        function onUploadCompleted(result) {
+            var res = result[0];
+            if (!res.Uploaded) {
+                alert(res.ErrorMessage);
+                return;
+            }
+            if (res.InvoiceData) {
+                var inv = res.InvoiceData;
+                // 把识别的数据填充弹窗输入框
+                $("#edit_InvoiceType").val(inv.InvoiceType || "");
+                $("#edit_InvoiceNumber").val(inv.InvoiceNumber || "");
+                $("#edit_SellerName").val(inv.SellerName || "");
+                $("#edit_SellerTaxId").val(inv.SellerTaxId || "");
+                //显示弹窗
+                $("#invoiceEditModal").show();
+                //取消按钮
+                $("#btnInvoiceCancel").off("click").on("click", function () {
+                    $("#invoiceEditModal").hide();
+                    console.log("用户取消回填");
+                });
+                //确认回填按钮
+                $("#btnInvoiceOk").off("click").on("click", function () {
+                    //读取用户修改后的值
+                    inv.InvoiceType = $("#edit_InvoiceType").val();
+                    inv.InvoiceNumber = $("#edit_InvoiceNumber").val().trim();
+                    inv.SellerName = $("#edit_SellerName").val();
+                    inv.SellerTaxId = $("#edit_SellerTaxId").val();
 
-                // console.log("函数执行成功01！"+SupplierType); // 控制台查看输出
-
-                var tabCtl = document.getElementById(tabId);
-                for (var i = 0; i < tabCtl.rows.length; i++) {
-                    var existrow = tabCtl.rows[i];
-                    // console.log("函数执行成功02！"+existrow); // 控制台查看输出
-                    var fld_CHECKED = $(existrow).find("input[id*='fld_CHECKED']").is(':checked')
-                    //console.log("函数执行成功03！"+fld_CHECKED); // 控制台查看输出
-                    if (fld_CHECKED) {
-                        // $(existrow).find("input[id*='fld_INVOICETYPE']").val($("#fld_INVOICETYPE").val());
-
-                        $(existrow).find("input[id*='fld_INVOICENUMBER']").val($("#fld_INVOICENUMBER").val());
-
-                        $(existrow).find("input[id*='fld_BUYERNAME']").val($("#fld_BUYERNAME").val());
-
-                        $(existrow).find("input[id*='fld_BUYERTAXID']").val($("#fld_BUYERTAXID").val());
-
-    
-                        $(existrow).find("input[id*='fld_INVOICEPATH']").val($("#fld_INVOICEPATH").val());
-                        //syncInvoiceLink($(existrow).find("input[id*='fld_INVOICEPATH']"));
-                        initInvoiceLinks();
-
+                    // ==========新增校验发票号==========
+                    if (inv.InvoiceNumber) {
+                        // 全部数字正则，长度1‑20位
+                        var regInvoiceNo = /^\d{1,20}$/;
+                        if (!regInvoiceNo.test(inv.InvoiceNumber)) {
+                            alert("发票号码只能输入数字，最大长度20位！");
+                            return; //校验失败，终止，弹窗不关闭
+                        }
                     }
-                }
+                    // =================================
 
-                //$("#fld_SUPPLIERTYPE").attr("disabled", "disabled");
-                hiddenSupplierType();
-            }
-            catch (e) {
+                    //回填到选中的明细行
+                    var tabId = 'tb_CPRFOOD_ITEMS';
+                    var tabCtl = document.getElementById(tabId);
+                    for (var i = 0; i < tabCtl.rows.length; i++) {
+                        var existrow = tabCtl.rows[i];
+                        var fld_CHECKED = $(existrow).find("input[id*='fld_CHECKED']").is(':checked')
+                        if (fld_CHECKED) {
+                            $(existrow).find("input[id*='fld_INVOICETYPE']").val(inv.InvoiceType || "");
+                            $(existrow).find("input[id*='fld_INVOICENUMBER']").val(inv.InvoiceNumber || "");
+                            $(existrow).find("input[id*='fld_BUYERNAME']").val(inv.SellerName || "");
+                            $(existrow).find("input[id*='fld_BUYERTAXID']").val(inv.SellerTaxId || "");
+                            $(existrow).find("input[id*='fld_INVOICEPATH']").val(inv.InvoiceWebPath || "");
+                        }
+                    }
+                    initInvoiceLinks();
+                    hiddenSupplierType();
+                    $("#invoiceEditModal").hide();
+                });
             }
         }
-        function initInvoiceLinks() {
-            // 遍历所有表体行的INVOICEPATH文本框
-            $("#tb_CPR_NONFOOD_ITEMS tbody tr td.td_INVOICEPATH [data-field='INVOICEPATH']").each(function () {
-                syncInvoiceLink(this); // 同步当前文本框对应的链接
-            });
-        }
 
-        function syncInvoiceLink(textbox) {
-
-            const $textbox = $(textbox);
-            const pathValue = $textbox.val().trim(); // 获取文本框中的路径值
-            console.log(11, pathValue);
-            const $link = $textbox.next(".invoice-path-link"); // 找到同级的链接标签
-
-            if (pathValue) {
-                // 路径有值：更新链接的href和显示文本
-                $link.attr("href", pathValue);
-                $link.text(pathValue.split('_').length > 1 ? pathValue.split('_').pop() : pathValue); // 超长路径省略显示
-                $link.show(); // 显示链接
-            } else {
-                // 路径为空：隐藏链接
-                $link.hide();
-            }
-
-        }
     </script>
 
     <script runat="server">
@@ -968,11 +964,39 @@
             </div>
         </div>
         <!--End Item table-->
-        <div class="upload-row hidden" id="div_upload_Inv">
+           <div class="upload-row hidden" id="div_upload_Inv">
+
+            <%--发票编辑弹窗 隐藏--%>
+            <div id="invoiceEditModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999;">
+                <div style="width: 450px; background: #fff; margin: 120px auto; padding: 20px; border-radius: 4px;">
+                    <h4>识别发票信息（可修改）</h4>
+                    <div style="margin: 8px 0;">
+                        <label>发票类型：</label>
+                        <input type="text" id="edit_InvoiceType" style="width: 300px; padding: 4px;">
+                    </div>
+                    <div style="margin: 8px 0;">
+                        <label>发票号码：</label>
+                        <input type="text" id="edit_InvoiceNumber" style="width: 300px; padding: 4px;">
+                    </div>
+                    <div style="margin: 8px 0;">
+                        <label>销方名称：</label>
+                        <input type="text" id="edit_SellerName" style="width: 300px; padding: 4px;">
+                    </div>
+                    <div style="margin: 8px 0;">
+                        <label>销方税号：</label>
+                        <input type="text" id="edit_SellerTaxId" style="width: 300px; padding: 4px;">
+                    </div>
+                    <div style="margin-top: 20px; text-align: right;">
+                        <button id="btnInvoiceCancel">取消</button>
+                        <button id="btnInvoiceOk" style="margin-left: 10px;">确认回填</button>
+                    </div>
+                </div>
+            </div>
+
             <!-- 自定义文件选择容器（用于美化） -->
             <div class="custom-file-container">
                 <!-- 原生FileUpload控件（隐藏，实际处理文件） -->
-                <asp:FileUpload ID="fileUpload" runat="server" Multiple="true" Text="选择发票文件"
+                <asp:FileUpload ID="fileUpload" runat="server" Text="选择发票文件"
                     Style="display: none;" />
 
                 <!-- 自定义选择按钮 -->
@@ -995,6 +1019,7 @@
         <div class="file-list" id="fileList">
             <!-- 文件列表将通过JavaScript动态生成 -->
         </div>
+
 
         <attach:attachments id="Attachments1" runat="server"></attach:attachments>
         <%--  <ath:AttachmentAdd id="AttachmentsAdd" runat="server"></ath:AttachmentAdd>--%>
