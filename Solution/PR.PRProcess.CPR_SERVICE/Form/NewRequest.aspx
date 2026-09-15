@@ -756,7 +756,7 @@
                                     <td style="" class="td_INVOICENUMBER"><%=Lang.Get("PR.PRProcess.CPR_FOOD.INVOICENUMBER") %><span style='color: red'>*</span></td>
                                     <td style="" class="td_BUYERNAME"><%=Lang.Get("PR.PRProcess.CPR_FOOD.BUYERNAME") %><span style='color: red'>*</span></td>
                                     <td style="" class="td_BUYERTAXID"><%=Lang.Get("PR.PRProcess.CPR_FOOD.BUYERTAXID") %><span style='color: red'>*</span></td>
-                                    <td style="" class="td_INVOICEPATH"><%=Lang.Get("PR.PRProcess.CPR_FOOD.INVOICEPATH") %></td>
+                                    <td style="" class="td_INVOICEPATH"><%=Lang.Get("PR.PRProcess.CPR_FOOD.INVOICEPATH") %><span style='color: red'>*</span></td>
 
                                     <td style="" class="hidden td_FAMILYCODE"><%=Lang.Get("PR.PRProcess.CPR_SERVICE.FAMILYCODE") %></td>
                                     <td style="" class="hidden td_FAMILYNAME"><%=Lang.Get("PR.PRProcess.CPR_SERVICE.FAMILYNAME") %></td>
@@ -823,22 +823,22 @@
                                                 </ult:TextBox>
                                             </td>
                                             <td class=" td_ORDERQUANTITY" data-label='<%=Lang.Get("PR.PRProcess.CPR_SERVICE.ORDERQUANTITY").Split('<')[0] %>'>
-                                                <ult:TextBox ID="fld_ORDERQUANTITY" title="" data-type='number' onblur="checkExpression(this)" data-field="ORDERQUANTITY" CssClass="item-control  validate[required,custom[number]]  ControlValue='<%#Eval("ORDERQUANTITY")%>' runat="server" onchange="SumAmount(this)" data-errormessage-type-mismatch="采购数量必须大于0<br />Purchase quantity must be greater than 0">
+                                                <ult:TextBox ID="fld_ORDERQUANTITY" title="" data-type='number' onblur="checkExpression(this)" data-field="ORDERQUANTITY" CssClass="item-control validate[required,custom[number]] " ControlValue='<%#Eval("ORDERQUANTITY")%>' runat="server" onchange="SumAmount(this)" data-errormessage-type-mismatch="采购数量必须大于0<br />Purchase quantity must be greater than 0">
                                                 </ult:TextBox>
                                             </td>
-                                            <td class="td_INVOICENUMBER" data-label='<%=Lang.Get("PR.PRProcess.CPR_FOOD.INVOICENUMBER").Split('<')[0] %>'>
-                                                <ult:TextBox ID="fld_INVOICENUMBER" title="" data-type='string' onblur="checkExpression(this)" data-field="INVOICENUMBER" CssClass="item-control validate[required]" ControlValue='<%#Eval("INVOICENUMBER")%>' runat="server">
+                                            <td class="td_INVOICENUMBER" data-label='<%=Lang.Get("PR.PRProcess.CPR_SERVICE.INVOICENUMBER").Split('<')[0] %>'>
+                                                <ult:TextBox ID="fld_INVOICENUMBER" title="" data-type='string' onblur="checkExpression(this)" data-field="INVOICENUMBER" CssClass="item-control validate[required] ReadOnly" ControlValue='<%#Eval("INVOICENUMBER")%>' runat="server">
                                                 </ult:TextBox>
                                             </td>
-                                            <td class="td_BUYERNAME" data-label='<%=Lang.Get("PR.PRProcess.CPR_FOOD.BUYERNAME").Split('<')[0] %>'>
-                                                <ult:TextBox ID="fld_BUYERNAME" title="" data-type='string' onblur="checkExpression(this)" data-field="BUYERNAME" CssClass="item-control validate[required]" ControlValue='<%#Eval("BUYERNAME")%>' runat="server">
+                                            <td class="td_BUYERNAME" data-label='<%=Lang.Get("PR.PRProcess.CPR_SERVICE.BUYERNAME").Split('<')[0] %>'>
+                                                <ult:TextBox ID="fld_BUYERNAME" title="" data-type='string' onblur="checkExpression(this)" data-field="BUYERNAME" CssClass="item-control validate[required] ReadOnly" ControlValue='<%#Eval("BUYERNAME")%>' runat="server">
                                                 </ult:TextBox>
                                             </td>
-                                            <td class="td_BUYERTAXID" data-label='<%=Lang.Get("PR.PRProcess.CPR_FOOD.BUYERTAXID").Split('<')[0] %>'>
-                                                <ult:TextBox ID="fld_BUYERTAXID" title="" data-type='string' onblur="checkExpression(this)" data-field="BUYERTAXID" CssClass="item-control validate[required]" ControlValue='<%#Eval("BUYERTAXID")%>' runat="server">
+                                            <td class="td_BUYERTAXID" data-label='<%=Lang.Get("PR.PRProcess.CPR_SERVICE.BUYERTAXID").Split('<')[0] %>'>
+                                                <ult:TextBox ID="fld_BUYERTAXID" title="" data-type='string' onblur="checkExpression(this)" data-field="BUYERTAXID" CssClass="item-control validate[required] ReadOnly" ControlValue='<%#Eval("BUYERTAXID")%>' runat="server">
                                                 </ult:TextBox>
                                             </td>
-                                            <td class="td_INVOICEPATH" data-label='<%=Lang.Get("PR.PRProcess.CPR_FOOD.INVOICEPATH").Split('<')[0] %>'>
+                                            <td class="td_INVOICEPATH" data-label='<%=Lang.Get("PR.PRProcess.CPR_SERVICE.INVOICEPATH").Split('<')[0] %>'>
                                                   <ult:TextBox ID="fld_INVOICEPATH" title="" data-type='string' onblur="checkExpression(this)" data-field="INVOICEPATH" CssClass="item-control-invoice-path" ControlValue='<%#Eval("INVOICEPATH")%>' runat="server">
                                                      
                                                 </ult:TextBox>
