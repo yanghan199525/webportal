@@ -117,7 +117,8 @@
                     console.log("用户取消回填");
                 });
                 //确认回填按钮
-                $("#btnInvoiceOk").off("click").on("click", function () {
+                $("#btnInvoiceOk").off("click").on("click", function (e) {
+                     e.preventDefault();
                     //读取用户修改后的值
                     inv.InvoiceType = $("#edit_InvoiceType").val();
                     inv.InvoiceNumber = $("#edit_InvoiceNumber").val().trim();
