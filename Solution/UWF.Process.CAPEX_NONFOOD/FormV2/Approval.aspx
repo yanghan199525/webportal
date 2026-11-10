@@ -235,23 +235,7 @@
                                     </ult:TextBox>
                                 </div>
                             </div>
-                        </div>
-                          <!-- FORMID
-                        <div class="col-lg-4 col-sm-6 col-xs-12 form-cell hidden" id="div_field_FORMID" style="height: ">
-                            <div class="form-label">
-                                <%=Lang.Get("PR.PRProcess.HK_CAPEX_NONFOOD.FORMID") %>:
-                            </div>
-                            <div class="form-field">
-                                <div class="form-ctl">
-                                    <ult:TextBox ID="fld_FORMID" data-type='string' title="" onblur="checkExpression(this)" data-field="FORMID" Variable="FORMID" ControlValue="" CssClass="form-control  " runat="server">
-                                    </ult:TextBox>
-                                </div>
-                            </div>
-                        </div>
-                               -->
-
-                   
-
+                        </div>                        
                     </div>
                 </div>
             </div>
@@ -428,7 +412,7 @@
         <asp:HiddenField ID="isGL" Value="0" runat="server" />
     </form>
     <div id='div_lang' data-lang='<%=Lang.GetLang() %>'></div>
-    <script type='text/javascript' src='Approval.js?t=9119cb80-5cf5-45f6-9d3c-20f1ed3e3165'></script>
+    <script type='text/javascript' src='Approval.js?t=9119cb80-5cf5-45f6-9d3c-20f1ed3e3166'></script>
     <script type='text/javascript' src="My97DatePicker/WdatePicker.js"></script>
 
 </body>
